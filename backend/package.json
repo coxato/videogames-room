@@ -1,0 +1,32 @@
+{
+  "name": "gamesroom-website",
+  "version": "1.0.0",
+  "description": "website to a video games room ,  you can create users and manage them",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon ./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carlosEdua/gamesRoom-website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/carlosEdua/gamesRoom-website/issues"
+  },
+  "homepage": "https://github.com/carlosEdua/gamesRoom-website#readme",
+  "devDependencies": {
+    "dotenv": "^8.1.0",
+    "morgan": "^1.9.1",
+    "nodemon": "^1.19.1"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^3.3.1",
+    "multer": "^1.4.2"
+  }
+}
