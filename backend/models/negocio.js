@@ -33,7 +33,7 @@ class Negocio{
                     end: ["1","PM"]
                 },
                 afternoon: {
-                    start: ["1PM"],
+                    start: ["1","PM"],
                     end: ["6","PM"]
                 }
             },
