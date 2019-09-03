@@ -10,54 +10,23 @@ class AdminGeneral extends Component{
 
     state = {
         error: null,
-        loading: false,
+        loading: true,
+        saving: false,
         arrJuegos: [],
         isAdmin: true,
         precio: 15000,
-        // horario: null
-        horario: {
-            turnoCorrido: false,
-            diasDeSemana: {
-                morning: {
-                    start: ["8","AM"],
-                    end: ["12","AM"]
-                },
-                afternoon: {
-                    start: ["2","PM"],
-                    end: ["6","PM"]
-                }
-            },
-            sabado: {
-                morning: {
-                    start: ["9","AM"],
-                    end: ["12","AM"]
-                },
-                afternoon: {
-                    start: ["2","PM"],
-                    end: ["9","PM"]
-                }
-            },
-            domingo: {
-                morning: {
-                    start: ["9","AM"],
-                    end: ["12","AM"]
-                },
-                afternoon: {
-                    start: ["2","PM"],
-                    end: ["5","PM"]
-                }
-            },
-        }
+        horario: null
     }
 
     // controlar los juegos
     setGames = (arr) => this.setState({ arrJuegos: arr});
     // configurar horario
-    getDataHorario = () => {
-        let scheduleCopy = JSON.parse(JSON.stringify(this.state.horario));
-        let inputs = [...document.querySelectorAll(".input-horario")];
-        let corrido = document.querySelector(".horario-select").value == "corrido" ? true:false;
-        let cont = 0;
+    getDataHorarioAndPrice = () => {
+        let scheduleCopy = JSON.parse(JSON.stringify(this.state.horario)),
+        inputs = [...document.querySelectorAll(".input-horario")],
+        corrido = document.querySelector(".horario-select").value == "corrido" ? true:false,
+        cont = 0,
+        precio = document.getElementById("precio").value;
         // iterar a travez del objeto horario, recordar que no importa el turno
         // la estructura del objeto horario sigue igual, solo sus valores cambian 
             scheduleCopy.turnoCorrido = corrido ? true : false;
@@ -79,38 +48,66 @@ class AdminGeneral extends Component{
                     }
                 }
             }
-        this.setState({ horario: scheduleCopy});  
+            return { scheduleCopy, precio };
     }
 
+
     // guardar todos los datos
-    handleSend = () => {
-        this.getDataHorario();
-        console.log("se guardó");
+    handleSend = async () => {
+        let { scheduleCopy, precio } = this.getDataHorarioAndPrice();
+        this.setState({ error: null, loading: false, saving: true});
+        
+        console.log("el fucking state antes del llamado ", this.state)
+        
+        try {
+            let allSaved = await fetch(`http://${config.domain}/admin/update/general`, {
+                method: 'PUT',
+                body: JSON.stringify({
+                    horario: scheduleCopy,
+                    juegos: this.state.arrJuegos,
+                    precio,
+                }),
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            });
+            let responseJson = await allSaved.json();
+            console.log("se guardó ", responseJson);
+
+            this.setState({ saving: false, precio, horario: scheduleCopy });
+
+        console.log("el fucking state despues del llamado ", this.state)
+        } catch (err) {
+            this.setState({ error: err, saving: false})
+        }
     }
 
     // traer datos de la API
     fetchData = async () => {
         try {
             let negocioData = await fetch(`http://${config.domain}/admin/data/general`);
-            let { precio, horario, juegos } = negocioData;    
-           console.log(negocioData);
+            let json = await negocioData.json();
+            let { precio, horario, juegos } = json;
+            this.setState({
+                loading: false, precio, horario, arrJuegos: juegos
+            })
         } catch (err) {
             this.setState({ error: err});
         }
     }
     // llamar cuando se pinten por primera vez los componentes
     componentDidMount(){
-        // this.fetchData();
+        this.fetchData();
     }
 
     render(){
-        let { loading, error } = this.state;
-        if(loading){
-            return <h1>cargando!!</h1>
-        }
-        if(error){
-            return <h1>a ocurrido un error {error}</h1>
-        }
+        let { loading, error, saving } = this.state;
+        if(loading) return <h1>cargando!!</h1>
+
+        if(saving) return <h1>guardando datos...</h1>
+
+        if(error) return <h1>a ocurrido un error {error}</h1>
 
         return(
             <section className="general-admin-container">

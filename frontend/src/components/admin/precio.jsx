@@ -5,7 +5,7 @@ const Precio = ({precio}) => (
         <h1 className="title">Precio</h1>
         <div className="field">
             <div className="control">
-                <input type="text" name="precio" className="input" defaultValue={precio}/>
+                <input type="text" id="precio" className="input" defaultValue={precio}/>
                 <div className="has-background-light">Bs</div>
             </div>
         </div>

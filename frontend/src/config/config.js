@@ -1,3 +1,3 @@
 export default {
-    domain: "localhost:5000",
+    domain: "192.168.0.101:5000",
 }
