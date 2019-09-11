@@ -1,5 +1,6 @@
 const MongoLib = require("../mongo/connection");
 const NegocioModel = require("../models/negocio.js");
+const EventoModel = require("../models/eventos");
 const ObjectId = require("mongodb").ObjectID();
 const codeGen = require("../utils/createCodes");
 
@@ -9,12 +10,20 @@ class NegocioService{
         this.collection = "negocio";
         this.mongo = new MongoLib();
     }
-
+    // ================================  crear  ===========================================
     async guardarNegocio(){
         let { mongo, collection } = this;
         let negocio = new NegocioModel();
         let saved = await mongo.createOne(collection, negocio);
         return saved;
+    }
+
+    async crearEvento(json){
+        let { mongo, collection } = this;
+        let evento = new EventoModel(json);
+        let created = await mongo.createOne(collection, evento);
+        return created.insertedId;
+
     }
 
     // ##### pedir datos del negocio #####
@@ -106,8 +115,10 @@ class NegocioService{
         }
         
     }
-    // #####################################################
 
+
+
+    // #####################################################
     // ##################  actualizar datos ##################
     // actualizar numero de codigos, divisorPremio, duracion de los codigos
     async actualizarDatosDeCodigos({id , nombre}, divisorPremio, duracionEnDiasDeCodigoHora, duracionEnDiasDeCodigoPremio, cantidadDeCodigosAGenerar){
@@ -126,8 +137,8 @@ class NegocioService{
 
     }
 
-    // actualizar datos del negocio
-    async actualizarDatos(precio, juegos, horario){
+    // actualizar datos del generales negocio
+    async actualizarDatosGenerales(precio, juegos, horario){
         let { mongo, collection } = this;
         let allUpdated = await mongo.updateOne(collection, {nombre: "masplay"}, {
             $set: {
@@ -139,34 +150,7 @@ class NegocioService{
         return allUpdated;
 
     }
-    // // actualizar precio
-    // async actualizarPrecio(newPrice){
-    //     let { mongo, collection } = this;
-    //     let updated = await mongo.updateOne(collection, {nombre: "masplay"}, { $set: {precio: newPrice}});
-    //     return updated;
-    // };
-
-    // // actualizar catalogo de juegos
-    // // trae un array con los juegos viejos y nuevos ya incluidos
-    // async actualizarCatalogoJuegos(arrJuegos){
-    //     let { mongo, collection } = this;
-    //     let updated = await mongo.updateOne(collection, {nombre: "masplay"}, { $set: {juegos: arrJuegos}});
-    //     return updated;
-    // }
-    // // actualiazar horarios
-    // async actualizarHorarios(turnoCorrido, diasDeSemana, sabado, domingo){
-    //     let { mongo, collection } = this;
-    //     let updated = await mongo.updateOne(collection, {nombre: "masplay"}, { 
-    //             $set: {
-    //                 turnoCorrido,
-    //                 diasDeSemana,
-    //                 sabado,
-    //                 domingo
-    //             } 
-    //         }
-    //     );
-    //     return updated;
-    // }
+  
 
     // #######################################################
 
