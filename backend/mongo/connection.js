@@ -74,7 +74,7 @@ class MongoServices {
     getOne(collection, query, projection = null){
         const {instance, dbName} = this;
         console.log("la proyeccion ", projection)
-        return instance.db(dbName).collection(collection).findOne(query, projection);
+        return instance.db(dbName).collection(collection).findOne(query, { projection });
 
     }
     // ## update ##
