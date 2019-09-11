@@ -4,7 +4,6 @@ const { port } = require("./config/config");
 const MongoLibServices = require("./mongo/connection");
 const morgan = require("morgan");
 const cors = require("cors");
-const bodyParser = require("body-parser")
 // const multerConfig = require("./config/multer");
 const negocioRoutes = require("./routes/negocioRoutes");
 
@@ -29,10 +28,22 @@ app.use("/admin", negocioRoutes);
 
 
 // start the server
+let server;
 function startServer(){
-    app.listen(port, async() => {
-        console.log(`server created at port ${port}`)
+    server = app.listen(port, async() => {
+        console.log(`server created at port ${port}`);
+        process.on("SIGINT", closeServer);
+        process.on("SIGTERM", closeServer);
     });
+}
+// disconnet mongo and close the server
+async function closeServer(){
+    try {
+        await mongo.disconnect();
+        server.close();
+    } catch (err) {
+        console.log("db error connection ",err);
+    }
 }
 // run first the database connection and then the server
 async function run(){
@@ -47,7 +58,7 @@ async function run(){
         console.log("db error connection ",err);
     }
 }
-// run the api rest
+// run the rest api
 run();
 
 

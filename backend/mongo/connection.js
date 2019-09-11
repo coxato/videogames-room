@@ -49,8 +49,9 @@ class MongoServices {
     async disconnect(){
         try {
             if(this.instance) await this.instance.close();
+            return true;
         } catch (err) {
-            return Error(err)
+            throw Error(err)
         }
     }
 
@@ -68,7 +69,8 @@ class MongoServices {
     // ## find ##
     getAll(collection, query, projection = null){
         const {instance, dbName} = this;
-        return instance.db(dbName).collection(collection).find(query, projection).toArray();    
+        console.log("la proyeccion ", projection)
+        return instance.db(dbName).collection(collection).find(query).project(projection).toArray();    
     }
 
     getOne(collection, query, projection = null){
