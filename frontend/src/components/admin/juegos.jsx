@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import CatalogoJuegos from './catalogoJuegos';
+import CatalogoJuegos from '../commons/catalogoJuegos';
 
 
 function AdminCatalogoJuegos({arrJuegos, setGames, isAdmin}){
@@ -47,9 +47,10 @@ function includeGamesToarr(){
        if(inputs[0].value){
            let i = 0;
            newGames.push({
-               imageUrl: inputs[i++].value,
-               nombre: inputs[i++].value,
-               plataforma: inputs[i++].value
+               imageUrl: inputs[i++].value, // i = 0 
+               nombre: inputs[i++].value, // i = 1
+               plataforma: inputs[i++].value // i = 2
+                                        // i = 3
            })
        }
     }

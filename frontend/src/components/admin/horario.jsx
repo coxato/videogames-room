@@ -4,7 +4,7 @@ import './styles/horario.css';
 // input con los horarios
 function InputHorario({turno, start, end}){
     return(
-        <form className="inputs-horario">
+        <div className="inputs-horario">
             <h3 className="subtitle">{turno}</h3>
             {/** inicio */}
             <div className="caja-horario">
@@ -18,7 +18,7 @@ function InputHorario({turno, start, end}){
                 <input type="number" min={0} max={12} className="input input-horario" defaultValue={Number(end)}/>
                 <div className="am-pm">{turno == "tarde" ? "PM" : turno == "" ? "PM" : "AM" }</div>
             </div>
-        </form>
+        </div>
     )
 }
 

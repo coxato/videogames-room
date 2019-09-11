@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import config from '../config/config';
+import { domain } from '../config/config';
 // components
 import AdminJuegos from '../components/admin/juegos';
 import Horario from '../components/admin/horario';
@@ -57,10 +57,9 @@ class AdminGeneral extends Component{
         let { scheduleCopy, precio } = this.getDataHorarioAndPrice();
         this.setState({ error: null, loading: false, saving: true});
         
-        console.log("el fucking state antes del llamado ", this.state)
         
         try {
-            let allSaved = await fetch(`http://${config.domain}/admin/update/general`, {
+            let allSaved = await fetch(`http://${domain}/admin/update/general`, {
                 method: 'PUT',
                 body: JSON.stringify({
                     horario: scheduleCopy,
@@ -86,7 +85,7 @@ class AdminGeneral extends Component{
     // traer datos de la API
     fetchData = async () => {
         try {
-            let negocioData = await fetch(`http://${config.domain}/admin/data/general`);
+            let negocioData = await fetch(`http://${domain}/admin/data/general`);
             let json = await negocioData.json();
             let { precio, horario, juegos } = json;
             this.setState({
