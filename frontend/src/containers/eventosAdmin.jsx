@@ -1,16 +1,18 @@
 import React, { Component } from 'react'
 import { domain } from '../config/config';
+import events from '../../mooks/events';
+import './styles/eventos.css';
 // components
-import CreateEvents from '../components/admin/createEvents';
+// import CreateEvents from '../components/admin/createEvents';
 import ShowEvents from '../components/commons/showEvents';
 
 class Eventos extends Component{
 
     state = {
-        loading: true,
+        loading: false,
         error: null,
-        isAdmin: true,
-        events: []
+        isAdmin: false,
+        events,
     }
 
     async getEvents(){
@@ -39,7 +41,7 @@ class Eventos extends Component{
                     : 
                     <div className="eventos-flex-container">
                         <div className="eventos">
-
+                            <ShowEvents isAdmin={isAdmin} events={events}/>
                         </div>
                         <div className="agregar-eventos-container">
 

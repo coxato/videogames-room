@@ -24,6 +24,7 @@ router.get("/eventos", async (req, res) => {
     let eventos = await service.getEventos();
     res.send(eventos);
 })
+
 // ####################################
 
 

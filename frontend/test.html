@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./test.css">
+    <title>test height clickeable</title>
+</head>
+<body>
+    <div class="container">
+        <div class="caja">
+            <div class="visible">
+                <h1>hola soy el contenedor</h1>
+                <hr>
+                <div class="parrafo">soy un parrafo cualquiera con otras cosas</div>
+                <div class="imagen"> se supone soy una imagen </div>
+            </div>
+            <div class="oculto">
+                <h3>debería estar oculto</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt adipisci eveniet odit repellat itaque numquam iste mollitia dolores obcaecati dolorem asperiores, quidem tempora, incidunt perspiciatis id vel accusamus quos molestiae.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt adipisci eveniet odit repellat itaque numquam iste mollitia dolores obcaecati dolorem asperiores, quidem tempora, incidunt perspiciatis id vel accusamus quos molestiae.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt adipisci eveniet odit repellat itaque numquam iste mollitia dolores obcaecati dolorem asperiores, quidem tempora, incidunt perspiciatis id vel accusamus quos molestiae.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt adipisci eveniet odit repellat itaque numquam iste mollitia dolores obcaecati dolorem asperiores, quidem tempora, incidunt perspiciatis id vel accusamus quos molestiae.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt adipisci eveniet odit repellat itaque numquam iste mollitia dolores obcaecati dolorem asperiores, quidem tempora, incidunt perspiciatis id vel accusamus quos molestiae.</p>
+            </div>
+            <div class="click-height" onclick="expander(this)" >ver más +</div>
+        </div>
+
+
+        <div class="caja">
+            <div class="visible">
+                <h1>hola soy el contenedor</h1>
+                <hr>
+                <div class="parrafo">soy un parrafo cualquiera con otras cosas</div>
+                <div class="imagen"> se supone soy una imagen </div>
+            </div>
+            <div class="oculto">
+                <h3>debería estar oculto</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt adipisci eveniet odit repellat itaque numquam iste mollitia dolores obcaecati dolorem asperiores, quidem tempora, incidunt perspiciatis id vel accusamus quos molestiae.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt adipisci eveniet odit repellat itaque numquam iste mollitia dolores obcaecati dolorem asperiores, quidem tempora, incidunt perspiciatis id vel accusamus quos molestiae.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt adipisci eveniet odit repellat itaque numquam iste mollitia dolores obcaecati dolorem asperiores, quidem tempora, incidunt perspiciatis id vel accusamus quos molestiae.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt adipisci eveniet odit repellat itaque numquam iste mollitia dolores obcaecati dolorem asperiores, quidem tempora, incidunt perspiciatis id vel accusamus quos molestiae.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt adipisci eveniet odit repellat itaque numquam iste mollitia dolores obcaecati dolorem asperiores, quidem tempora, incidunt perspiciatis id vel accusamus quos molestiae.</p>
+            </div>
+            <div class="click-height">ver más +</div>
+        </div>
+    </div>
+
+    <script>
+        let heightDiv = "0px";
+
+        function expander(ev){
+            let elmt = ev.parentElement.children[1];
+            if( getComputedStyle(elmt).height == '0px' ) elmt.style.height = heightDiv;
+            else elmt.style.height = "0px";
+        }
+
+        document.addEventListener("DOMContentLoaded", function(event) {
+            let oculto = document.querySelector('.oculto');
+            heightDiv = getComputedStyle(oculto).height;
+            oculto.style.height = "0px";
+        });
+    </script>
+</body>
+</html>
