@@ -6,7 +6,7 @@ import ConfigValuesCodes from '../components/admin/codes/configValuesCodes';
 import './styles/codigosAdmin.css';
 
 class AdminCodes extends Component{
-
+ 
 	state = {
 		loading: true,
 		error: null,

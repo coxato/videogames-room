@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function RegisterForm({handleChange, signup}) {
 	return(
@@ -20,6 +21,13 @@ function RegisterForm({handleChange, signup}) {
 								<input type="text" className="input" onChange={handleChange} name="apellido"/>
 							</div>
 						</div>
+
+						{/*<div className="field">
+							<label className="label">nombre de usuario</label>
+							<div className="control">
+								<input type="text" className="input" onChange={handleChange} name="username" placeholder="ejemplo: gamer123"/>
+							</div>
+						</div>*/}
 
 						<div className="field">
 							<label className="label">email</label>
@@ -45,6 +53,11 @@ function RegisterForm({handleChange, signup}) {
 						<button onClick={signup} className="button is-fullwidth is-link">registrarme</button>
 
 					</div>
+
+					<div className="content has-text-centered">
+						¿ya tienes cuenta? <Link to="/login">iniciar sesión</Link>
+					</div>
+					
 				</div>
 			</div>
 		</div>

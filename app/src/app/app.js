@@ -1,27 +1,41 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 // pages
+import LandingPage from '../pages/home';
 import AdminPage from '../pages/admin';
 import RegisterPage from '../pages/register';
-// nav menues
-import NavAdmin from '../components/admin/adminNav';
+import LoginPage from '../pages/login';
+import ProfilePage from '../pages/profile';
 
-// const NotFound = () => <h1 className="title">not found</h1>
+// nav and footer
+import Nav from '../components/commons/nav';
+import Footer from '../components/commons/footer';
+
 import './styles/app.css';
 
 function App(){
 
+	let style = {
+		minHeight: '100vh',
+		display: 'flex',
+		flexDirection: 'column',
+		background: '#eaeaea'
+	}
+
 	return(
-		<div className="app-container">
+		<div className="app-container" style={style}>
 			<BrowserRouter>
 
+            { !window.location.pathname.match(/admin/) && <Nav /> }
+					<LandingPage />
 					<RegisterPage />
+					<LoginPage />
+					<ProfilePage />
 			  		<AdminPage />
-
 			  	{/*	<Switch>
 			  			<Route component={NotFound} />
 			  		</Switch>  */}
-
+			 { !window.location.pathname.match(/admin/) && <Footer /> }
 			</BrowserRouter>
 		</div>
 	)

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function LoginForm({handleChange, login}) {
 	return(
@@ -23,6 +24,9 @@ function LoginForm({handleChange, login}) {
 						
 						<button onClick={login} className="button is-fullwidth is-link">login</button>
 
+					</div>
+					<div className="content has-text-centered">
+						¿no tienes cuenta aún? <Link to="/register">registrarse</Link>
 					</div>
 				</div>
 			</div>

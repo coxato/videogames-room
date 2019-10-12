@@ -10,19 +10,27 @@ class UserService{
 		this.mongo = new MongoLib();
 	}
 
+	// create a user if email is not taken
 	async createUser(data){
 		let { collection, mongo } = this;
 		let user = new UserModel(data);
 		try{
-
-			// encrypt password
-			const salt = await bcrypt.genSalt(10);
-			const hash = await (user.password, salt);
-			// set password and random gravatar
-			user.password = hash;
-			user.foto = `https://www.gravatar.com/avatar/${md5(user.email)}?d=identicon`;
-			const userCreated = await mongo.createOne(collection, user);
-			return userCreated
+			// check if the email is not taken
+			const userExist = await mongo.getOne(collection, {email: data.email});
+			if(userExist){
+				return null;
+			}else{
+				// encrypt password
+				// const salt = await bcrypt.genSalt(10);
+				// gen hash
+				const hash = await bcrypt.hash(user.password, 10);
+				// set password and random gravatar
+				user.password = hash;
+				user.foto = `https://www.gravatar.com/avatar/${md5(user.email)}?d=identicon`;
+				// save the user in DB
+				const userCreated = await mongo.createOne(collection, user);
+				return userCreated
+			}
 		
 		}catch(err){
 			console.log(err)
@@ -30,7 +38,7 @@ class UserService{
 
 	}
 
-	// login user, only returns a boolean
+	// login user, check if the user exist and if the password is correct, returns the user _id or null
 	async loginUser({email, password}){
 		let { collection, mongo } = this;
 		try{
@@ -39,11 +47,14 @@ class UserService{
 			let user = await mongo.getOne(collection, { email });
 			if(user){
 				let realUser = await bcrypt.compare(password, user.password);
-				return realUser;
+				// all ok return a user Object
+				if(realUser) return { id: user._id };
+				// incorrect password
+				else return null;
 			}
 			// user not exist
 			else{
-				return false;
+				return null;
 			}
 
 		}catch(err){
@@ -57,7 +68,7 @@ class UserService{
 		
 		try{
 
-			let user = await mongo.getOne(collection, query);
+			let user = await mongo.getOne(collection, query, {password: 0});
 			return user;
 
 		}catch(err){

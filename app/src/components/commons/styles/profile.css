@@ -1,0 +1,64 @@
+.profile-container{
+	width: 100%;
+	padding: 35px 40px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	/*align-items: space-around;*/
+}
+
+
+.profile-arriba{
+	width: 100%;
+	padding: 25px;
+	display: flex;
+	align-items: center;
+	/*justify-content: center;*/
+	justify-content: space-around;
+}
+
+.imagen-profile{
+	width: 120px;
+	height: 120px;
+	border-radius: 50%;
+	overflow: hidden;
+	/*margin-right: 15px;*/
+}
+
+.imagen-profile img{
+	width: 100%;
+	height: 100%;
+}
+
+.datos-profile{
+	border: 3px solid red;
+	padding: 30px;
+	/*margin-left: 30px;*/
+	/*margin-right: 30px;*/
+
+}
+
+	.title-user{
+		font-size: 35px;
+		font-family: fantasy;
+	}
+
+	.username{
+		font-size: 21px;
+	}
+
+	.puntos-horas-flex{
+		width: 100%;
+		border: 3px solid blue;
+		display: flex;
+		justify-content: space-around;
+		text-align: center;
+	}
+
+.botones-profile-codes{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+	border: pink 3px solid;
+}

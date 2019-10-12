@@ -1,0 +1,60 @@
+.horario-container{
+    display: flex;
+    flex-direction: column;
+    /*align-items: center;*/
+    justify-content: center;
+    padding: 50px 30px;
+}
+
+/* .horario-izq{ 
+    width: 150px;
+    background: lightcoral;
+} */
+
+.input-horario-home{
+    width: 100%;
+    background: #f2f2f2;
+    padding: 5px 2px;
+    text-align: center;
+}
+
+.inputs-horario{
+    margin-bottom: 12px;
+    border: 2px solid black;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+    /* .dias-horario{
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 100%;
+    } */
+
+    .caja-horario{
+        display: flex;
+        margin-bottom: 12px;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .days-container{
+        margin: 10px 20px;
+    }
+
+    .start-end{
+        border: 2px solid grey;
+        padding: 3px 7px;
+    }
+    .am-pm{
+        border: 2px solid grey;
+        padding: 3px 7px;
+        background: #f2f2f2;
+    }
+
+/* @media screen and (max-width: 700px){
+    .dias-horario{
+        flex-direction: column;
+    }
+} */

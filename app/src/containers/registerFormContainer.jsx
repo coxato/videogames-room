@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 // import Loader from '../components/commons/loader';
 import RegisterForm from '../components/commons/registerForm';
 // style
-// import './styles/createCodes.css';
+import './styles/registerContainer.css';
 
 class RegisterContainer extends Component{
 
@@ -12,14 +12,24 @@ class RegisterContainer extends Component{
 		nombre: '',
 		apellido: '',
 		email: '',
+		username: '',
 		password: '',
 		passwordConfirm: '',
+		errorMsg: []
 	}
 
 	// check the form data
 	checkData = () => {
-		// check more if is necessary
-		return this.state.password === this.state.passwordConfirm;
+		let errors = [];
+		let { password, passwordConfirm, nombre, apellido, email } = this.state;
+		if(password != passwordConfirm) errors.push("las contraseñas son diferentes");
+		if(password.length < 6) errors.push("la contraseña debe tener al menos 6 caracteres");
+		if(nombre=='' || apellido==''|| email=='') errors.push("rellena todos los campos")
+		if(errors.length > 0){
+			this.setState({ errorMsg: errors });
+		}else{
+			return true;
+		}
 	}
 
 	handleOnChange = (ev) => {
@@ -43,6 +53,7 @@ class RegisterContainer extends Component{
 
 				let created = await response.json();
 				console.log(created);
+				this.props.history.push('/login');
 
 
 			}catch(err){
@@ -55,17 +66,25 @@ class RegisterContainer extends Component{
 		}
 	}
 
-	
+	// hide the notifications errors of form
+	hideErrors = (ev) => ev.target.parentElement.remove();
 
+	
 	render(){
 		return(
 			<div className="register-container">
 				{
 					!this.state.allOk 
 					&&
-					<div className="box has-background-danger title">
-						<div className="delete"></div>
-						las contraseñas no son iguales
+					<div className="box has-background-light title">
+						<div className="delete" onClick={this.hideErrors}></div>
+						{
+							this.state.errorMsg.map( (err, idx) => (
+								<div className="box has-background-danger" key={idx}>
+									<p className="has-text-centered subtitle">{err}</p>
+								</div>
+							))
+						}
 					</div>
 				}
 				

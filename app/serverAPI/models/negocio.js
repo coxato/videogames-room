@@ -37,7 +37,7 @@ class Negocio{
                     end: ["6","PM"]
                 }
             },
-        };
+        }; 
         // variables necesarias para la creación de códigos 
         this.divisorPremio = 5;
         this.duracionEnDiasDeCodigoHora = 3;

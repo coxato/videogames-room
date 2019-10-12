@@ -1,0 +1,11 @@
+.gallery-container-section{
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.gallery-container-center{
+	width: 70%;
+}
+

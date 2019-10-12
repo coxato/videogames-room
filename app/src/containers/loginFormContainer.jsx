@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 // import Loader from '../components/commons/loader';
 import LoginForm from '../components/commons/loginForm';
 // style
-// import './styles/createCodes.css';
+import './styles/loginContainer.css';
 
 class LoginContainer extends Component{
 
@@ -13,6 +13,13 @@ class LoginContainer extends Component{
 	
 
 	render(){
+		return(
+			<div className="loginForm-container">
+
+				<LoginForm />
+
+			</div>
+		)
 	
 	}
 }

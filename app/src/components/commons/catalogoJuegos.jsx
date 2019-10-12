@@ -1,6 +1,6 @@
 import React from "react";
 
-const CatalogoJuegos = ({arrJuegos, isAdmin, deleteGames}) => (
+const CatalogoJuegos = ({arrJuegos, isAdmin, deleteGames = () =>{}  }) => (
     <div className="columns is-multiline">
         { arrJuegos.map( (juego, index) => (
             <div className="juego column is-3" key={juego.imageUrl}>
@@ -8,10 +8,10 @@ const CatalogoJuegos = ({arrJuegos, isAdmin, deleteGames}) => (
                     <div className="image">
                         <img src={juego.imageUrl} alt={juego.nombre}/>
                     </div>
-                    <div className="description-game has-text-centered">
-                        <p className="subtitle">{juego.nombre}</p>
-                        <p className="plataforma">{juego.plataforma}</p>
-                    </div>
+                    <ul className="list description-game has-text-centered">
+                        <p className="list-item"><b>{juego.nombre}</b></p>
+                        <p className="list-item plataforma">{juego.plataforma}</p>
+                    </ul>
                     {/* borrar si es administrador */}
                     { 
                         isAdmin &&

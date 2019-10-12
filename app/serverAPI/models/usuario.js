@@ -1,9 +1,11 @@
 class Usuario{
-    constructor({nombre, apellido, email, password}){
+    constructor({nombre, apellido, email, password, isAdmin = false}){
         this.nombre = nombre;
         this.apellido = apellido;
+        // this.username = username;
         this.email = email;
         this.password = password;
+        this.isAdmin = isAdmin;
         
         // puntos como usuario, mas no como referencia para las horas
         this.puntos = 0; 
