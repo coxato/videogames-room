@@ -72,7 +72,8 @@ class AdminGeneral extends Component{
                 }),
                 headers: {
                     'Accept': 'application/json',
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'x-access-token': sessionStorage.getItem("token")
                 }
             });
             let responseJson = await allSaved.json();
@@ -113,13 +114,14 @@ class AdminGeneral extends Component{
             <section className="general-admin-container">
                 <div className="general-admin-wrapper">
                     <button onClick={this.handleSend} className="button is-large is-success">guardar cambios</button>
-                    <div className="card">
+                    <div className="card precio-card">
                         <Precio precio={this.state.precio} />
                     </div>
-                    <div className="card">
+                    <div className="card horario-card">
+                        <h1 className="title has-text-centered">Horario</h1>
                         <Horario horario={this.state.horario} />
                     </div>
-                    <div className="card">
+                    <div className="card juegos-card">
                         <AdminJuegos {...this.state} setGames={this.setGames} />
                     </div>
                 </div>

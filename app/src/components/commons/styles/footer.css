@@ -53,3 +53,7 @@
 .footer-link{
 	color: var(--yellow);
 }
+
+.footer-link:hover{
+	color: #5ce8eb;
+}

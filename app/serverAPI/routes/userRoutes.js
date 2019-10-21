@@ -4,15 +4,22 @@ const jwt = require("jsonwebtoken");
 const secret = require("../../config/config").secret;
 // auth middlewares
 const verifyToken = require('../middlewares/verifyToken');
+const verifyTokenAdmin = require('../middlewares/verifyIsAdmin');
 
 // get user by id
 router.get('/:id', verifyToken, async (req, res) => {
 	const service = new UserService();
+	const id = req.params.id == 'null' ? req.userId : req.params.id;
 	// search the user by id
-	let user = await service.getUser(req.params);
+	let user = await service.getUser({id});
 	console.log("*****  pasó la verificación")
 	res.status(200).send(user);
 });
+
+// check if user is admin
+router.get("/check/admin", verifyTokenAdmin, (req, res) => {
+	res.status(200).json({auth: true});
+})
 
 // create/signup user
 router.post('/signup', async (req, res) => {
@@ -33,7 +40,7 @@ router.post('/login', async (req, res) => {
 	// if the user exist and password is correct
 	if(isUser){
 		const token = await jwt.sign({id: isUser.id}, secret, {
-			expiresIn: 60 * 60, // 1 hour
+			expiresIn: 60 * 120, // 2 hours
 		});
 		// send the token
 		return res.status(200).send({ auth: true, token });

@@ -13,7 +13,7 @@ function ProfilePage(){
 
     return(
         <Switch>
-            <Route exact path="/profile/:id" component={Profile} />
+            <Route exact path="/profile/:id?" component={Profile} />
         </Switch>
     )
 }

@@ -8,6 +8,7 @@ module.exports = function templateReact(html) {
       </head>
       <body>
         <div id="root">${html}</div>
+        <div id="modal"></div>
         <script src="/static-dist/js/app.js"></script>
       </body>
     </html>

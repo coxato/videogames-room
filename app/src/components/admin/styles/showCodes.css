@@ -1,0 +1,12 @@
+.is-used{
+	text-decoration: line-through;
+}
+
+.is-odd{
+	background: lightgrey;
+}
+
+.showCodes-container{
+	border: 2px solid #105065;
+	font-size: 20px;
+}

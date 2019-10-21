@@ -2,7 +2,7 @@ import React from 'react';
 // style
 import '../styles/configValuesCodes.css';
 
-function ConfigValuesCodes({handleChange, divisorPremio, duracionEnDiasDeCodigoHora, duracionEnDiasDeCodigoPremio, cantidadDeCodigosAGenerar}){
+function ConfigValuesCodes({saveConfig,handleChange, divisorPremio, duracionEnDiasDeCodigoHora, duracionEnDiasDeCodigoPremio, cantidadDeCodigosAGenerar}){
 	return(
 		<div className="configValuesCodes-container">
 			<h1 className="title has-text-centered">configuración de códigos</h1>
@@ -50,6 +50,8 @@ function ConfigValuesCodes({handleChange, divisorPremio, duracionEnDiasDeCodigoH
 								/>
 							</div>
 						</div>
+
+						<button onClick={saveConfig} className="button is-medium is-success">guardar configuración</button>
 					</div>
 				</div>
 			</form>

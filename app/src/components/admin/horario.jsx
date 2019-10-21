@@ -44,7 +44,7 @@ function Horario({horario}){
                     { horarios.map( (LVSD, index) => (
                         <div className="days-container column" key={dias[index]}>
                             <h1 className="title">{dias[index]}</h1>
-                            < InputHorario 
+                            <InputHorario 
                                 turno={turnoCorr ? "" : "mañana"} 
                                 start={LVSD.morning.start[0]} 
                                 end={ turnoCorr ? LVSD.afternoon.end[0] : LVSD.morning.end[0] } 

@@ -1,0 +1,70 @@
+.checkHourCodes-container{
+	display: flex;
+	flex-direction: column;
+	padding: 40px 30px;
+}
+
+.checkHourCodes-container input{
+	font-size: 22px;
+}
+
+.comprobando{
+	font-size: 22px;
+    font-family: helvetica;
+    color: #0c5218;
+    font-weight: bold;
+    animation: comprobando .5s infinite alternate;
+    margin-bottom: 10px;
+}
+
+/* comprobations messages */
+
+
+.c-message{
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.successComprobation{
+	color: green;
+
+}
+
+	.has-color-success{
+		font-size: 20px;
+		border: 4px dashed var(--red);
+		border-radius: 8px;
+		font-weight: 100;
+	}
+
+.failedComprobation{
+	color: red;
+}
+
+.usedCode{
+	color: #676404;
+}
+
+.recordatory{
+	font-size: 18px;
+    /*line-height: 2;*/
+}
+
+.reloadMessage{
+	font-weight: bold;
+    text-decoration: underline;
+    color: black;
+    font-size: 22px;
+    margin-top: 12px;
+}
+
+@keyframes comprobando{
+	0%{
+		transform: scale(1);
+		opacity: 0.5;
+		}
+	100%{
+		transform: scale(1.1);
+		opacity: 1;
+		}
+}

@@ -42,3 +42,10 @@
 .nav-item:hover{
 	background: var(--yellow);
 }
+
+.precio-nav{
+	padding-right: 12px;
+	margin-bottom: 5px;
+	color: white;
+	font-family: helvetica; 
+}

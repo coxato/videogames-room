@@ -14,6 +14,7 @@ class AdminCodes extends Component{
 		duracionEnDiasDeCodigoHora: 0,
 		duracionEnDiasDeCodigoPremio: 0,
 		cantidadDeCodigosAGenerar: 0,
+		auth: false,
 	}
 
 	// call the api with this.fetchData method
@@ -25,7 +26,11 @@ class AdminCodes extends Component{
 	async fetchData(){
 		this.setState({ loading: true, error: null })
 		try{
-			let response = await fetch('/api/admin/data/codes');
+			let response = await fetch('/api/admin/data/codes', {
+				headers: {
+					'x-access-token': sessionStorage.getItem("token")
+				}
+			});
 			let json = await response.json();
 			let { divisorPremio, duracionEnDiasDeCodigoHora, duracionEnDiasDeCodigoPremio, cantidadDeCodigosAGenerar } = json;
 			this.setState({
@@ -33,7 +38,8 @@ class AdminCodes extends Component{
 				duracionEnDiasDeCodigoHora,
 				duracionEnDiasDeCodigoPremio,
 				cantidadDeCodigosAGenerar,
-				loading: false
+				loading: false,
+				auth: json.auth == false ? false : true
 			})
 		}catch(err){
 			this.setState({ loading: false, error: err })
@@ -60,7 +66,8 @@ class AdminCodes extends Component{
 				}),
                 headers: {
                     'Accept': 'application/json',
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'x-access-token': sessionStorage.getItem("token")
                 }
 			})
 			console.log('aqui pasó')
@@ -76,18 +83,18 @@ class AdminCodes extends Component{
 
 
 	render(){
-		let { loading, error } = this.state;
+		let { loading, error, auth } = this.state;
 		
 		if(loading) return <Loader />;
 		
 		if(error) return <h1>the ERROR is: {error}</h1>
 
+		if(!auth) return <h1 className="title">no estas autorizado</h1>
+
 		return(
 			<div className="AdminCodes-container">
 				
-				<ConfigValuesCodes {...this.state} handleChange={this.handleChange}/>
-
-				<button onClick={this.saveConfig} className="button is-medium is-success">guardar configuración</button>
+				<ConfigValuesCodes {...this.state} handleChange={this.handleChange} saveConfig={this.saveConfig}/>
 				
 			</div>
 		)

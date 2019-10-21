@@ -12,6 +12,7 @@ class CreateCodes extends Component{
 		error: null,
 		hourCodes: [],
 		prizeCodes: [],
+		auth: false
 	}
 
 	// call the api with this.fetchData method
@@ -23,13 +24,18 @@ class CreateCodes extends Component{
 	async fetchData(){
 		this.setState({ loading: true, error: null })
 		try{
-			let response = await fetch('/api/admin/data/codes');
+			let response = await fetch('/api/admin/data/codes', {
+				headers: {
+					'x-access-token': sessionStorage.getItem("token")
+				}
+			});
 			let json = await response.json();
 			let { hourCodes, prizeCodes } = json;
 			this.setState({
 				hourCodes,
 				prizeCodes,
-				loading: false
+				loading: false,
+				auth: json.auth == false ? false : true
 			})
 		}catch(err){
 			this.setState({ loading: false, error: err })
@@ -51,16 +57,18 @@ class CreateCodes extends Component{
 			
 		}catch(err){
 			this.setState({ loading: false, error: err });
-		}
+		} 
 	}
 
-
+ 
 	render(){
-		let { loading, error } = this.state;
+		let { loading, error, auth } = this.state;
 		
 		if(loading) return <Loader />;
 		
-		if(error) return <h1>the ERROR is: {error}</h1>
+		if(error) return <h1>the ERROR is: {error}</h1>;
+
+		if(!auth) return <h1 className="title">lo siento no estás autorizado</h1>
 
 		return(
 			<div className="AdminCodes-container">

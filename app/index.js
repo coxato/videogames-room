@@ -7,8 +7,10 @@ import cors from 'cors';
 import MongoLibServices from "./serverAPI/mongo/connection";
 import { port } from "./config/config";
 // const multerConfig = from "./config/multer";
+import checkCodeRoutes from './serverAPI/routes/checkCodeRoutes';
 import negocioRoutes from "./serverAPI/routes/negocioRoutes";
 import eventsRoutes from "./serverAPI/routes/eventsRoutes";
+import commonRoutes from "./serverAPI/routes/commonRoutes";
 import codesRoutes from "./serverAPI/routes/codesRoutes";
 import userRoutes from "./serverAPI/routes/userRoutes";
 // import { StaticRouter } from 'react-router';
@@ -33,8 +35,12 @@ app.use('/static-dist', express.static(path.join(__dirname,'dist')) );
 app.use("/api/admin", negocioRoutes);
 app.use("/api/admin", eventsRoutes);
 app.use("/api/admin", codesRoutes);
+// check codes
+app.use("/api/codes", checkCodeRoutes);
 // users
 app.use("/api/users", userRoutes);
+// public simple data for all users
+app.use("/api/data", commonRoutes);
 
 // routes for react
 // render react views

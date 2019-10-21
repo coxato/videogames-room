@@ -18,6 +18,7 @@ async function verifyIsAdmin(req, res, next) {
 		// find user
 		const service = new UserService();
 		const user = await service.getUser({id: req.userId});
+		console.log("busco el usuario a ser admin y es este: ", user)
 		// if is admin
 		if(user.isAdmin) next();
 		else return res.status(401).json({auth: false, message: "user is not admin"});

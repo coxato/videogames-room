@@ -5,6 +5,7 @@ import LandingPage from '../pages/home';
 import AdminPage from '../pages/admin';
 import RegisterPage from '../pages/register';
 import LoginPage from '../pages/login';
+import LoginAdmin from '../pages/loginAdmin';
 import ProfilePage from '../pages/profile';
 
 // nav and footer
@@ -31,6 +32,10 @@ function App(){
 					<RegisterPage />
 					<LoginPage />
 					<ProfilePage />
+					{/*<Switch>
+						<Route exact path="/admin" component={AdminPage} />
+					</Switch>*/}
+					<LoginAdmin />
 			  		<AdminPage />
 			  	{/*	<Switch>
 			  			<Route component={NotFound} />

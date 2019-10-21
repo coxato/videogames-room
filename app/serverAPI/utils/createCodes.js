@@ -6,16 +6,13 @@ const nCaracteresHora = 6;
 // return the date of expiration in array with [DD,MM,YY] format [12,12,1999]
 function setDurationsDays( date , qtyDays ){
     let resultDays = new Date(date);
-    console.log("$$$#### resultDays en dia ", resultDays.getDate())
     resultDays.setDate( resultDays.getDate() + qtyDays );
-    console.log("$$$$$$ lo que es resultDays ", resultDays)
     return [resultDays.getDate(), resultDays.getMonth() + 1, resultDays.getFullYear()];
 }
 
 function createCodes(tipo, cantidadCodigos = 1, diasVigente, user = ''){
-    console.log("###### en el codeGen: tipo, cantidadCodigos y diasVigente", tipo, cantidadCodigos, diasVigente);
     // today new Date()
-    const today = new Date();
+    let today = new Date();
     // save the created date in array with [DD,MM,YY] format [12,12,1999]
     let created = [today.getDate(), today.getMonth() + 1, today.getFullYear()],
     nCharacters = tipo === "hora" ? nCaracteresHora : nCaracteresPremio,
@@ -33,9 +30,11 @@ function createCodes(tipo, cantidadCodigos = 1, diasVigente, user = ''){
             code,
             created,
             user,
-            expiration: setDurationsDays(today, diasVigente), // expiration date
+            expiration: setDurationsDays(Number(today), Number(diasVigente)), // expiration date
             type: tipo,
-            isValid: true
+            isValid: true,
+            isUsed: false,
+            isGiven: false
         });
     }
 
@@ -45,4 +44,3 @@ function createCodes(tipo, cantidadCodigos = 1, diasVigente, user = ''){
 
 module.exports = createCodes;
 
-// console.log( createCodes('hora',3,4) );

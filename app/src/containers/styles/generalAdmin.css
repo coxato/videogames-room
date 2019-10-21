@@ -3,3 +3,19 @@
 	justify-content: center;
 	width: 100%;
 }*/
+
+.general-admin-wrapper{
+	display: flex;
+	flex-direction: column;
+	padding: 25px;
+}
+
+.juegos-card{
+	padding: 20px;
+
+}
+
+.horario-card{
+	text-align: center;
+	padding: 20px;
+}

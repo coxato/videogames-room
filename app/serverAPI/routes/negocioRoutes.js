@@ -1,6 +1,8 @@
 const router = require("express").Router() ;
 const NegocioService = require("../services/negocioService");
 const EventoService = require("../services/eventoService");
+// middlewares
+const verifyIsAdminToken = require("../middlewares/verifyIsAdmin");
 
 // falta autorización
 // crear primer negocio por default
@@ -19,7 +21,7 @@ router.get("/data/general", async (req, res) => {
 
 // #####  actualización de datos del local  #####
 // actualización general, = precio, juegos y horario
-router.put("/update/general", async (req, res) => {
+router.put("/update/general", verifyIsAdminToken, async (req, res) => {
     const service = new NegocioService();
     let { precio, juegos, horario } = req.body;
     console.log("el req.body ",req.body);
