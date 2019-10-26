@@ -1,9 +1,9 @@
 import React from 'react';
 // style
 import '../styles/showCodes.css';
+ 
 
-
-const ShowCodes = ({arrCodes, type}) => (
+const ShowCodes = ({ arrCodes, type, updateCodes }) => (
 	<div className="showCodes-container">
 		<table className="table">
 			<thead>
@@ -48,14 +48,14 @@ const ShowCodes = ({arrCodes, type}) => (
 										// show a checkbox if is prize code, or show yes/no if is hour code 
 										(() => {
 											if(type=="prize"){
-												return <td><input type="checkbox" onChange={ () => alert(code) } defaultChecked={ isUsed } /></td>
+												return <td><input type="checkbox" onChange={ ({target}) => updateCodes(type, code, target.checked) } defaultChecked={ isUsed } /></td>
 											}else{
 												return isUsed ? <td>si</td> : <td>no</td>
 											} 
 										})()// IIFE function to can return, jsx does not show it if it returns nothing	
 									}
 									{/* the code is given or not, only show a checkbox in hour codes */}
-									{ type=="hora"  && <td><input type="checkbox" onChange={ () => alert(code) } defaultChecked={ isGiven } /></td> }
+									{ type=="hora"  && <td><input type="checkbox" onChange={ ({target}) => updateCodes(type, code, target.checked) } defaultChecked={ isGiven } /></td> }
 								</tr>
 							)
 						}) 

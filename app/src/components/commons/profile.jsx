@@ -1,4 +1,6 @@
 import React from 'react';
+// components
+import MyPrizeCodes from './myPrizeCodes';
 // styles
 import './styles/profile.css';
 
@@ -27,22 +29,20 @@ function Profile({userData, onModalOpen, horasNecesarias}) {
       <div className="profile-derecha">
 
           <div className="puntaje-flex">
-
             <div className="puntos-box cajita-info">
               <h2 className="puntos-title">Puntos</h2>
               <p>{puntos}</p>
             </div>  
-
-            <div className="premios-box cajita-info"> 
-              <h2 className="puntos-title">Premios</h2>
-              <p>{codigoPremioActual.length}</p>
-            </div>
             
             <div className="horas-box cajita-info"> 
               <h2 className="puntos-title">Horas</h2>
               <p>{contadorHoras}/{horasNecesarias}</p> 
             </div>
-          
+          </div>
+
+          <div className="premios-ganados-container">
+            <h1 className="title has-text-centered">premios ganados</h1>
+            <MyPrizeCodes arrCodes={codigoPremioActual}/>
           </div>
 
       </div>

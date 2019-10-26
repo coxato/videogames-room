@@ -12,12 +12,12 @@ router.get("/create/store", async (req, res) => {
     res.status(200).send(created);
 });
 
-// datos del negocio // falta autorización
+// datos del negocio 
 router.get("/data/general", async (req, res) => {
     const service = new NegocioService();
     let data = await service.datosNegocio();
     res.status(200).send(data);
-})
+});
 
 // #####  actualización de datos del local  #####
 // actualización general, = precio, juegos y horario

@@ -38,7 +38,7 @@ class NegocioService{
     }
 
     
-    // actualizar datos del generales negocio
+    // actualizar datos generales del negocio
     async actualizarDatosGenerales(precio, juegos, horario){
         let { mongo, collection } = this;
         let allUpdated = await mongo.updateOne(collection, {nombre: "masplay"}, {

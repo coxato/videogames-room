@@ -23,7 +23,7 @@ function InputHorario({turno, start, end}){
 
 // componente horario 
 function Horario({horario}){
-    let { turnoCorr, diasDeSemana, sabado, domingo  } = horario,
+    let { turnoCorrido, diasDeSemana, sabado, domingo  } = horario,
     horarios = [diasDeSemana, sabado, domingo],
     dias = ["Lunes a viernes", "Sabado", "Domingo"];
 
@@ -32,7 +32,7 @@ function Horario({horario}){
     return(
         <div className="horario-container-home">
 
-        <div className="title has-text-centered">Horario de Atencion</div>
+        <div className="title has-text-centered">Nuestro horario de atención</div>
             
             <div className="horario-der">
                 <div className="dias-horario columns is-mobile is-multiline">
@@ -41,13 +41,13 @@ function Horario({horario}){
                         <div className="days-container column" key={dias[index]}>
                             <h1 className="title">{dias[index]}</h1>
                             <InputHorario 
-                                turno={turnoCorr ? "" : "mañana"} 
+                                turno={turnoCorrido ? "" : "mañana"} 
                                 start={LVSD.morning.start[0]} 
-                                end={ turnoCorr ? LVSD.afternoon.end[0] : LVSD.morning.end[0] } 
+                                end={ turnoCorrido ? LVSD.afternoon.end[0] : LVSD.morning.end[0] } 
                             />
                             {/* para la tarde */}
                             { 
-                                !turnoCorr && 
+                                !turnoCorrido && 
                                 <InputHorario 
                                     turno="tarde" 
                                     start={ LVSD.afternoon.start[0] } 

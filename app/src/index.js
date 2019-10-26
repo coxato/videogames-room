@@ -5,14 +5,5 @@ import { BrowserRouter } from 'react-router-dom';
 import AppDOM from './app/app';
 // style
 import '../public/bulma.css';
-
-function renderIt(){
-    hydrate(<AppDOM />, document.getElementById("root") );
-}
-
-renderIt()
-if (module.hot) {
-  module.hot.accept('./app/app', () => {
-    renderIt()
-  })
-}
+// render in browser
+hydrate(<AppDOM />, document.getElementById("root") );

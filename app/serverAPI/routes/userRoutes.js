@@ -40,7 +40,7 @@ router.post('/login', async (req, res) => {
 	// if the user exist and password is correct
 	if(isUser){
 		const token = await jwt.sign({id: isUser.id}, secret, {
-			expiresIn: 60 * 120, // 2 hours
+			expiresIn: 60 * 60 * 4 , // 4 hours
 		});
 		// send the token
 		return res.status(200).send({ auth: true, token });

@@ -1,3 +1,7 @@
+.landing-page-super-container{
+	flex: 1;
+}
+
 .landing-content-container{
 	position: relative;
 	flex: 1;

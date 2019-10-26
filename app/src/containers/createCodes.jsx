@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 // components
 import Loader from '../components/commons/loader';
 import CodesInfo from '../components/admin/codes/codesInfo';
+import SessionPlease from '../components/commons/sessionPlease';
 // style
 import './styles/createCodes.css';
 
@@ -41,23 +42,62 @@ class CreateCodes extends Component{
 			this.setState({ loading: false, error: err })
 		}
 	}
+ 
 
-
-	// handle function to create codes
+	// handle method to create codes
 	handleCreateCodes = async (codeType) => {
 		this.setState({ loading: true , error: null });
 		try{
 			// create codes with API
-			let response = await fetch(`/api/admin/create/code/hora`);
+			let response = await fetch(`/api/admin/create/code/hora`, {
+				headers: {
+					'x-access-token': sessionStorage.getItem('token')
+				}
+			});
 			let created = await response.text();
-			// get all the codes to set the state
-			let allCodes = await fetch('/api/admin/data/codes');
-			let data = await allCodes.json();
-			this.setState({ loading: false , error: null, hourCodes: data.hourCodes });
-			
+			this.fetchData();
 		}catch(err){
 			this.setState({ loading: false, error: err });
 		} 
+	}
+
+	// handle method to deleted invalid codes, used codes are invalid codes
+	handleDeleteCodes = async () => {
+		this.setState({ loading: true , error: null });
+		try{
+			// update the code
+			let response = await fetch(`/api/admin/delete/code/`, {
+				method: 'DELETE',
+				headers: {
+					'x-access-token': sessionStorage.getItem('token')
+				}
+			});
+			let updated = await response.text();
+			console.log(updated);
+			this.fetchData();
+		}catch(err){
+			this.setState({ loading: false, error: err });
+		}
+	}
+
+	// handle method to update the isUsed or isGiven code value, by a checkbox
+	updateCodeCheckboxHandler = async (type, code, boolean) => {
+		this.setState({ loading: true , error: null });
+		try{
+			// update the code
+			let response = await fetch(`/api/admin/update/code/?type=${type}&code=${code}&boolean=${boolean}`, {
+				method: 'PUT',
+				headers: {
+					'x-access-token': sessionStorage.getItem('token')
+				}
+			});
+			let updated = await response.text();
+			console.log(updated);
+			this.fetchData();
+		}catch(err){
+			this.setState({ loading: false, error: err });
+		} 
+
 	}
 
  
@@ -68,13 +108,15 @@ class CreateCodes extends Component{
 		
 		if(error) return <h1>the ERROR is: {error}</h1>;
 
-		if(!auth) return <h1 className="title">lo siento no estás autorizado</h1>
+		if(!auth) return <SessionPlease state={{ redirectTo: '/admin/crear-codigos' }} />
 
 		return(
 			<div className="AdminCodes-container">
-
-				<button className="button is-large is-success" onClick={this.handleCreateCodes}>crear nuevos códigos</button>
-				<CodesInfo {...this.state} />
+				<div className="buttons">
+					<button className="button is-large is-success" onClick={this.handleCreateCodes}>crear nuevos códigos</button>
+					<button className="button is-large is-danger" onClick={this.handleDeleteCodes}>borrar códigos ya usados</button>
+				</div>
+				<CodesInfo {...this.state} updateCodeCheckboxHandler={this.updateCodeCheckboxHandler}/>
 
 			</div>
 		)

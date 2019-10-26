@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 // components
 import Hero from '../components/commons/landingHero';
 import Description from '../components/commons/description';
-import Gallery from '../components/commons/gallery';
 import Horario from '../components/commons/horario';
 import Loader from '../components/commons/loader';
 
@@ -17,7 +16,7 @@ class Home extends Component{
 	componentDidMount(){
 		this.fetchData();
 	}
-
+ 
 	fetchData = async () => {
 		try{
 			let response = await fetch("/api/admin/data/general");
@@ -39,7 +38,6 @@ class Home extends Component{
 			<div className="home-landing-container">
 				<Hero />
 				<Description />
-				<Gallery />
 				<Horario horario={horario} />
 			</div>
 		)

@@ -7,8 +7,6 @@ function Nav() {
 
 	let [hourPrice, setHourPrice] = useState('');
 
-		{console.log("se ejecuto al principio de la función")}
-
 	// like componentDidMount but with hooks
 	useEffect(() => {
 		async function fetchData(){
@@ -20,14 +18,11 @@ function Nav() {
 				console.log('error whhile loading nav data ', err);
 			}
 		}
-
-		{console.log("se ejecuto en el fetchData")}
 		fetchData();
 	}, []);
 
 	return(
 		<nav className="nav-menu">
-		{console.log("se ejecuto en el render return")}
 			<div className="logoImg">
 				<Link to="/">
 	  				<img src="/static/images/logo2.png" />
@@ -47,6 +42,14 @@ function Nav() {
 			      	<NavLink to="/contacto" className="nav-item" activeClassName="nav-is-active">
 			        	contacto
 			      	</NavLink>
+
+			      	<NavLink to="/galeria" className="nav-item" activeClassName="nav-is-active">
+			        	Galería
+			      	</NavLink>
+
+			      	<NavLink to="/foro" className="nav-item" activeClassName="nav-is-active">
+			        	foro
+			      	</NavLink>
     			</div>
 		    
 		    {/* mostrar precio de la hora */}
@@ -64,9 +67,12 @@ function Nav() {
 							<Link to="/profile" className="button my-profile">
 								mi perfil
 							</Link>
-							<Link to="/logout" className="button logout is-warning">
+							<button className="button logout is-warning" onClick={() => {
+								sessionStorage.setItem("token","");
+								location.href = "/";
+							}}>
 								cerrar sesión
-							</Link>
+							</button>
 					    </div>
 					    :
 						<div className="buttons">

@@ -23,7 +23,7 @@ function CheckHourCodes({horasNecesarias}){
 		try{
 			let checked = await checkCode(type, code);
 			console.log("que es checked en el frontend ", checked)
-			setCodeState({ verifying: false, ...checked })
+			setCodeState({ verifying: false, code, ...checked })
 		}catch(err){
 			console.log(err);
 		}

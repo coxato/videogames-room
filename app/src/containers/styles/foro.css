@@ -1,0 +1,48 @@
+.foro-container{
+	min-height: 90vh;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	align-items: center;
+	padding: 30px 10px;
+}
+
+.input-foro-container{
+	width: 70%;
+}
+
+.messages-container{
+	border: 2px solid var(--terracote);
+    border-radius: 10px;
+    width: 85%;
+    display: flex;
+    margin-top: 15px;
+    overflow: hidden;
+}
+
+.message-izquierda{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100px;
+	background: lightgrey;
+	padding: 35px 20px;
+}
+
+.message-derecha{
+	margin-left: 25px;
+}
+
+.isAdmin-title{
+	padding: 3px;
+	border: 1px solid black;
+	border-radius: 12px;
+	background: var(--yellow);
+	color: black;
+	font-weight: 300;
+	width: 140px;
+    margin-top: 5px;
+    font-size: 17px;
+	text-align: center;
+}

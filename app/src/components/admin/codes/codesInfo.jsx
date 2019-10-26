@@ -4,19 +4,24 @@ import ShowCodes from './showCodes';
 // style
 import '../styles/codesInfo.css';
 
-function CodesInfo({ hourCodes, prizeCodes }){
+// function to get number of valid codes
+function countValidCodes(arrCodes) {
+	return arrCodes.filter( code => code.isValid ).length;
+}
+
+function CodesInfo({ hourCodes, prizeCodes, updateCodeCheckboxHandler }){
 	return(
 		<div className="codesInfo-container">
 			<h1 className="title has-text-centered">información acerca de los códigos</h1>
 
 			<div className="tables-info-container">
 				<div className="show-hours">
-					<p className="subtitle">códigos de tipo HORA disponibles: {hourCodes.length}</p>
-					<ShowCodes arrCodes={hourCodes} type="hour" />
+					<p className="subtitle">códigos de tipo HORA disponibles: {countValidCodes(hourCodes)} </p>
+					<ShowCodes arrCodes={hourCodes} type="hour" updateCodes={updateCodeCheckboxHandler} />
 				</div>
 				<div className="show-prizes">
-					<p className="subtitle">códigos de tipo PREMIO disponibles: {prizeCodes.length}</p>
-					<ShowCodes arrCodes={prizeCodes} type="prize" />
+					<p className="subtitle">códigos de tipo PREMIO disponibles: {countValidCodes(prizeCodes)} </p>
+					<ShowCodes arrCodes={prizeCodes} type="prize" updateCodes={updateCodeCheckboxHandler} />
 				</div>
 			</div>
 

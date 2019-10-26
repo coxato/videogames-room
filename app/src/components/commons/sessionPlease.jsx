@@ -6,9 +6,6 @@ import './styles/sessionPlease.css';
 function SessionPlease({state}){
 
 
-	{/* eliminate the token if exist, because user is not authorized */}
-	// { sessionStorage.getItem("token") ? sessionStorage.setItem("token", "") : null }
- 
 	return(
 		<div className="sessionPlease-container columns is-centered">
 			<div className="column is-half">

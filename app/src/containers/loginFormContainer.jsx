@@ -61,7 +61,8 @@ class LoginContainer extends Component{
 					const LinkState = this.props.location.state;
 					// check if LinkState has a value
 					const redirectTo = LinkState ? LinkState.redirectTo : '/profile';
-					this.props.history.push(redirectTo);
+					// this.props.history.push(redirectTo);
+					location.href = redirectTo;
 				}
 				// user is not authorized
 				else{

@@ -139,16 +139,18 @@ class CodesServices{
         }
         // prize, add points and code to user
         else{
-            await mongo.updateOne('user', { _id: new ObjectId(userId) }, { 
-                $inc: {
-                    puntos: 300 
-                },
-                $push: {
-                    prizeCodes: code
-                } 
-            } );
+            // await mongo.updateOne('user', { _id: new ObjectId(userId) }, { 
+            //     $inc: {
+            //         puntos: 300 
+            //     },
+            //     $push: {
+            //         prizeCodes: code
+            //     } 
+            // } );
+
+            // just want check a prize code and return success or not 
             // return success object to frontend if all pass
-            return { success: true, fail: false, used: false };
+            return { success: true, fail: false, used: false }; 
         }
 
     }  
@@ -191,11 +193,57 @@ class CodesServices{
     }
     
 
-    // =====  get simple data like divisorHoras  =====
+    // =====  get simple data like divisorPremio  =====
     async getSimpleData(){
         let { mongo, collection } = this;
         let data = await mongo.getOne(collection, {}, { divisorPremio: 1, _id: 0 });
         return data;
+    }
+
+    // actualizar si un código a sido usado o no
+    async updateGivenOrUsedCode(type,code, boolean = true){
+        // make sure boolean is true or false
+        boolean = typeof boolean != 'string' ? boolean : boolean === "true" ? true : false;
+
+        let { mongo, collection } = this;
+        let query = (type == 'hour' || type == 'hora') ? 'hourCodes' : 'prizeCodes';
+        // props to set in arrayObject code element, <<isUsed>> for prize, <<isGiven>> for hour
+        let setProps;
+        if(type == 'hour' || type == 'hora') setProps = { 
+            [query+'.$.isGiven']: boolean,
+        };
+        else setProps = { 
+            [query+'.$.isUsed']: boolean,
+            [query+'.$.isValid']: !boolean
+        };
+        // update code props
+        let codeToUpdate = await mongo.updateOne(collection,
+         { [query+'.code']: code },
+         { $set: setProps } 
+        );
+        // return updated message
+        return 'code updated';
+    }
+
+    // delete all invalid codes
+    async deleteInvalidCodes(){
+        let { mongo, collection } = this;
+        let allCodes = await mongo.getOne(collection, {});
+        // get hour and prize codes
+        let {hourCodes, prizeCodes} = allCodes;
+        // only save valid codes by filter method
+        hourCodes = hourCodes.filter( code => code.isValid );
+        prizeCodes = prizeCodes.filter( code => code.isValid );
+        // update codes with only valid codes
+        await mongo.updateOne(collection, {} , 
+            { 
+                $set: {
+                hourCodes,
+                prizeCodes
+                }
+            }
+        );
+        return 'invalid codes deleted';
     }
 
 }

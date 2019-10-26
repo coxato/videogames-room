@@ -7,6 +7,7 @@ import AdminGeneral from "../containers/generalAdmin";
 import AdminEvents from '../containers/eventosAdmin';
 import ConfigCodes from '../containers/codigosConfig';
 import CreateCodes from '../containers/createCodes';
+import CheckPrizeCode from '../containers/checkPrizeCodeAdmin';
 import EditAndCreateEvent from '../containers/editAndCreateEvent';
 import AdminNav from '../components/admin/adminNav'; 
 // style
@@ -28,7 +29,7 @@ function AdminPage(){
                         <Route exact path="/admin/evento/:id?" component={EditAndCreateEvent} />
                         <Route exact path="/admin/config-codigos" component={ConfigCodes} />
                         <Route exact path="/admin/crear-codigos" component={CreateCodes} />
-                    
+                        <Route exact path="/admin/comprobar-codigo" component={CheckPrizeCode} />
                 	 </Switch>
                 </div>
             </div>

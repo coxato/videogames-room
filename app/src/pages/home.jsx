@@ -9,8 +9,10 @@ import Footer from '../components/commons/footer';
 import Home from '../containers/homeContainer';
 import Eventos from '../containers/eventos';
 import Juegos from '../containers/juegos';
+import Gallery from '../components/commons/gallery';
+import Foro from '../containers/foro';
 // style
-// import './styles/landingPage.css';
+// import './styles/homePage.css';
 
 
 function LandingPage(){
@@ -22,7 +24,8 @@ function LandingPage(){
             		<Route exact path="/" component={Home} />
     				<Route exact path="/eventos" component={Eventos} />
                     <Route exact path="/juegos" component={Juegos} />
-                    {/* <Route exact path="/profile/:id" component={CreateCodes} />  */}
+                    <Route exact path="/galeria" component={Gallery} />
+                    <Route exact path="/foro" component={Foro} />
             	 </Switch>
             </div>
         </div>

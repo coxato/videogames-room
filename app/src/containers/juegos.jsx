@@ -52,7 +52,7 @@ class Juegos extends Component{
                     </div>     
                 } 
 
-                <h1 className="subtitle has-text-centered">y muchos más...</h1>
+                <h1 className="subtitle has-text-centered end-message">y tenemos muchos más, ¿qué esperas? ven a visitarnos</h1>
             
             </section>
         )

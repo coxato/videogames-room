@@ -12,6 +12,7 @@ import negocioRoutes from "./serverAPI/routes/negocioRoutes";
 import eventsRoutes from "./serverAPI/routes/eventsRoutes";
 import commonRoutes from "./serverAPI/routes/commonRoutes";
 import codesRoutes from "./serverAPI/routes/codesRoutes";
+import forumRoutes from "./serverAPI/routes/forumRoutes";
 import userRoutes from "./serverAPI/routes/userRoutes";
 // import { StaticRouter } from 'react-router';
 import templateReact from './utilities/templateReact';
@@ -41,6 +42,7 @@ app.use("/api/codes", checkCodeRoutes);
 app.use("/api/users", userRoutes);
 // public simple data for all users
 app.use("/api/data", commonRoutes);
+app.use("/api/foro", forumRoutes);
 
 // routes for react
 // render react views
@@ -48,7 +50,7 @@ app.get('*', (req, res) => {
     const html = ReactDOMServer.renderToString(AppSSR);
 	res.write( templateReact(html) );
 	res.end();
-}) 
+}); 
 
 
 // =======  start the server  =======

@@ -16,6 +16,7 @@ class Gallery extends React.Component {
 
     return (
       <div className="gallery-container-section">
+        <h1 className="has-text-centered title">Galería de imágenes</h1>
         <div className="gallery-container-center">
           <ImageGallery items={images} />
         </div>

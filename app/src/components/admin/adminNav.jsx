@@ -22,13 +22,10 @@ function AdminNav() {
 					creación e información de códigos
 				</NavLink>
 
-				<NavLink to="/admin/asignar-y-comprobar-codigos" className="admin-nav-link" activeClassName="is-admin-nav-active">
-					asignación y comprobación de códigos
+				<NavLink to="/admin/comprobar-codigo" className="admin-nav-link" activeClassName="is-admin-nav-active">
+					comprobación de códigos premio
 				</NavLink>
-
-				<NavLink to="/admin/usuarios" className="admin-nav-link" activeClassName="is-admin-nav-active">
-					gestionar usuarios
-				</NavLink>			
+		
 			</div>
 
 		</div>

@@ -4,7 +4,7 @@ const CatalogoJuegos = ({arrJuegos, isAdmin, deleteGames = () =>{}  }) => (
     <div className="columns is-multiline">
         { arrJuegos.map( (juego, index) => (
             <div className="juego column is-3" key={juego.imageUrl}>
-                <div className="card">
+                <div className="card carta">
                     <div className="image">
                         <img src={juego.imageUrl} alt={juego.nombre}/>
                     </div>

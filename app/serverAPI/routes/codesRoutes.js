@@ -40,5 +40,21 @@ router.put("/update/codes", verifyIsAdmin, async (req, res) => {
     res.send(codesUpdated);
 });
 
+// actualizar si un código ha sido usado o no
+router.put("/update/code", verifyIsAdmin, async (req, res) => {
+    // ?type=<<type>>&code=<<code>>
+    const { type, code, boolean } = req.query;
+    const service = new CodeService();
+    let codeUpdated = await service.updateGivenOrUsedCode(type, code, boolean);
+    res.status(200).send('code updated');
+})
+
+// borrar los codigos que ya no son validos
+router.delete("/delete/code", verifyIsAdmin, async (req, res) => {
+    const service = new CodeService();
+    let codesDeleted = await service.deleteInvalidCodes();
+    res.status(200).send( codesDeleted ); 
+})
+
 
 module.exports = router;
