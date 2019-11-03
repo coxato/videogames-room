@@ -20,7 +20,7 @@ function App(){
 		minHeight: '100vh',
 		display: 'flex',
 		flexDirection: 'column',
-		background: '#eaeaea'
+		background: 'lightgrey'
 	}
 
 	return(

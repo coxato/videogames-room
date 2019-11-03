@@ -6,7 +6,7 @@ import RegisterForm from '../components/commons/registerForm';
 import './styles/registerContainer.css';
 
 class RegisterContainer extends Component{
-
+ 
 	state = {
 		allOk: true,
 		nombre: '',

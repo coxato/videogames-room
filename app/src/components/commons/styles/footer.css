@@ -13,10 +13,12 @@
 .footer-arriba{
 	padding: 30px 40px;
 	width: 100%;
-	background: var(--red);
+	/*background: var(--red);*/
+	background: white;
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
+	/*flex-wrap: wrap;*/
 }
 
 .image-and-direction,
@@ -30,10 +32,12 @@
 }
 
 .footer-abajo{
-	background: var(--terracote);
+	/*background: var(--terracote);*/
+	background: #f2f2f2;
 	text-align: center;
 	font-size: 18px;
 	padding: 5px;
+	color: black;
 }
 
 .imagen-contacto{
@@ -48,12 +52,25 @@
 
 .contacto p{
 	margin-left: 10px;
+	color: black;
 }
 
 .footer-link{
-	color: var(--yellow);
+	color: var(--terracote);
 }
 
 .footer-link:hover{
-	color: #5ce8eb;
+	color: rebeccapurple;
+}
+
+.direccion{
+	color: black;
+}
+
+.footer b{
+	color: black;
+}
+
+.negro{
+	color: black;
 }

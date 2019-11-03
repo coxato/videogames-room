@@ -8,7 +8,7 @@ import checkCode from '../../utilities/checkCode';
 // styles
 
 class CheckPrizeAdmin extends Component{
-
+ 
 	state = {
 		loading: true,
 		error: null,
@@ -17,14 +17,16 @@ class CheckPrizeAdmin extends Component{
 		fail: false,
 		used: false,
 		code: '',
+		expirated: false,
 		verifying: false
 	}
 
 	// check the prize code
 	checkCodePrize = async (type, code) => {
 		this.setState({ verifying: true });
+		let date = new Date();
 		try{
-			let checked = await checkCode(type, code);
+			let checked = await checkCode(type, code, date);
 			console.log("que es checked en el frontend ", checked)
 			this.setState({ verifying: false, ...checked })
 		}catch(err){

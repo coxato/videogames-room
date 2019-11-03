@@ -12,7 +12,7 @@ const ShowCodes = ({ arrCodes, type, updateCodes }) => (
 					<th>código</th>
 					<th>tipo</th>
 					{ type == "prize" && <th>creación</th> }
-					{ type == "prize" && <th>expiración</th> }
+					{ type == "prize" && <th>Válido hasta</th> }
 					{ type == "prize" && <th>user</th> }
 					<th>usado</th>
 					{ type == "hour" && <th>entregado</th> } 

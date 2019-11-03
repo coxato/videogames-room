@@ -9,7 +9,7 @@ class UserService{
 		this.collection = "user";
 		this.mongo = new MongoLib();
 	}
-
+ 
 	// create a user if email is not taken
 	async createUser(data){
 		let { collection, mongo } = this;

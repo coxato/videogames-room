@@ -2,7 +2,7 @@ import React from 'react';
 // style
 import '../styles/configValuesCodes.css';
 
-function ConfigValuesCodes({saveConfig,handleChange, divisorPremio, duracionEnDiasDeCodigoHora, duracionEnDiasDeCodigoPremio, cantidadDeCodigosAGenerar}){
+function ConfigValuesCodes({saveConfig,handleChange, divisorPremio, duracionEnDiasDeCodigoHora, duracionEnDiasDeCodigoPremio, cantidadDeCodigosAGenerar, eleccionPremio}){
 	return(
 		<div className="configValuesCodes-container">
 			<h1 className="title has-text-centered">configuración de códigos</h1>
@@ -50,6 +50,18 @@ function ConfigValuesCodes({saveConfig,handleChange, divisorPremio, duracionEnDi
 								/>
 							</div>
 						</div>
+
+						<div className="field">
+							{/* premio será 1 hora ó media hora */}
+							<p className="label-config">Elegir premio</p>
+							<div className="control">
+								<select onChange={handleChange} className="select" name="eleccionPremio" value={eleccionPremio}>
+									<option value="una">una(1) hora gratis</option>
+									<option value="media">media hora(30min) gratis</option>
+								</select>
+							</div>
+						</div>
+
 
 						<button onClick={saveConfig} className="button is-medium is-success">guardar configuración</button>
 					</div>

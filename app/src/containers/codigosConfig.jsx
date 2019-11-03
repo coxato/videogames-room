@@ -14,6 +14,7 @@ class AdminCodes extends Component{
 		duracionEnDiasDeCodigoHora: 0,
 		duracionEnDiasDeCodigoPremio: 0,
 		cantidadDeCodigosAGenerar: 0,
+		eleccionPremio: '',
 		auth: false,
 	}
 
@@ -32,12 +33,13 @@ class AdminCodes extends Component{
 				}
 			});
 			let json = await response.json();
-			let { divisorPremio, duracionEnDiasDeCodigoHora, duracionEnDiasDeCodigoPremio, cantidadDeCodigosAGenerar } = json;
+			let { divisorPremio, duracionEnDiasDeCodigoHora, duracionEnDiasDeCodigoPremio, cantidadDeCodigosAGenerar, eleccionPremio } = json;
 			this.setState({
 				divisorPremio,
 				duracionEnDiasDeCodigoHora,
 				duracionEnDiasDeCodigoPremio,
 				cantidadDeCodigosAGenerar,
+				eleccionPremio,
 				loading: false,
 				auth: json.auth == false ? false : true
 			})

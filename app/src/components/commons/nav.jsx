@@ -32,15 +32,15 @@ function Nav() {
     		<div className="nav-menu-flex">
     			<div className="nav-items">
 	      			<NavLink to="/juegos" className="nav-item" activeClassName="nav-is-active">
-	        			juegos
+	        			Juegos
 	      			</NavLink>
 
 			      	<NavLink to="/eventos" className="nav-item" activeClassName="nav-is-active">
-			        	eventos
+			        	Eventos
 			      	</NavLink>
 
 			      	<NavLink to="/contacto" className="nav-item" activeClassName="nav-is-active">
-			        	contacto
+			        	Contacto
 			      	</NavLink>
 
 			      	<NavLink to="/galeria" className="nav-item" activeClassName="nav-is-active">
@@ -48,9 +48,29 @@ function Nav() {
 			      	</NavLink>
 
 			      	<NavLink to="/foro" className="nav-item" activeClassName="nav-is-active">
-			        	foro
+			        	Foro
 			      	</NavLink>
-    			</div>
+
+			      	<NavLink to="/noticias" className="nav-item" activeClassName="nav-is-active">
+			        	Noticias
+			      	</NavLink>
+
+			      	<div className="navbar-item has-dropdown is-hoverable">
+				        <a className="navbar-link">
+				          Más
+				        </a>
+				        <div className="navbar-dropdown">
+				          	<a className="navbar-item">
+				            	Nosotros
+				          	</a>
+				        	<a className="navbar-item">
+				            	Manual de usuario
+				          	</a>
+				        </div>
+				    </div>
+				    
+				
+				</div>
 		    
 		    {/* mostrar precio de la hora */}
 			<div className="precio-nav">precio {hourPrice} Bs</div>

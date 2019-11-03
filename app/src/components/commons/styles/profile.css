@@ -4,6 +4,7 @@
 	padding: 35px 40px;
 	display: flex;
 	flex: 1;
+	/*flex-wrap: wrap;*/
 	/*flex-direction: column;*/
 	/*align-items: center;*/
 	/*align-items: space-around;*/
@@ -17,7 +18,7 @@
 	flex-direction: column;
 	align-items: center;
 	/*justify-content: center;*/
-	justify-content: space-around;
+	/*justify-content: space-around;*/
 }
 
 
@@ -36,8 +37,9 @@
 .user-descripcion-profile{
 	display: flex;
 	width: 100%;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .imagen-profile{
@@ -73,7 +75,7 @@
 .botones-profile-codes{
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	align-items: flex-start;
 	justify-content: space-around;
 	height: 200px;
     width: 100%;
@@ -82,13 +84,14 @@
 
 .botones-profile-codes button{
 	transition: .3s;
+	border: 1px solid black;	
 }
 
 	.botones-profile-codes button:hover{
-		transform: scaleX(1.05);
     	box-shadow:  3px 4px black;
-    	border: 1px solid black;
-
+		transform: scaleX(1.05);
+		backface-visibility: hidden;
+		border: 1px solid black;
 	}
 
 
@@ -111,12 +114,31 @@
     height: 100%;
 }
 
+#show-help{
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+		#show-help img{
+			width: 35px;
+			height: 35px;
+			margin-right: 15px;
+		}
+
+		#show-help h1:hover{
+			cursor: pointer;
+			text-decoration: underline;
+		}
+
 .premios-ganados-container{
 	margin-top: 10px;
 	padding: 10px;
 	border: 4px solid var(--red);
 	box-shadow: -1px -1px 7px 0px;
 	border-radius: 12px;
+	height: 350px;
+    overflow: auto;
 }
 
 .premios-ganados-container thead tr{

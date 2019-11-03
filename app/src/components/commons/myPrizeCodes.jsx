@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './styles/myPrizeCodes.css';
+
 function MyPrizeCodes({arrCodes}) {
 	return(
 		<div className="myCodes-container">
@@ -9,7 +11,7 @@ function MyPrizeCodes({arrCodes}) {
 						<td>#</td>
 						<td>Código</td>
 						<td>Creación</td>
-						<td>Expiración</td>
+						<td>Válido hasta</td>
 					</tr>
 				</thead>
 				<tbody>

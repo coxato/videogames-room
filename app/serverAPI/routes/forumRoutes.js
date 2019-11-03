@@ -28,7 +28,6 @@ router.post("/save", async (req, res) => {
 	// user is login
 	else{
 		// ########
-		let userr;
 		let decoded;
 		// verify if the token is correct
 		try{
@@ -36,12 +35,11 @@ router.post("/save", async (req, res) => {
 			// token is valid
 			// get the user data
 			const user = await userService.getUser({id: new ObjectId(decoded.id)});
-			userr=user
 			foto = user.foto;
 			username = user.nombre + ' ' + user.apellido;
 			isAdmin = user.isAdmin;
 		}catch(err){
-			console.log("error de ruta",err)
+			console.log("error de ruta foro, /save",err)
 			// error while verify token, i.e expired
 			foto = '';
 			username = 'Anónimo';

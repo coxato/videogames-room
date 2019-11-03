@@ -20,6 +20,7 @@ class ProfileContainer extends Component{
 		modalHourIsVisible: false,
 		modalPrizeIsVisible: false,
 		horasNecesarias: 0,
+		eleccionPremio: ''
 	}
 
 	// fetch the user data
@@ -44,7 +45,8 @@ class ProfileContainer extends Component{
 				user: jsonUser,
 				error:null, 
 				auth: jsonUser.auth == false ? false : true, // auth is always false if is verifying the token, so if not return auth key, the token is valid
-				horasNecesarias: jsonDataCode.divisorPremio
+				horasNecesarias: jsonDataCode.divisorPremio,
+				eleccionPremio: jsonDataCode.eleccionPremio
 			});
 
 		}catch(err){
@@ -70,7 +72,7 @@ class ProfileContainer extends Component{
 
 
 	render(){
-		let { loading, user, auth, modalHourIsVisible, modalPrizeIsVisible, horasNecesarias } = this.state;
+		let { loading, user, auth, modalHourIsVisible, modalPrizeIsVisible, horasNecesarias, eleccionPremio } = this.state;
 		return(
 			<div className="profile-super-container">
 				{
@@ -81,7 +83,7 @@ class ProfileContainer extends Component{
 					auth
 					?
 					<div className="profile-user-container">
-						<Profile userData={user} onModalOpen={this.onModalOpen} horasNecesarias={horasNecesarias}/>
+						<Profile userData={user} onModalOpen={this.onModalOpen} horasNecesarias={horasNecesarias} eleccionPremio={eleccionPremio}/>
 						
 						{/* modal for hours */}
 						<PortalModal modalIsVisible={modalHourIsVisible} onModalClose={this.onModalClose} modalCategory="modalHourIsVisible">
@@ -90,7 +92,7 @@ class ProfileContainer extends Component{
 						
 						{/* modal for prize */}
 						<PortalModal modalIsVisible={modalPrizeIsVisible} onModalClose={this.onModalClose} modalCategory="modalPrizeIsVisible">
-							<CreatePrizeCode horasNecesarias={horasNecesarias} horasUser={user.contadorHoras} />
+							<CreatePrizeCode horasNecesarias={horasNecesarias} horasUser={user.contadorHoras} eleccionPremio={eleccionPremio}/>
 						</PortalModal>
 					</div>
 					:

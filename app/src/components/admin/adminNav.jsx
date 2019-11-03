@@ -14,6 +14,10 @@ function AdminNav() {
 					administrar eventos
 				</NavLink>
 
+				<NavLink to="/admin/noticias" className="admin-nav-link" activeClassName="is-admin-nav-active">
+					administrar noticias
+				</NavLink>
+
 				<NavLink to="/admin/config-codigos" className="admin-nav-link" activeClassName="is-admin-nav-active">
 					configuración de códigos
 				</NavLink>
@@ -25,7 +29,8 @@ function AdminNav() {
 				<NavLink to="/admin/comprobar-codigo" className="admin-nav-link" activeClassName="is-admin-nav-active">
 					comprobación de códigos premio
 				</NavLink>
-		
+
+
 			</div>
 
 		</div>

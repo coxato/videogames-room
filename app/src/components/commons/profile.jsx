@@ -1,12 +1,15 @@
-import React from 'react';
+import React, {useState} from 'react';
 // components
 import MyPrizeCodes from './myPrizeCodes';
+import HelpModal from './simpleModalHelp';
 // styles
 import './styles/profile.css';
 
-function Profile({userData, onModalOpen, horasNecesarias}) {
+function Profile({userData, onModalOpen, horasNecesarias, eleccionPremio}) {
   let { nombre, apellido, email, puntos, codigoPremioActual, contadorHoras, foto } = userData;
   
+  let [dontShow, setDontShow] = useState(true);
+
   return(
     <section className="profile-container">
       <div className="profile-izquierda">
@@ -21,6 +24,13 @@ function Profile({userData, onModalOpen, horasNecesarias}) {
         </div>
 
         <div className="botones-profile-codes">
+          {/* help button */}
+          <div id="show-help">
+            <div className="image" onClick={() => setDontShow(false)}>
+              <img src="/static/images/help.png" alt="ayuda masplay"/>
+            </div>
+            <h1 onClick={() => setDontShow(false)} className="subtitle">ayuda</h1>
+          </div>
           <button className="button is-large ingresar-hora" onClick={() => onModalOpen('modalHourIsVisible')} >Ingresar código de hora</button>
           <button className="button is-large canjear-horas" onClick={() => onModalOpen('modalPrizeIsVisible')}>Canjear código de premio</button>
         </div>
@@ -46,6 +56,16 @@ function Profile({userData, onModalOpen, horasNecesarias}) {
           </div>
 
       </div>
+
+      {/* modal para la ayuda */}
+      <HelpModal 
+        dontShow={dontShow} 
+        horasNecesarias={horasNecesarias} 
+        usuario={nombre}
+        setDontShow={setDontShow}
+        eleccionPremio={eleccionPremio}
+      />
+
     </section>
   )
 }

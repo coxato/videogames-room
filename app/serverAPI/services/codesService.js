@@ -18,7 +18,8 @@ class CodesServices{
             divisorPremio: 3,
             duracionEnDiasDeCodigoHora: 3,
             duracionEnDiasDeCodigoPremio: 3,
-            cantidadDeCodigosAGenerar: 20
+            cantidadDeCodigosAGenerar: 20,
+            eleccionPremio: 'una'
         });
         let codesConfigCreated = await mongo.createOne(collection, codesConfig);
         return 'config codes created';
@@ -82,14 +83,15 @@ class CodesServices{
 
     // ##################  actualizar datos ##################
     // actualizar numero de codigos, divisorPremio, duracion de los codigos
-    async actualizarDatosDeCodigos({ divisorPremio, duracionEnDiasDeCodigoHora, duracionEnDiasDeCodigoPremio, cantidadDeCodigosAGenerar }){
+    async actualizarDatosDeCodigos({ divisorPremio, duracionEnDiasDeCodigoHora, duracionEnDiasDeCodigoPremio, cantidadDeCodigosAGenerar, eleccionPremio }){
         let { mongo, collection } = this;
         let newValue = { 
             $set: {
                 divisorPremio,
                 duracionEnDiasDeCodigoHora,
                 duracionEnDiasDeCodigoPremio,
-                cantidadDeCodigosAGenerar
+                cantidadDeCodigosAGenerar,
+                eleccionPremio
             } 
         };
         let updated = await mongo.updateOne(collection, {}, newValue);
@@ -97,7 +99,7 @@ class CodesServices{
     }
 
     // $$$$$$$$$$$$$$$$$$  check codes  $$$$$$$$$$$$$$$$$$$$$$
-    async checkCode(type, code, userId){
+    async checkCode(type, code, userId, date=null){
         console.log("el id que llega ", userId)
         let { mongo, collection } = this;
         // neccessary query for interact with mongoDB 
@@ -149,8 +151,13 @@ class CodesServices{
             // } );
 
             // just want check a prize code and return success or not 
+            // check date
+            let codeExpirationDate = codeExist[queryType][0].expiration.reverse().join('-');
+            codeExpirationDate = new Date(codeExpirationDate);
             // return success object to frontend if all pass
-            return { success: true, fail: false, used: false }; 
+            if(new Date(date) <= codeExpirationDate ) return { success: true, fail: false, used: false }; 
+            // date expiration of code
+            else return { success: false, fail: true, used: false, expirated: true};
         }
 
     }  
@@ -196,7 +203,7 @@ class CodesServices{
     // =====  get simple data like divisorPremio  =====
     async getSimpleData(){
         let { mongo, collection } = this;
-        let data = await mongo.getOne(collection, {}, { divisorPremio: 1, _id: 0 });
+        let data = await mongo.getOne(collection, {}, { divisorPremio: 1, eleccionPremio: 1, _id: 0 });
         return data;
     }
 

@@ -14,7 +14,7 @@ router.get('/:id', verifyToken, async (req, res) => {
 	let user = await service.getUser({id});
 	console.log("*****  pasó la verificación")
 	res.status(200).send(user);
-});
+}); 
 
 // check if user is admin
 router.get("/check/admin", verifyTokenAdmin, (req, res) => {

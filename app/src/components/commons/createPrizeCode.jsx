@@ -7,7 +7,7 @@ import './styles/checkPrizeCodes.css';
 
 
 
-function CheckPrizeCodes({ horasNecesarias, horasUser }){
+function CheckPrizeCodes({ horasNecesarias, horasUser, eleccionPremio }){
 
 	let [ codeState, setCodeState ] = useState({
 		code: {},
@@ -52,7 +52,7 @@ function CheckPrizeCodes({ horasNecesarias, horasUser }){
 				<div className="successComprobation c-message">
 					<p>Que bien!, has ganado un código PREMIO</p>
 					<h1 className="title">{code.code}</h1>
-					<p>Anótalo y muéstralo en masplay para ganar 1 hora gratis</p>
+					<p>Anótalo y muéstralo en masplay para ganar {eleccionPremio} hora gratis</p>
 					<p className="has-color-success">Además te acabas de sumar 300 puntos! :)</p>
 					<p className="reloadMessage">Recarga la página para ver los cambios reflejados</p>
 				</div>

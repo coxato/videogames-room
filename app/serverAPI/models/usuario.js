@@ -6,7 +6,7 @@ class Usuario{
         this.email = email;
         this.password = password;
         this.isAdmin = isAdmin;
-        
+    
         // puntos como usuario, mas no como referencia para las horas
         this.puntos = 0; 
         

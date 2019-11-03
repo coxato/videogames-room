@@ -19,13 +19,13 @@ function Footer() {
 				</div>
 
 				<div className="contacto-basico">
-					<p><b>Telefono:</b></p>
+					<p className="negro"><b>Telefono:</b></p>
 					<div className="contacto">
 						<div className="imagen-contacto"> <img src="/static/images/cellphone.svg" alt="telefono masplay"/> </div>
 						<p>(0235)3417745</p>
 					</div>
 
-					<p><b>Correo:</b></p>
+					<p className="negro"><b>Correo:</b></p>
 					<div className="contacto">
 						<div className="imagen-contacto"> <img src="/static/images/email.svg" alt="correo masplay"/> </div>
 						<p>masplayvideojuegos@gmail.com</p>
@@ -33,7 +33,7 @@ function Footer() {
 				</div>
 
 				<div className="contacto-redes">
-					<p><b>facebook:</b></p>
+					<p className="negro"><b>facebook:</b></p>
 					<div className="contacto">
 						<div className="imagen-contacto"> <img src="/static/images/facebook-logo.svg" alt="telefono masplay"/> </div>
 						<p>
@@ -41,7 +41,7 @@ function Footer() {
 						</p>
 					</div>
 
-					<p><b>whatsapp:</b></p>
+					<p className="negro"><b>whatsapp:</b></p>
 					<div className="contacto">
 						<div className="imagen-contacto"> <img src="/static/images/whatsapp.svg" alt="correo masplay"/> </div>
 						<p>(+58)4163494024</p>

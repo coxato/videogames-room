@@ -9,6 +9,7 @@ import { port } from "./config/config";
 // const multerConfig = from "./config/multer";
 import checkCodeRoutes from './serverAPI/routes/checkCodeRoutes';
 import negocioRoutes from "./serverAPI/routes/negocioRoutes";
+import noticiaRoutes from "./serverAPI/routes/noticiaRoutes";
 import eventsRoutes from "./serverAPI/routes/eventsRoutes";
 import commonRoutes from "./serverAPI/routes/commonRoutes";
 import codesRoutes from "./serverAPI/routes/codesRoutes";
@@ -31,7 +32,7 @@ app.use(morgan('dev'))
 app.use('/static',express.static(path.join(__dirname,'public')) );
 app.use('/static-dist', express.static(path.join(__dirname,'dist')) );
 
-// =======  routes  =======
+// ==========  routes  ==========
 // admin
 app.use("/api/admin", negocioRoutes);
 app.use("/api/admin", eventsRoutes);
@@ -40,17 +41,22 @@ app.use("/api/admin", codesRoutes);
 app.use("/api/codes", checkCodeRoutes);
 // users
 app.use("/api/users", userRoutes);
+// news
+app.use("/api/noticias", noticiaRoutes);
 // public simple data for all users
 app.use("/api/data", commonRoutes);
 app.use("/api/foro", forumRoutes);
 
-// routes for react
+// ===============================
+
+// *****  routes for react  *****
 // render react views
 app.get('*', (req, res) => {
     const html = ReactDOMServer.renderToString(AppSSR);
 	res.write( templateReact(html) );
 	res.end();
-}); 
+});
+// ******************************* 
 
 
 // =======  start the server  =======
@@ -68,7 +74,7 @@ async function closeServer(){
         await mongo.disconnect();
         server.close();
     } catch (err) {
-        console.log("db error connection ",err);
+        console.log("db error disconnection ",err);
     }
 }
 // run first the database connection and then the server
