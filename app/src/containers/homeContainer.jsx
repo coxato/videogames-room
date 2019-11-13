@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 // components
 import Hero from '../components/commons/landingHero';
 import Description from '../components/commons/description';
+import Mapa from '../components/commons/mapa';
 import Horario from '../components/commons/horario';
 import Loader from '../components/commons/loader';
 
@@ -38,6 +39,7 @@ class Home extends Component{
 			<div className="home-landing-container">
 				<Hero />
 				<Description />
+				<Mapa />
 				<Horario horario={horario} />
 			</div>
 		)

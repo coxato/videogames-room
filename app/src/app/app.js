@@ -20,7 +20,8 @@ function App(){
 		minHeight: '100vh',
 		display: 'flex',
 		flexDirection: 'column',
-		background: 'lightgrey'
+		background: 'rgb(237,237,237)',
+		background: 'linear-gradient(143deg, rgba(237,237,237,1) 23%, rgba(97,97,97,1) 100%)',
 	}
 
 	return(

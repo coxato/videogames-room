@@ -13,6 +13,7 @@ import Gallery from '../components/commons/gallery';
 import Contacto from '../components/commons/contact';
 import Foro from '../containers/foro';
 import Noticias from '../containers/news';
+import About from '../components/commons/about';
 // style
 // import './styles/homePage.css';
 
@@ -30,7 +31,8 @@ function LandingPage(){
                     <Route exact path="/galeria" component={Gallery} />
                     <Route exact path="/foro" component={Foro} />
                     <Route exact path="/noticias" component={Noticias} />
-            	 </Switch>
+            	    <Route exact path="/about" component={About} />
+                 </Switch>
             </div>
         </div>
     )

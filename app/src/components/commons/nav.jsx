@@ -63,8 +63,11 @@ function Nav() {
 				          	<a className="navbar-item">
 				            	Nosotros
 				          	</a>
-				        	<a className="navbar-item">
-				            	Manual de usuario
+				        	<a href="https://mega.nz/#!LCoi3QDT!sSDqxzlCrKiGDuiC2lQM_a8A-3N6vGaC2DTLEiYagDQ"
+				        	 	target="_blank"
+				        	 	className="navbar-item"
+				        	 >
+				            	Descargar manual de usuario
 				          	</a>
 				        </div>
 				    </div>
@@ -96,10 +99,10 @@ function Nav() {
 					    </div>
 					    :
 						<div className="buttons">
-							<Link to="/register" className="button register">
+							<Link to="/register" className="button register is-primary">
 								registrarse
 							</Link>
-							<Link to="/login" className="button login">
+							<Link to="/login" className="button login is-info">
 								iniciar sesión
 							</Link>
 					    </div>

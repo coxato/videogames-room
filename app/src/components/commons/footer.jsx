@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 // styles
 import './styles/footer.css';
 
@@ -13,7 +14,8 @@ function Footer() {
 						<p className="content">
 							calle Retumbo entre <br/> 
 							Av. Rómulo Gallegos y calle Paraíso <br/>
-							Valle de la Pascua - Guárico
+							Valle de la Pascua - Guárico <br/>
+							Centro Comercial Norte - 2do piso
 						</p>
 					</div>
 				</div>
@@ -46,6 +48,9 @@ function Footer() {
 						<div className="imagen-contacto"> <img src="/static/images/whatsapp.svg" alt="correo masplay"/> </div>
 						<p>(+58)4163494024</p>
 					</div>
+					
+					<Link className="negro content" to="/about"><u><b>acerca de</b></u></Link>
+
 				</div>
 			</div>
 			<div className="footer-abajo">

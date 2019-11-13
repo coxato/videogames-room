@@ -6,6 +6,19 @@ function AdminNav() {
 	return(
 		<div className="nav admin-nav-container">
 			<div className="links-container">
+
+				<div className="buttons">
+					<a href="/" className="button my-profile">
+						Home
+					</a>
+					<button className="button logout is-warning" onClick={() => {
+						sessionStorage.setItem("token","");
+						location.href = "/";
+					}}>
+						cerrar sesión
+					</button>
+			    </div>
+
 				<NavLink to="/admin/general" className="admin-nav-link" activeClassName="is-admin-nav-active">
 					información general
 				</NavLink>
