@@ -11,8 +11,8 @@ const ShowCodes = ({ arrCodes, type, updateCodes }) => (
 					<th>#</th>
 					<th>código</th>
 					<th>tipo</th>
-					{ type == "prize" && <th>creación</th> }
-					{ type == "prize" && <th>Válido hasta</th> }
+					<th>creación</th>
+					<th>Válido hasta</th>
 					{ type == "prize" && <th>user</th> }
 					<th>usado</th>
 					{ type == "hour" && <th>entregado</th> } 
@@ -40,8 +40,8 @@ const ShowCodes = ({ arrCodes, type, updateCodes }) => (
 									<td>{code}</td>
 									<td>{type}</td>
 									{/* only show creation and expiration time in prize codes */}
-									{ type=="prize" && <td>{ created.join('/') }</td> }
-									{ type=="prize" && <td>{ expiration.join('/') }</td> }
+									<td>{ created.join('/') }</td> 
+									<td>{ expiration.join('/') }</td>
 									{  user!='' && <td>{user}</td>  }
 									{/* the code is used or not */}
 									{ 

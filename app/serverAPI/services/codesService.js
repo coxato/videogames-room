@@ -104,7 +104,8 @@ class CodesServices{
         let { mongo, collection } = this;
         // neccessary query for interact with mongoDB 
         let queryType = type == 'hour' ? "hourCodes" : "prizeCodes"; 
-        // check if the code exist
+        
+        // #######  check if the code exist  #######
         // { [key] : value } ES6 feature
         let codeExist = await mongo.getOne(collection, { [queryType+'.code']: code }, 
             { // projection
@@ -113,53 +114,62 @@ class CodesServices{
                 duracionEnDiasDeCodigoPremio: 1
             });
         console.log(codeExist)
-        // if the code not exist
+        // #######  if the code not exist  #######
         if(!codeExist) return { success: false, fail: true, used: false};
-        // if the code is already used
+        // #######  if the code is already used  #######
         if(codeExist[queryType][0].isUsed ) return { success: false, fail: false, used: true }
-        // if the code is all valid return success true and change the props of the code
-        // update Code, because if the code is valid, then it will not be valid, you know, only use the code one time
-        await mongo.updateOne(collection, 
-            { [queryType+'.code']: code },
-             {
-                $set: { 
-                    [queryType+'.$.isValid'] : false,
-                    [queryType+'.$.isUsed'] : true,
-                } 
-         });
-        // ===== add points and codes to user =====
-        // if hour, increment the hours count and points
-        if(type=="hour"){
-            await mongo.updateOne('user', { _id: new ObjectId(userId) }, { 
-                $inc: {
-                    contadorHoras: 1,
-                    puntos: 100 
-                } 
-            } );
-            // return success object to frontend if all pass
-            return { success: true, fail: false, used: false };
+        // #######  check expiration dates  #######
+        // code object
+        const codeObject = codeExist[queryType].filter( c => c.code === code);
+        if(!this.codeIsExpired(codeObject[0].expiration.reverse().join('-'))){
+            // if the code is all valid return success true and change the props of the code
+            // update Code, because if the code is valid, then it will not be valid, you know, only use the code one time
+            await mongo.updateOne(collection, 
+                { [queryType+'.code']: code },
+                 {
+                    $set: { 
+                        [queryType+'.$.isValid'] : false,
+                        [queryType+'.$.isUsed'] : true,
+                    } 
+             });
+            // ===== add points and codes to user =====
+            // if hour, increment the hours count and points
+            if(type=="hour"){
+                await mongo.updateOne('user', { _id: new ObjectId(userId) }, { 
+                    $inc: {
+                        contadorHoras: 1,
+                        puntos: 100 
+                    } 
+                } );
+                // return success object to frontend if all pass
+                return { success: true, fail: false, used: false };
+            }
+            // prize, add points and code to user
+            else{
+                return { success: true, fail: false, used: false };
+            }
+
         }
-        // prize, add points and code to user
+        // #######  date is expirated  #######
         else{
-            // await mongo.updateOne('user', { _id: new ObjectId(userId) }, { 
-            //     $inc: {
-            //         puntos: 300 
-            //     },
-            //     $push: {
-            //         prizeCodes: code
-            //     } 
-            // } );
-
-            // just want check a prize code and return success or not 
-            // check date
-            let codeExpirationDate = codeExist[queryType][0].expiration.reverse().join('-');
-            codeExpirationDate = new Date(codeExpirationDate);
-            // return success object to frontend if all pass
-            if(new Date(date) <= codeExpirationDate ) return { success: true, fail: false, used: false }; 
-            // date expiration of code
-            else return { success: false, fail: true, used: false, expirated: true};
+            return { success: true, fail: false, used: false , expired: true};
         }
 
+
+    }
+
+    // check expiration date, return true if the code is expired
+    codeIsExpired(codeDateExpirationString, todayDateString = new Date()){
+        
+        console.log("#### el string date de expiration ", codeDateExpirationString);
+
+        // just want check a code and return success or not 
+            // check date
+            let codeExpirationDate = new Date(codeDateExpirationString);
+            // return success object to frontend if all pass
+            if(new Date() <= codeExpirationDate ) return false; 
+            // date expiration of code
+            else return true;
     }  
         
 
