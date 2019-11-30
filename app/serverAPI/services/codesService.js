@@ -1,6 +1,7 @@
 const MongoLib = require("../mongo/connection");
 const ObjectId = require("mongodb").ObjectId;
 const codeGen = require("../utils/createCodes");
+const codeIsExpired = require("../utils/checkExpirationDate");
 const CodigoModel = require("../models/codigo");
 
 
@@ -121,7 +122,9 @@ class CodesServices{
         // #######  check expiration dates  #######
         // code object
         const codeObject = codeExist[queryType].filter( c => c.code === code);
-        if(!this.codeIsExpired(codeObject[0].expiration.reverse().join('-'))){
+        // #######  send the code to check date with codeIsExpired mehotd  #######
+        const expirationDay = codeObject[0].expiration.reverse().join('/');
+        if(!codeIsExpired(expirationDay)){
             // if the code is all valid return success true and change the props of the code
             // update Code, because if the code is valid, then it will not be valid, you know, only use the code one time
             await mongo.updateOne(collection, 
@@ -144,33 +147,26 @@ class CodesServices{
                 // return success object to frontend if all pass
                 return { success: true, fail: false, used: false };
             }
-            // prize, add points and code to user
+            
+            // return success obj to frontend if is prize code
+            // no se agregan puntos al usuario porque los puntos solo
+            // se agregan cuando se crea un codigo de premio,
+            // mas no cuando se revisa, cuando solo se revisa basta con ver si
+            // el codigo de premio existe y de ser así, mandar un objeto success para el frontend
             else{
                 return { success: true, fail: false, used: false };
             }
+            
 
         }
         // #######  date is expirated  #######
         else{
-            return { success: true, fail: false, used: false , expired: true};
+            return { success: false, fail: true, used: false , expired: true, expirationDay};
         }
 
 
     }
-
-    // check expiration date, return true if the code is expired
-    codeIsExpired(codeDateExpirationString, todayDateString = new Date()){
-        
-        console.log("#### el string date de expiration ", codeDateExpirationString);
-
-        // just want check a code and return success or not 
-            // check date
-            let codeExpirationDate = new Date(codeDateExpirationString);
-            // return success object to frontend if all pass
-            if(new Date() <= codeExpirationDate ) return false; 
-            // date expiration of code
-            else return true;
-    }  
+ 
         
 
     // $$$$$$$$$$$$$$$$  create one code $$$$$$$$$$$$$$
@@ -240,6 +236,48 @@ class CodesServices{
         );
         // return updated message
         return 'code updated';
+    }
+
+
+    // ******************  check expirationDate of all codes  *****************
+    // if a code is expired that code is not valid
+    async checkExpirationDateAllCodesAndReturnThem(){
+        let {collection, mongo} = this;
+
+        let allCodes = await this.getCodes();
+        let { hourCodes, prizeCodes } = allCodes;
+        // function to iterate all the codes and check dates
+        const checkCodesDate = ObjCodesArray => {
+                for(let codeObj of ObjCodesArray ){
+                // transform Array [DD,MM,YYYY] to string YYYY/MM/DD
+                let copyExpirationArr = [...codeObj.expiration];
+                let expirationString = copyExpirationArr.reverse().join('/'); // YYYY/MM/DD
+                let isExpired = codeIsExpired(expirationString);
+                // set the code as invalid code
+                if(isExpired) codeObj.isValid = false;
+
+            }
+        }
+
+        // check hour codes expiration date
+        checkCodesDate(hourCodes);
+        // check prize codes expiration date
+        checkCodesDate(prizeCodes);
+
+        // save the checked codes in mongoDB
+        await mongo.updateOne(collection, {}, {
+            $set: {
+                hourCodes,
+                prizeCodes
+            }
+        });
+        // return codes for frontend
+        return {
+            hourCodes,
+            prizeCodes
+        }
+
+
     }
 
     // delete all invalid codes

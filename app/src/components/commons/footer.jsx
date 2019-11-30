@@ -42,14 +42,8 @@ function Footer() {
 							<a className="footer-link" href="https://www.facebook.com/masplay.videojuegos/" target="_blank">danos un me gusta</a>
 						</p>
 					</div>
-
-					<p className="negro"><b>whatsapp:</b></p>
-					<div className="contacto">
-						<div className="imagen-contacto"> <img src="/static/images/whatsapp.svg" alt="correo masplay"/> </div>
-						<p>(+58)4163494024</p>
-					</div>
 					
-					<Link className="negro content" to="/about"><u><b>acerca de</b></u></Link>
+					<Link className="negro content acerca-de" to="/about"><u><b>acerca de</b></u></Link>
 
 				</div>
 			</div>

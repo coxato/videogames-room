@@ -15,6 +15,7 @@ const ShowCodes = ({ arrCodes, type, updateCodes }) => (
 					<th>Válido hasta</th>
 					{ type == "prize" && <th>user</th> }
 					<th>usado</th>
+					<th>válido</th>
 					{ type == "hour" && <th>entregado</th> } 
 				</tr>
 			</thead>
@@ -23,16 +24,16 @@ const ShowCodes = ({ arrCodes, type, updateCodes }) => (
 					arrCodes.length 
 					?	 
 						arrCodes.map( (codeObj, index) => {
-							let { code, created, expiration, type, user, isUsed, isGiven }  = codeObj;
+							let { code, created, expiration, type, user, isUsed, isGiven, isValid }  = codeObj;
 							return(
 
 								<tr key={code} 
 									className={ (() => {
 										// change the classname depends if is odd or not, and if the code is used or not
 										if(index % 2 == 0){
-											return isUsed ? 'is-odd is-used' : 'is-odd'
+											return !isValid ? 'is-odd is-not-valid' : 'is-odd'
 										}else{
-											return isUsed ? 'is-used' : ''
+											return !isValid ? 'is-not-valid' : ''
 										} 
 									})()// IIFE function to can return, jsx does not show it if it returns nothing
 								}>
@@ -54,6 +55,10 @@ const ShowCodes = ({ arrCodes, type, updateCodes }) => (
 											} 
 										})()// IIFE function to can return, jsx does not show it if it returns nothing	
 									}
+									{
+										<td>{isValid ? 'si' : 'no'}</td>
+									}
+
 									{/* the code is given or not, only show a checkbox in hour codes */}
 									{ type=="hora"  && <td><input type="checkbox" onChange={ ({target}) => updateCodes(type, code, target.checked) } defaultChecked={ isGiven } /></td> }
 								</tr>

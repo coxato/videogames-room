@@ -1,5 +1,6 @@
-.is-used{
+.is-not-valid{
 	text-decoration: line-through;
+	background: #ff1e1ebf !important;
 }
 
 .is-odd{

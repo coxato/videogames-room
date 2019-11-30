@@ -2,7 +2,6 @@
 
 async function checkCode(type, code = "just make", date=null){
 	try{
-		console.log("que es el mardito date ", date)
 
 		let response = await fetch(`/api/codes/check/?type=${type}&code=${code}`, {
 			method: 'POST',

@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 // components
 import NoticiaForm from '../components/commons/noticiaForm';
 import Loader from '../components/commons/loader';
+// utils
+import uploadPhoto from '../../utilities/uploadPhoto';
 
 
 class EditAndCreateNews extends Component{
@@ -9,7 +11,9 @@ class EditAndCreateNews extends Component{
 	state = {
 		loading: true,
 		titulo: '',
-		descripcion: ''
+		descripcion: '',
+		imagen: '',
+		archivo: null
 	}
 
 	handleChange = (ev) => {
@@ -17,6 +21,10 @@ class EditAndCreateNews extends Component{
 		this.setState({
 			[key]: value
 		});
+	}
+	// handle onChange for input type=file 
+	handleChangeInputFile = ev => {
+		this.setState({archivo: ev.target.files[0]})
 	}
 
 	// fetch the data if the admin want edit news
@@ -30,8 +38,8 @@ class EditAndCreateNews extends Component{
 				}
 			});
 			let noticia = await response.json();
-			let { titulo, descripcion } = noticia;
-			this.setState({ loading: false, titulo, descripcion }) 
+			let { titulo, descripcion, imagen } = noticia;
+			this.setState({ loading: false, titulo, descripcion, imagen }) 
 		}else{
 			this.setState({loading: false})
 		}
@@ -47,10 +55,26 @@ class EditAndCreateNews extends Component{
 		let day = date.getDate(),
 			month = date.getMonth() + 1,
 			year = date.getFullYear();
+		// state variables
+		let {titulo, descripcion, imagen, archivo} = this.state; 
+		// si quiere guardar archivo
+		if(archivo){
+			let uploaded = await uploadPhoto(archivo, 'fotoSubir', '/api/admin/upload');
+			// photo saved
+			if(uploaded.ok) imagen = '/static/images/'+uploaded.filename;
+			// photo not saved
+			else imagen = '/static/images/default-news.jpg'; 
+		}else{
+			// default image
+			imagen = '/static/images/default-news.jpg';
+		}
+
+		// news object to save in MongoDB
 		const noticia = {
-			titulo: this.state.titulo,
-			descripcion: this.state.descripcion,
-			fecha: `${day}/${month}/${year}`
+			titulo,
+			descripcion,
+			imagen,
+			fecha: `${day}/${month}/${year}`,
 		}
 		// check if admin wants edit or create a news checking the id
 		let response;
@@ -65,7 +89,7 @@ class EditAndCreateNews extends Component{
 		            'x-access-token': sessionStorage.getItem("token")
 				}
 			});
-		}
+		} 
 		// create news
 		else{
 			response = await fetch("/api/noticias/crear", {
@@ -84,17 +108,19 @@ class EditAndCreateNews extends Component{
 	}
 
 	render(){
-		let { loading, titulo, descripcion } = this.state;
+		let { loading, titulo, descripcion, imagen } = this.state;
 		
 		if(loading) return <Loader/>
 
 		return <NoticiaForm 
 					titulo={titulo}
+					imagen={imagen}
 					descripcion={descripcion}
 					handleChange={this.handleChange}
 					handleSave={this.handleSave}
+					handleChangeInputFile={this.handleChangeInputFile}
 				/>
 	}
 }
-
+ 
 export default EditAndCreateNews;

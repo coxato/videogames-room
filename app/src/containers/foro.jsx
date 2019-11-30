@@ -69,7 +69,7 @@ class Foro extends Component{
 		return(
 			<div className="foro-container">
 				<div className="input-foro-container has-text-centered">
-					<h1 className="title">Éste es el foro de masplay</h1>
+					<h1 className="title">Éste es el foro de MasPlay</h1>
 					<h2 className="subtitle">Deja un comentario o pregunta lo que quieras</h2>
 					<textarea id="foroinput" cols="20" rows="7" className="textarea input" 
 						placeholder="escribe acerca de masplay, o bien, has una pregunta">

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 // styles
 import './styles/noticia.css';
 
-function Noticia({ _id, titulo, descripcion, fecha, isAdmin = false, onDelete }) {
+function Noticia({ _id, titulo, descripcion, fecha, imagen, isAdmin = false, onDelete }) {
 	return(
 		<div className="noticia-container">
 			{ 
@@ -21,6 +21,9 @@ function Noticia({ _id, titulo, descripcion, fecha, isAdmin = false, onDelete })
 			</div>
 			<div className="contenido-noticia">
 				<p>{descripcion}</p>
+				<div className="image">
+					<img src={imagen} alt="noticia Masplay"/>
+				</div>
 			</div>
 		</div>
 	)

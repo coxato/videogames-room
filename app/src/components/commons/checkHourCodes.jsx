@@ -14,7 +14,9 @@ function CheckHourCodes({horasNecesarias}){
 		verifying: false,
 		success: false,
 		fail: false,
-		used: false
+		used: false,
+		expired: false,
+		expirationDay: ''
 	})
 
 	// check the hour code
@@ -38,7 +40,7 @@ function CheckHourCodes({horasNecesarias}){
 		})
 	}
 
-	let { code, verifying, success, fail, used } = codeState;
+	let { code, verifying, success, fail, used, expired, expirationDay } = codeState;
 
 	return(
 		<div className="checkHourCodes-container">
@@ -66,6 +68,15 @@ function CheckHourCodes({horasNecesarias}){
 					<p>Genial!, tu código es valido y le sumas horas a tu contador de horas</p>
 					<p className="has-color-success">además te acabas de sumar 100 puntos :)</p>
 					<p className="reloadMessage">recarga la página para ver los cambios reflejados</p>
+				</div>
+			}
+
+			{
+				expired
+				&&
+				<div className="failedComprobation c-message">
+					<p>CODIGO EXPIRADO</p>
+					<p className="has-color-danger">el código se expiro el día {expirationDay.split('/').reverse().join('/') }</p>
 				</div>
 			}
 

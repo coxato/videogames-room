@@ -25,6 +25,16 @@ router.get("/data/codes", verifyIsAdmin, async (req, res) => {
     res.status(200).send(data);
 })
 
+// checar fecha de expiración y obtener los códigos
+// esta ruta es usada en la pagina 'http://localhost:5000/admin/config-codigos'
+// ya que se necesita justamente checar y obtener los códigos
+router.get("/data/check-and-get-codes", verifyIsAdmin, async (req, res) => {
+    const service = new CodeService();
+    let data = await service.checkExpirationDateAllCodesAndReturnThem();
+    res.status(200).send(data);
+})
+
+
 // crear códigos
 router.get("/create/code/:tipo", verifyIsAdmin, async (req, res) => {
     const service = new CodeService();

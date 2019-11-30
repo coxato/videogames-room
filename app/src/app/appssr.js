@@ -10,6 +10,9 @@ import LoginPage from '../pages/login';
 import LoginAdmin from '../pages/loginAdmin';
 import ProfilePage from '../pages/profile';
 
+import UploadTest from '../pages/uploadTest';
+
+
 
 // nav and footer
 import Nav from '../components/commons/nav';
@@ -43,6 +46,7 @@ function Appssr(){
 		  		</Switch>*/}
 		  		<LoginAdmin />
 		  		<AdminPage />
+		  		<UploadTest />
 			  	{/*	<Switch>
 			  			<Route component={NotFound} />
 			  		</Switch>  */}

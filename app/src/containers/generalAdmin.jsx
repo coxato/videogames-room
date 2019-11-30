@@ -101,7 +101,7 @@ class AdminGeneral extends Component{
     componentDidMount(){
         this.fetchData();
     }
-
+ 
     render(){
         let { loading, error, saving } = this.state;
         if(loading) return <Loader />

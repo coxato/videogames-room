@@ -17,8 +17,9 @@ class CheckPrizeAdmin extends Component{
 		fail: false,
 		used: false,
 		code: '',
-		expirated: false,
-		verifying: false
+		expired: false,
+		verifying: false,
+		expirationDate: ''
 	}
 
 	// check the prize code

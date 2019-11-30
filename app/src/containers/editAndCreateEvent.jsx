@@ -41,7 +41,8 @@ function EditAndCreateEvent(props) {
                 }),
                 headers: {
                     'Accept': 'application/json',
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'x-access-token': sessionStorage.getItem("token")
                 }
 			})
 		}catch(err){
