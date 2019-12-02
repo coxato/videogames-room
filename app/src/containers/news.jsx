@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 // components
 import Loader from '../components/commons/loader';
-import Noticia from '../components/commons/noticia';
+//import Noticia from '../components/commons/noticia';
 
 import NoticiasTest from '../components/commons/noticiasTest';
 
