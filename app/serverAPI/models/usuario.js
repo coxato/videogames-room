@@ -1,5 +1,6 @@
 class Usuario{
-    constructor({nombre, apellido, email, password, isAdmin = false}){
+    constructor({idUsuario, nombre, apellido, email, password, isAdmin = false}){
+        this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.apellido = apellido;
         // this.username = username;

@@ -1,5 +1,8 @@
 import React,{ useState } from 'react';
 import { Link } from 'react-router-dom';
+// utils
+import uploadPhoto from '../../utilities/uploadPhoto';
+// styles
 import './styles/editAndCreateEvent.css';
 
 function EditAndCreateEvent(props) {
@@ -22,8 +25,15 @@ function EditAndCreateEvent(props) {
 	} = evento;
 
 	const edit = (ev) => {
-		const name = ev.target.name;
-		const value = ev.target.value;
+		const input = ev.target;
+		const name = input.name;
+		let value;
+		// check if the input is type file
+		if(input.files){
+			value = input.files[0];
+		}else{
+			value = input.value;
+		}
 		setEvento({
 			...evento,
 			[name]: value
@@ -33,6 +43,26 @@ function EditAndCreateEvent(props) {
 	const save = async (ev) => {
 		ev.preventDefault();
 		const makeOrEdit = isEdit ? ['update','PUT'] : ['create', 'POST'];
+		// try save local disk photo
+		let imageUrlToSave; // the url of image
+		// check if want to upload a image
+		if(evento.fotoSubir){
+			try{
+				let uploadResponse = await uploadPhoto(evento.fotoSubir, 'fotoSubir', '/api/admin/upload');
+				if(uploadResponse.ok) imageUrlToSave = '/static/images/'+uploadResponse.filename;
+				else imageUrlToSave = '/static/images/default-game.jpg';
+				
+				// save the url in the evento object
+				evento.imagen = imageUrlToSave;
+			}catch(err){
+				console.log(err);
+			}
+
+		}
+		// check if the inputs to set a image are void, set default image
+		if(evento.imagen == '' && !evento.archivo ) evento.imagen = '/static/images/default-game.jpg';
+
+
 		try{
 			const saved = await fetch(`/api/admin/${makeOrEdit[0]}/event`, {
 				method: makeOrEdit[1],
@@ -91,12 +121,19 @@ function EditAndCreateEvent(props) {
 						<label className="label">hora de comienzo</label>
 						<input type="text" className="input" name="horaComienzo" value={horaComienzo|| ''} onChange={edit} />
 					</div>
+					{/* internet url image */}
 					<div className="field">
-						<label className="label">imagen del evento</label>
+						<label className="label">imagen desde internet</label>
 						<input type="text" className="input" name="imagen" value={imagen|| ''} onChange={edit} />
-						<div className="image">
-							<img src={imagen} />
-						</div>
+					</div>
+					{/* local disk image */}
+					<div className="field">
+						<label className="label">subir imagen desde equipo</label>
+						<input type="file" className="input" name="fotoSubir" onChange={edit} />
+					</div>
+					{/* image of event */}
+					<div className="image">
+						<img src={imagen} />
 					</div>
 					<button type="button" onClick={save} className="button is-medium is-fullwidth is-success">guardar</button>
 				</form>

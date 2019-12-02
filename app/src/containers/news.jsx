@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 // components
 import Loader from '../components/commons/loader';
 import Noticia from '../components/commons/noticia';
+
+import NoticiasTest from '../components/commons/noticiasTest';
+
 // styles
 import './styles/news.css';
 
@@ -59,9 +62,10 @@ class News extends Component{
 			{
 				isAdmin &&
 				<div className="crearnoticia-button">
-					<Link to="/admin/noticia/" className="button is-large is-link">Crear noticia</Link>
+					<a href="/admin/noticia/" className="button is-large is-link">Crear noticia</a>
 				</div>
 			}
+			{/*
 				{
 					noticias.length > 0
 					?
@@ -77,6 +81,13 @@ class News extends Component{
 					:
 					<h1 className="title">Aún no hay noticias</h1>
 				}
+			*/}
+
+		{	noticias.length > 0 ? <NoticiasTest 
+									noticiasArr={noticias}
+									deleteNews={onDelete}
+									isAdmin={isAdmin}
+								/> : <h1>no hay noticias</h1> }
 			</div>
 		)
 	}

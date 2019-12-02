@@ -15,18 +15,21 @@ class RegisterContainer extends Component{
 		username: '',
 		password: '',
 		passwordConfirm: '',
-		errorMsg: []
+		errorMsg: [],
+		showErrors: false
 	}
 
 	// check the form data
 	checkData = () => {
+		// set errors to zero
+		this.setState({errorMsg: []});
 		let errors = [];
 		let { password, passwordConfirm, nombre, apellido, email } = this.state;
 		if(password != passwordConfirm) errors.push("las contraseñas son diferentes");
 		if(password.length < 6) errors.push("la contraseña debe tener al menos 6 caracteres");
 		if(nombre=='' || apellido==''|| email=='') errors.push("rellena todos los campos")
 		if(errors.length > 0){
-			this.setState({ errorMsg: errors });
+			this.setState({ errorMsg: errors, showErrors: true });
 		}else{
 			return true;
 		}
@@ -34,14 +37,13 @@ class RegisterContainer extends Component{
 
 	handleOnChange = (ev) => {
 		let key = ev.target.name, value = ev.target.value;
-		this.setState({ [key]: value });
+		this.setState({ [key]: value, showErrors: false });
 	}
 
 	// create and save user
 	signup = async () => {
 		if(this.checkData()){
 			try{
-
 				let response = await fetch('/api/users/signup', {
 					method: 'POST',
 					body: JSON.stringify(this.state),
@@ -52,8 +54,15 @@ class RegisterContainer extends Component{
 				});
 
 				let created = await response.json();
-				console.log(created);
-				this.props.history.push('/login');
+				if(!created.isRegister){
+					this.setState({
+						errorMsg: [created.message],
+						allOk: false,
+						showErrors: true 
+					});
+				}else{
+					this.props.history.push('/login');
+				}
 
 
 			}catch(err){
@@ -67,16 +76,33 @@ class RegisterContainer extends Component{
 	}
 
 	// hide the notifications errors of form
-	hideErrors = (ev) => ev.target.parentElement.remove();
+	hideErrors = (ev) => {
+		ev.target.parentElement.style.display = 'none';
+		this.setState({showErrors: false});
+	}
 
+	// manage the errors display container
+	componentDidUpdate(){
+		const errorsContainer = document.getElementById('errorsContainer');
+		
+		if(this.state.showErrors){
+			// check if exist at least one error
+			errorsContainer.style.display = 'block';
+		}else{
+			// exist a error div
+			if(errorsContainer) errorsContainer.style.display = 'none';
+		}
+		
+	}
 	
 	render(){
 		return(
 			<div className="register-container">
+			
 				{
 					!this.state.allOk 
 					&&
-					<div className="box has-background-light title">
+					<div id='errorsContainer' className="box has-background-light title">
 						<div className="delete" onClick={this.hideErrors}></div>
 						{
 							this.state.errorMsg.map( (err, idx) => (
@@ -87,7 +113,7 @@ class RegisterContainer extends Component{
 						}
 					</div>
 				}
-				
+					
 				<div className="form-register-container">
 					<RegisterForm handleChange={this.handleOnChange} signup={this.signup} />
 				</div>

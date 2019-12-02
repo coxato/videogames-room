@@ -42,6 +42,12 @@ function Footer() {
 							<a className="footer-link" href="https://www.facebook.com/masplay.videojuegos/" target="_blank">danos un me gusta</a>
 						</p>
 					</div>
+
+					<p className="negro"><b>Instagram:</b></p>
+					<div className="contacto">
+						<div className="imagen-contacto"> <img src="/static/images/instagram-logo.svg" alt="correo masplay"/> </div>
+						<a href="https://www.instagram.com/masplayvideojuegos/?hl=es-la" target="_blank">&nbsp; @masplayvideojuegos</a>
+					</div>
 					
 					<Link className="negro content acerca-de" to="/about"><u><b>acerca de</b></u></Link>
 

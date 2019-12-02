@@ -13,15 +13,18 @@ class UserService{
 	// create a user if email is not taken
 	async createUser(data){
 		let { collection, mongo } = this;
-		let user = new UserModel(data);
 		try{
 			// check if the email is not taken
 			const userExist = await mongo.getOne(collection, {email: data.email});
 			if(userExist){
 				return null;
 			}else{
-				// encrypt password
-				// const salt = await bcrypt.genSalt(10);
+				// get the autoIncrement value
+				const usersCountValue = await mongo.getOne('negocio', {}, {usersCount: 1} );
+				// create a new user object with basic propertys
+				let user = new UserModel(data);
+				// set idUsuario
+				user.idUsuario = usersCountValue.usersCount+1;
 				// gen hash
 				const hash = await bcrypt.hash(user.password, 10);
 				// set password and random gravatar
@@ -29,6 +32,9 @@ class UserService{
 				user.foto = `https://www.gravatar.com/avatar/${md5(user.email)}?d=identicon`;
 				// save the user in DB
 				const userCreated = await mongo.createOne(collection, user);
+				// auto increment the usersCount
+				const incremented = await mongo.updateOne('negocio',{}, {$set: {usersCount: usersCountValue.usersCount+1}})
+				
 				return userCreated
 			}
 		
@@ -67,7 +73,6 @@ class UserService{
 		let query = id ? { _id: new ObjectId(id) } : { nombre };
 		
 		try{
-
 			let user = await mongo.getOne(collection, query, {password: 0});
 			return user;
 
@@ -75,8 +80,6 @@ class UserService{
 			console.log(err);
 		}
 	}
-
-
 
 }
 
