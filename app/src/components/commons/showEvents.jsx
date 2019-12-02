@@ -47,7 +47,7 @@ const ShowEvents = ({events, isAdmin, deleteEvents = () => {} }) => {
 
                         
                             <div className="container-flex-style-event">
-                                { 
+                                {  
                                     isAdmin 
                                     && 
                                     <div className="buttons">

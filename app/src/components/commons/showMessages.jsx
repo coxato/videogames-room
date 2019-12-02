@@ -11,7 +11,7 @@ const ShowMessages = ({messages, admin = false}) => (
 				{/* photo and date */}
 				<div className="message-izquierda">
 					<div className="imagen">
-						<img src={foto}/>
+						<img src={foto || '/static/images/anon-user.jpg'}/>
 					</div>
 					<div className="fechas">
 						<p>{date}</p>

@@ -37,7 +37,12 @@ class EventosAdmin extends Component{
         try{
             console.log("antes del borrado rest")
             const deleted = await fetch(`/api/admin/delete/event/${id}`, {
-                method: 'DELETE'
+                method: 'DELETE',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'x-access-token': sessionStorage.getItem("token")
+                }
             });
             console.log(deleted)
             // reload the page

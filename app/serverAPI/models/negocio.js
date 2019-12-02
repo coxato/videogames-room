@@ -38,6 +38,8 @@ class Negocio{
                 }
             },
         };
+        // contador de usuarios, para hacer auto increment
+        this.usersCount = 0;
         this.fotos = []; 
     }
 }

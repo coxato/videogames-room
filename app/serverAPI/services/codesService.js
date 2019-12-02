@@ -1,6 +1,7 @@
 const MongoLib = require("../mongo/connection");
 const ObjectId = require("mongodb").ObjectId;
 const codeGen = require("../utils/createCodes");
+const codeIsExpired = require("../utils/checkExpirationDate");
 const CodigoModel = require("../models/codigo");
 
 
@@ -104,7 +105,8 @@ class CodesServices{
         let { mongo, collection } = this;
         // neccessary query for interact with mongoDB 
         let queryType = type == 'hour' ? "hourCodes" : "prizeCodes"; 
-        // check if the code exist
+        
+        // #######  check if the code exist  #######
         // { [key] : value } ES6 feature
         let codeExist = await mongo.getOne(collection, { [queryType+'.code']: code }, 
             { // projection
@@ -113,54 +115,58 @@ class CodesServices{
                 duracionEnDiasDeCodigoPremio: 1
             });
         console.log(codeExist)
-        // if the code not exist
+        // #######  if the code not exist  #######
         if(!codeExist) return { success: false, fail: true, used: false};
-        // if the code is already used
+        // #######  if the code is already used  #######
         if(codeExist[queryType][0].isUsed ) return { success: false, fail: false, used: true }
-        // if the code is all valid return success true and change the props of the code
-        // update Code, because if the code is valid, then it will not be valid, you know, only use the code one time
-        await mongo.updateOne(collection, 
-            { [queryType+'.code']: code },
-             {
-                $set: { 
-                    [queryType+'.$.isValid'] : false,
-                    [queryType+'.$.isUsed'] : true,
-                } 
-         });
-        // ===== add points and codes to user =====
-        // if hour, increment the hours count and points
-        if(type=="hour"){
-            await mongo.updateOne('user', { _id: new ObjectId(userId) }, { 
-                $inc: {
-                    contadorHoras: 1,
-                    puntos: 100 
-                } 
-            } );
-            // return success object to frontend if all pass
-            return { success: true, fail: false, used: false };
+        // #######  check expiration dates  #######
+        // code object
+        const codeObject = codeExist[queryType].filter( c => c.code === code);
+        // #######  send the code to check date with codeIsExpired mehotd  #######
+        const expirationDay = codeObject[0].expiration.reverse().join('/');
+        if(!codeIsExpired(expirationDay)){
+            // if the code is all valid return success true and change the props of the code
+            // update Code, because if the code is valid, then it will not be valid, you know, only use the code one time
+            await mongo.updateOne(collection, 
+                { [queryType+'.code']: code },
+                 {
+                    $set: { 
+                        [queryType+'.$.isValid'] : false,
+                        [queryType+'.$.isUsed'] : true,
+                    } 
+             });
+            // ===== add points and codes to user =====
+            // if hour, increment the hours count and points
+            if(type=="hour"){
+                await mongo.updateOne('user', { _id: new ObjectId(userId) }, { 
+                    $inc: {
+                        contadorHoras: 1,
+                        puntos: 100 
+                    } 
+                } );
+                // return success object to frontend if all pass
+                return { success: true, fail: false, used: false };
+            }
+            
+            // return success obj to frontend if is prize code
+            // no se agregan puntos al usuario porque los puntos solo
+            // se agregan cuando se crea un codigo de premio,
+            // mas no cuando se revisa, cuando solo se revisa basta con ver si
+            // el codigo de premio existe y de ser así, mandar un objeto success para el frontend
+            else{
+                return { success: true, fail: false, used: false };
+            }
+            
+
         }
-        // prize, add points and code to user
+        // #######  date is expirated  #######
         else{
-            // await mongo.updateOne('user', { _id: new ObjectId(userId) }, { 
-            //     $inc: {
-            //         puntos: 300 
-            //     },
-            //     $push: {
-            //         prizeCodes: code
-            //     } 
-            // } );
-
-            // just want check a prize code and return success or not 
-            // check date
-            let codeExpirationDate = codeExist[queryType][0].expiration.reverse().join('-');
-            codeExpirationDate = new Date(codeExpirationDate);
-            // return success object to frontend if all pass
-            if(new Date(date) <= codeExpirationDate ) return { success: true, fail: false, used: false }; 
-            // date expiration of code
-            else return { success: false, fail: true, used: false, expirated: true};
+            return { success: false, fail: true, used: false , expired: true, expirationDay};
         }
 
-    }  
+
+    }
+ 
         
 
     // $$$$$$$$$$$$$$$$  create one code $$$$$$$$$$$$$$
@@ -230,6 +236,48 @@ class CodesServices{
         );
         // return updated message
         return 'code updated';
+    }
+
+
+    // ******************  check expirationDate of all codes  *****************
+    // if a code is expired that code is not valid
+    async checkExpirationDateAllCodesAndReturnThem(){
+        let {collection, mongo} = this;
+
+        let allCodes = await this.getCodes();
+        let { hourCodes, prizeCodes } = allCodes;
+        // function to iterate all the codes and check dates
+        const checkCodesDate = ObjCodesArray => {
+                for(let codeObj of ObjCodesArray ){
+                // transform Array [DD,MM,YYYY] to string YYYY/MM/DD
+                let copyExpirationArr = [...codeObj.expiration];
+                let expirationString = copyExpirationArr.reverse().join('/'); // YYYY/MM/DD
+                let isExpired = codeIsExpired(expirationString);
+                // set the code as invalid code
+                if(isExpired) codeObj.isValid = false;
+
+            }
+        }
+
+        // check hour codes expiration date
+        checkCodesDate(hourCodes);
+        // check prize codes expiration date
+        checkCodesDate(prizeCodes);
+
+        // save the checked codes in mongoDB
+        await mongo.updateOne(collection, {}, {
+            $set: {
+                hourCodes,
+                prizeCodes
+            }
+        });
+        // return codes for frontend
+        return {
+            hourCodes,
+            prizeCodes
+        }
+
+
     }
 
     // delete all invalid codes

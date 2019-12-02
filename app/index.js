@@ -15,6 +15,7 @@ import commonRoutes from "./serverAPI/routes/commonRoutes";
 import codesRoutes from "./serverAPI/routes/codesRoutes";
 import forumRoutes from "./serverAPI/routes/forumRoutes";
 import userRoutes from "./serverAPI/routes/userRoutes";
+import uploadRoutes from './serverAPI/routes/uploadRoutes';
 // import { StaticRouter } from 'react-router';
 import templateReact from './utilities/templateReact';
 import AppSSR from './dist/ssr/appSSR';
@@ -37,6 +38,7 @@ app.use('/static-dist', express.static(path.join(__dirname,'dist')) );
 app.use("/api/admin", negocioRoutes);
 app.use("/api/admin", eventsRoutes);
 app.use("/api/admin", codesRoutes);
+app.use("/api/admin", uploadRoutes)
 // check codes
 app.use("/api/codes", checkCodeRoutes);
 // users

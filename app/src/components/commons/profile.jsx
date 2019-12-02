@@ -6,7 +6,7 @@ import HelpModal from './simpleModalHelp';
 import './styles/profile.css';
 
 function Profile({userData, onModalOpen, horasNecesarias, eleccionPremio}) {
-  let { nombre, apellido, email, puntos, codigoPremioActual, contadorHoras, foto } = userData;
+  let { idUsuario, nombre, apellido, email, puntos, codigoPremioActual, contadorHoras, foto } = userData;
   
   let [dontShow, setDontShow] = useState(true);
 
@@ -19,7 +19,16 @@ function Profile({userData, onModalOpen, horasNecesarias, eleccionPremio}) {
           </div>
           <div className="datos-profile">
             <h1 className="title-user">{nombre} {apellido}</h1>
-            <p className="username">{email}</p>
+            <p className="subtitle">
+              <b>Tu correo:</b> 
+              <br/>
+              {email}
+              <br/>
+              <br/>
+              <b>Tu id de usuario</b>
+              <br/>
+              {idUsuario}
+            </p>
           </div>
         </div>
 

@@ -5,7 +5,7 @@ import '../styles/configValuesCodes.css';
 function ConfigValuesCodes({saveConfig,handleChange, divisorPremio, duracionEnDiasDeCodigoHora, duracionEnDiasDeCodigoPremio, cantidadDeCodigosAGenerar, eleccionPremio}){
 	return(
 		<div className="configValuesCodes-container">
-			<h1 className="title has-text-centered">configuración de códigos</h1>
+			<h1 className="title has-text-centered">Configuración de códigos</h1>
 			
 			<form className="inputs-configCodes-container columns is-centered">
 				<div className="column is-half">

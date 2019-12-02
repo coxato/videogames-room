@@ -25,7 +25,7 @@ class CreateCodes extends Component{
 	async fetchData(){
 		this.setState({ loading: true, error: null })
 		try{
-			let response = await fetch('/api/admin/data/codes', {
+			let response = await fetch('/api/admin/data/check-and-get-codes', {
 				headers: {
 					'x-access-token': sessionStorage.getItem("token")
 				}
@@ -113,8 +113,8 @@ class CreateCodes extends Component{
 		return(
 			<div className="AdminCodes-container">
 				<div className="buttons">
-					<button className="button is-large is-success" onClick={this.handleCreateCodes}>crear nuevos códigos</button>
-					<button className="button is-large is-danger" onClick={this.handleDeleteCodes}>borrar códigos ya usados</button>
+					<button className="button is-large is-success" onClick={this.handleCreateCodes}>Crear nuevos códigos</button>
+					<button className="button is-large is-danger" onClick={this.handleDeleteCodes}>Borrar códigos NO válidos</button>
 				</div>
 				<CodesInfo {...this.state} updateCodeCheckboxHandler={this.updateCodeCheckboxHandler}/>
 

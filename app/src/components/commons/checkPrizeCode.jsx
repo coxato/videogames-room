@@ -4,7 +4,7 @@ import './styles/checkHourCodes.css';
 import './styles/checkPrizeCodes.css';
 
 
-function CheckPrizeCodes({success, fail, used, verifying, code, checkCodePrize, handleChange, expirated }){
+function CheckPrizeCodes({success, fail, used, verifying, code, checkCodePrize, handleChange, expired, expirationDay }){
 
 	return(
 		<div className="CheckPrizeCodes-container">
@@ -30,10 +30,11 @@ function CheckPrizeCodes({success, fail, used, verifying, code, checkCodePrize, 
 			}
 
 			{
-				expirated
+				expired
 				&&
 				<div className="failedComprobation c-message">
 					<p>Código expirado</p>
+					<p>El código se expiró el día {expirationDay.split('/').reverse().join('/') }</p>
 				</div>
 			}
 

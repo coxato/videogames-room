@@ -1,7 +1,7 @@
 import React from 'react';
 // import { withRouter } from 'react-router';
 
-import { Route , Switch, Link } from 'react-router-dom';
+import { Route , Switch } from 'react-router-dom';
 // components
 import AdminGeneral from "../containers/generalAdmin"; 
 import AdminEvents from '../containers/eventosAdmin';

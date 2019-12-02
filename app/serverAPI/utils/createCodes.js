@@ -11,8 +11,8 @@ function setDurationsDays( date , qtyDays ){
 }
 
 function createCodes(tipo, cantidadCodigos = 1, diasVigente, user = ''){
-    // today new Date()
-    let today = new Date();
+    // today new Date() with Venezuela UTC time
+    let today = new Date( new Date().toLocaleString("es-VE", {timeZone: "America/Caracas"}) );
     // save the created date in array with [DD,MM,YY] format [12,12,1999]
     let created = [today.getDate(), today.getMonth() + 1, today.getFullYear()],
     nCharacters = tipo === "hora" ? nCaracteresHora : nCaracteresPremio,
@@ -30,11 +30,11 @@ function createCodes(tipo, cantidadCodigos = 1, diasVigente, user = ''){
             code,
             created,
             user,
-            expiration: setDurationsDays(Number(today), Number(diasVigente)), // expiration date
+            expiration: setDurationsDays( today, Number(diasVigente)), // expiration date
             type: tipo,
             isValid: true,
             isUsed: false,
-            isGiven: false
+            isGiven: false,
         });
     }
 
