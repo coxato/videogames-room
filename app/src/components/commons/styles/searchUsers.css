@@ -1,0 +1,35 @@
+.search-user-container{
+	padding: 40px 35px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.search-user-container img{
+	width: 70px;
+}
+
+.search-user-container .table tr{
+/*	display: flex;
+	align-items: center;  */
+}
+
+.input-buscar-container{
+	display: flex;
+	width: 100%;
+	align-items: flex-end;
+	justify-content: space-between;
+	padding-bottom: 15px;
+}
+
+.input-buscar-container input{
+	/*width: 65%;*/
+}
+
+.input-buscar-container select{
+	/*width: 35%;*/
+}
+
+.search-user-container table{
+	margin-top: 30px;
+}

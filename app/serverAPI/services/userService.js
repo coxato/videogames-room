@@ -81,6 +81,36 @@ class UserService{
 		}
 	}
 
+	// get all users by search filter
+	async getUsers(toSearch, searchBy){
+		let { collection, mongo } = this;
+		// if search by idUsuario, the value is type number
+		if(searchBy == 'idUsuario') toSearch = Number(toSearch);
+		try{
+			let users = await mongo.getAll(collection, {
+				[searchBy]: toSearch
+			});
+			return users;
+
+		}catch(err){
+			console.log('error fetching users, backend',err);
+		}
+	}
+
+	// añadir hora al usuario
+	async addHour(_id){
+		let { collection, mongo } = this;
+		let user = await mongo.getOne(collection, {_id: new ObjectId(_id)});
+		// update user
+		let userSaved = await mongo.updateOne(collection,
+			{_id: new ObjectId(_id)},
+			{
+				$set: { contadorHoras: user.contadorHoras+1 }
+			}
+			);
+		return 'hour added';
+	}
+
 }
 
 module.exports = UserService;

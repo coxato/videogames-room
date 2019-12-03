@@ -43,6 +43,10 @@ function AdminNav() {
 					comprobación de códigos premio
 				</NavLink>
 
+				<NavLink to="/admin/buscar-usuario" className="admin-nav-link" activeClassName="is-admin-nav-active">
+					buscar usuarios
+				</NavLink>
+
 
 			</div>
 

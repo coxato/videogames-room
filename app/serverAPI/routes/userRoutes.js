@@ -6,6 +6,22 @@ const secret = require("../../config/config").secret;
 const verifyToken = require('../middlewares/verifyToken');
 const verifyTokenAdmin = require('../middlewares/verifyIsAdmin');
 
+// get all users, depends serch filter
+router.get('/getusers', verifyTokenAdmin, async (req, res) => {
+	const service = new UserService();
+	let { toSearch, searchBy } = req.query;
+	const users = await service.getUsers(toSearch, searchBy);
+	return res.status(200).send(users);
+});
+
+// sumar hora a usuario
+router.get('/addhour', verifyTokenAdmin, async (req, res) => {
+		const service = new UserService();
+		let { id } = req.query;
+		let horaSumada =await service.addHour(id);
+		return res.status(200).send({ok: true});
+});
+
 // get user by id
 router.get('/:id', verifyToken, async (req, res) => {
 	const service = new UserService();
