@@ -2,10 +2,10 @@ import React, { Component } from "react";
 // mooks
 // import { precio, juegos, horario } from '../../mooks/general';
 // components
-import AdminJuegos from '../components/admin/juegos';
-import Horario from '../components/admin/horario';
-import Precio from '../components/admin/precio';
-import Loader from '../components/commons/loader';
+import AdminJuegos from '../../components/admin/juegos';
+import Horario from '../../components/admin/horario';
+import Precio from '../../components/admin/precio';
+import Loader from '../../components/commons/loader';
 // style 
 import './styles/generalAdmin.css';
 

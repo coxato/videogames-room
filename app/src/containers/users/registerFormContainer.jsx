@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // components
 // import Loader from '../components/commons/loader';
-import RegisterForm from '../components/commons/registerForm';
+import RegisterForm from '../../components/users/registerForm';
 // style
 import './styles/registerContainer.css';
 

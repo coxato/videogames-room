@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 // components
-import Hero from '../components/commons/landingHero';
-import Description from '../components/commons/description';
-import Mapa from '../components/commons/mapa';
-import Horario from '../components/commons/horario';
-import Loader from '../components/commons/loader';
+import Hero from '../../components/homePage/landingHero';
+import Description from '../../components/homePage/description';
+import Mapa from '../../components/homePage/mapa';
+import Horario from '../../components/commons/horario';
+import Loader from '../../components/commons/loader';
 
 class Home extends Component{
 

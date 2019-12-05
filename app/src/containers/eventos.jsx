@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 // components
 import ShowEvents from '../components/commons/showEvents';
 import Loader from '../components/commons/loader';

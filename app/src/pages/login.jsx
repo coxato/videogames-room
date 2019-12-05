@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Route, Switch  } from 'react-router-dom';
 // components
-import Login from '../containers/loginFormContainer'; 
+import Login from '../containers/users/loginFormContainer'; 
 // style
 // import './styles/adminPage.css';
 

@@ -1,10 +1,10 @@
 import React,{ Component } from 'react';
 // components
-import Loader from '../components/commons/loader';
-import SessionPlease from '../components/commons/sessionPlease';
-import CheckPrizeCode from '../components/commons/checkPrizeCode';
+import Loader from '../../components/commons/loader';
+import SessionPlease from '../../components/users/sessionPlease';
+import CheckPrizeCode from '../../components/codes/checkPrizeCode';
 // utilities
-import checkCode from '../../utilities/checkCode';
+import checkCode from '../../../utilities/checkCode';
 // styles
 
 class CheckPrizeAdmin extends Component{

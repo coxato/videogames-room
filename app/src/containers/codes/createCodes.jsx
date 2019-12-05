@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 // components
-import Loader from '../components/commons/loader';
-import CodesInfo from '../components/admin/codes/codesInfo';
-import SessionPlease from '../components/commons/sessionPlease';
+import Loader from '../../components/commons/loader';
+import CodesInfo from '../../components/admin/codes/codesInfo';
+import SessionPlease from '../../components/users/sessionPlease';
 // style
 import './styles/createCodes.css';
 

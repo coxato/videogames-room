@@ -1,12 +1,12 @@
 import React,{ Component } from 'react';
-import { Redirect } from 'react-router-dom';
+//import { Redirect } from 'react-router-dom';
 // components
-import Profile from '../components/commons/profile';
-import Loader from '../components/commons/loader';
-import SessionPlease from '../components/commons/sessionPlease';
-import PortalModal from '../components/commons/portal';
-import CheckHourCode from '../components/commons/checkHourCodes';
-import CreatePrizeCode from '../components/commons/createPrizeCode';
+import Profile from '../../components/users/profile';
+import Loader from '../../components/commons/loader';
+import SessionPlease from '../../components/users/sessionPlease';
+import PortalModal from '../../components/commons/portal';
+import CheckHourCode from '../../components/codes/checkHourCodes';
+import CreatePrizeCode from '../../components/codes/createPrizeCode';
 // styles
 import './styles/profileContainer.css';
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // components
 // import Loader from '../components/commons/loader';
-import LoginForm from '../components/commons/loginForm';
+import LoginForm from '../../components/users/loginForm';
 // style
 import './styles/loginContainer.css';
 

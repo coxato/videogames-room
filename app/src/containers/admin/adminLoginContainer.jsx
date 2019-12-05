@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // components
 // import Loader from '../components/commons/loader';
-import SessionPlease from '../components/commons/sessionPlease';
+import SessionPlease from '../../components/users/sessionPlease';
 
 class AdminLoginContainer extends Component{
 

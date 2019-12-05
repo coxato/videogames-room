@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 
 
 // components
-import Search from '../components/commons/searchUsers';
-import Loader from '../components/commons/loader';
+import Search from '../../components/commons/searchUsers';
+import Loader from '../../components/commons/loader';
 
 class SearchUsers extends Component{
 	
@@ -61,14 +61,16 @@ class SearchUsers extends Component{
 
 
 	render(){
-		return(
+		let { loading } = this.state;
+		return loading ? 
+			<Loader />
+			:
 			<Search 
 				handleOnChange={this.handleOnChange}
 				users={this.state.users}
 				search={this.search}
 				handleAddHour={this.handleAddHour}
 			/>
-		)
 	}
 }
 

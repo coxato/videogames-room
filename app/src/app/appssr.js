@@ -10,20 +10,14 @@ import LoginPage from '../pages/login';
 import LoginAdmin from '../pages/loginAdmin';
 import ProfilePage from '../pages/profile';
 
-import UploadTest from '../pages/uploadTest';
-
-
-
 // nav and footer
-import Nav from '../components/commons/nav';
-import Footer from '../components/commons/footer';
+import Nav from '../components/homePage/nav';
+import Footer from '../components/homePage/footer';
 
 import './styles/app.css';
 
 
 function Appssr(){
-
-	let admin = false;
 
 	let style = {
 		minHeight: '100vh',
@@ -46,7 +40,6 @@ function Appssr(){
 		  		</Switch>*/}
 		  		<LoginAdmin />
 		  		<AdminPage />
-		  		<UploadTest />
 			  	{/*	<Switch>
 			  			<Route component={NotFound} />
 			  		</Switch>  */}

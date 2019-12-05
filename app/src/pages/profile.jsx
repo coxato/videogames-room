@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Route, Switch  } from 'react-router-dom';
 // components
-import Profile from '../containers/profileContainer'; 
+import Profile from '../containers/users/profileContainer'; 
 // style
 // import './styles/adminPage.css';
 

@@ -2,18 +2,15 @@ import React from 'react';
 
 import { Route, Switch  } from 'react-router-dom';
 // components
-import Nav from '../components/commons/nav';
-import Footer from '../components/commons/footer';
-// import Landing from '../containers/landing'; 
 // containers
-import Home from '../containers/homeContainer';
+import Home from '../containers/homePage/homeContainer';
 import Eventos from '../containers/eventos';
 import Juegos from '../containers/juegos';
-import Gallery from '../components/commons/gallery';
-import Contacto from '../components/commons/contact';
+import Gallery from '../components/homePage/gallery';
+import Contacto from '../components/homePage/contact';
 import Foro from '../containers/foro';
 import Noticias from '../containers/news';
-import About from '../components/commons/about';
+import About from '../components/homePage/about';
 // style
 // import './styles/homePage.css';
 

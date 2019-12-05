@@ -3,13 +3,13 @@ import React from 'react';
 
 import { Route , Switch } from 'react-router-dom';
 // components
-import AdminGeneral from "../containers/generalAdmin"; 
+import AdminGeneral from "../containers/admin/generalAdmin"; 
 import AdminEvents from '../containers/eventosAdmin';
-import ConfigCodes from '../containers/codigosConfig';
-import CreateCodes from '../containers/createCodes';
+import ConfigCodes from '../containers/admin/codigosConfig';
+import CreateCodes from '../containers/codes/createCodes';
 import News from '../containers/news';
-import SearchUsers from '../containers/searchUsers';
-import CheckPrizeCode from '../containers/checkPrizeCodeAdmin';
+import SearchUsers from '../containers/users/searchUsers';
+import CheckPrizeCode from '../containers/admin/checkPrizeCodeAdmin';
 import EditAndCreateEvent from '../containers/editAndCreateEvent';
 import EditAndCreateNews from '../containers/editAndCreateNews';
 import AdminNav from '../components/admin/adminNav'; 

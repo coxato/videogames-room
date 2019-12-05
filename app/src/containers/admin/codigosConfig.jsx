@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // components
-import Loader from '../components/commons/loader';
-import ConfigValuesCodes from '../components/admin/codes/configValuesCodes';
+import Loader from '../../components/commons/loader';
+import ConfigValuesCodes from '../../components/admin/codes/configValuesCodes';
 // style
 import './styles/codigosAdmin.css';
 
