@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 
 // components
-import Search from '../../components/commons/searchUsers';
+import Search from '../../components/users/searchUsers';
 import Loader from '../../components/commons/loader';
 
 class SearchUsers extends Component{
@@ -10,7 +10,7 @@ class SearchUsers extends Component{
 	state = {
 		toSearch: '',
 		searchBy: 'nombre',
-		loading: true,
+		loading: false,
 		error: null,
 		users: []
 	}
@@ -29,7 +29,8 @@ class SearchUsers extends Component{
 			let jsonArray = await usersResponse.json();
 			console.log(jsonArray)
 			this.setState({
-				users: jsonArray
+				users: jsonArray,
+				loading: false
 			})
 		}catch(err){
 			console.log(err);

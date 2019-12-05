@@ -5,7 +5,8 @@ const { dev,
     offlineDatabase,
     dbUSer,
     dbNameOnline,
-    dbPassword
+    dbPassword,
+    clusterName
 } = require("../../config/config");
 
 
@@ -15,7 +16,7 @@ if(dev){
     URI = `mongodb://${offlineHost}:${offlinePort}/${offlineDatabase}`;
     dbName = offlineDatabase;
 }else{
-    URI = `mongodb+srv://${dbUSer}:${dbPassword}@${dbNameOnline}-ydbgb.mongodb.net/test?retryWrites=true&w=majority`;
+    URI = `mongodb+srv://${dbUSer}:${dbPassword}@${clusterName}-ydbgb.mongodb.net/test?retryWrites=true&w=majority`;
     dbName = dbNameOnline;
 }
 

@@ -10,8 +10,8 @@ function SearchUsers({handleOnChange, search, users, handleAddHour}) {
 
 	async function showAlert(_id, idUsuario, nombre) {
 		Swal.fire({
-	  title: '¿esta seguro?',
-	  text: `¿Quiere añadir una hora a el usuario ${nombre} id: ${idUsuario}?`,
+	  title: '¿Esta seguro?',
+	  text: `¿Quiere añadir una hora a el usuario: ${nombre} id: ${idUsuario}?`,
 	  icon: 'warning',
 	  showCancelButton: true,
 	  confirmButtonColor: '#3085d6',
