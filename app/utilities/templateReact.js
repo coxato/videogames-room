@@ -3,7 +3,7 @@ module.exports = function templateReact(html) {
       <html lang="en">
       <head>
         <meta charset="UTF-8">
-        <title>MasPlay sala de videojuegos</title>
+        <title>MasPlay Sala de Videojuegos</title>
         <link rel="stylesheet" href="/static/bulma.css">
       </head>
       <body>

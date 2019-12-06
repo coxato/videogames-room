@@ -1,9 +1,10 @@
 const router = require("express").Router();
-const upload = require("../../config/multer");
+//const upload = require("../../config/multer");
 const verifyIsAdmin = require("../middlewares/verifyIsAdmin");
 
 router.post("/upload", verifyIsAdmin, (req, res) => {
-	upload( req, res, (err) => {
+	// upload photo
+    upload( req, res, (err) => {
         if(!err) {
             return res.status(200).send({
             	filename: req.file.filename,
