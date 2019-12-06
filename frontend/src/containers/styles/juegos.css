@@ -1,0 +1,13 @@
+.juegos-container{
+	padding: 30px 40px;
+	/*position: relative;*/
+}
+
+.carta{
+    transition: .2s;
+}
+
+.carta:hover{
+    transform: scale(1.03);
+    box-shadow: 0px 0px 7px 3px var(--red);
+}

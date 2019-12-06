@@ -1,0 +1,18 @@
+.is-not-valid{
+	text-decoration: line-through;
+	background: #ff1e1ebf !important;
+}
+
+.is-odd{
+	background: lightgrey;
+}
+
+.showCodes-container{
+	border: 2px solid #105065;
+	font-size: 22px;
+}
+
+.showCodes-container input{
+	width: 50px;
+	height: 30px;
+}

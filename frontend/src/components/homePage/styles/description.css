@@ -1,0 +1,11 @@
+.description-landing-container{
+	padding: 50px 70px;
+	font-size: 28px;
+	font-family: helvetica;
+	display: flex;
+	justify-content: center;
+}
+
+.contenido{
+	width: 60%;
+}

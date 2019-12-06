@@ -1,0 +1,22 @@
+.editEvent-container{
+	background: white;
+}
+
+.edit-create-form{
+	padding: 20px 30px;
+	border-radius: 5px;
+	background: #f2f2f2;
+}
+
+.edit-create-form input{
+	font-size: 22px;
+}
+
+
+.edit-create-form textarea{
+	font-size: 22px;
+}
+
+.edit-create-form label{
+	font-size: 18px;
+}

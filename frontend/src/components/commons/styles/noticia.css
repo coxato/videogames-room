@@ -1,0 +1,19 @@
+ .noticia-container{
+ 	margin-top: 15px;
+ 	border: 2px solid black;
+    padding: 20px;
+    border-radius: 10px;
+    background: white;
+    text-align: center;
+    width: 650px;
+}
+
+ .isAdmin-noticia{
+ 	margin-bottom: 0px;
+ 	display: flex;
+    justify-content: space-between;
+}
+
+ .contenido-noticia{
+ 	font-size: 23px;
+ }
