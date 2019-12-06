@@ -19,6 +19,16 @@
 	      "use": "@now/node-server"
 	    }
 	]
+	"routes": [
+    {
+      "src": "/public/(.*)",
+      "dest": "/static/$1"
+    },
+    {
+      "src": "/dist/(.*)",
+	"dest": "/static-dist/$1"
+    }
+  ]
   	
 	
 }
