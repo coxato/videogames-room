@@ -14,10 +14,9 @@
 		"DB_USER": "carlos" 
 	},
 	"builds": [
-	    {
-	      "src": "index.js",
-	      "use": "@now/node-server"
-	    }
+		{ "src": "dist/**", "use": "@now/static" },
+		{ "src": "public/**", "use": "@now/static" },
+        	{ "src": "index.js", "use": "@now/node" }
 	]
 	"routes": [
     {
