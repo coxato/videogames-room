@@ -14,18 +14,7 @@
 		"DB_USER": "carlos" 
 	},
 	"builds": [
-        	{ "src": "index.js", "use": "@now/node-server" }
-	],
-	"routes": [
-        {
-            "headers": {
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-                "Access-Control-Allow-Headers": "X-Requested-With, Content-Type, Accept"
-            },
-            "src": "/",
-            "dest": "/index.js"
-        }
-    ]
+        	{ "src": "app/index.js", "use": "@now/node-server" }
+	]
 	
 }
