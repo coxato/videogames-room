@@ -8,7 +8,7 @@ const ShowEvents = ({events, isAdmin, deleteEvents = () => {} }) => {
 
     function showMore(index){
         console.log(index)
-        if(getComputedStyle(elements[index]).height == "0px"){
+        if(getComputedStyle(elements[index]).height === "0px"){
             elements[index].style.height = originalHeights[index];
             buttons[index].textContent = "ver menos";
             buttons[index].classList.replace('is-info', 'is-primary');

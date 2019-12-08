@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { apiHost } from '../config/config';
 //import { Link } from 'react-router-dom';
 // components
 import Loader from '../components/commons/loader';
@@ -25,7 +26,7 @@ class News extends Component{
 	fetchData = async () => {
 		this.setState({ loading: true });
 
-		let response = await fetch("/api/noticias/all", {
+		let response = await fetch(`${apiHost}/api/noticias/all`, {
 			headers: {
 				'x-access-token': sessionStorage.getItem("token")
 			}
@@ -40,7 +41,7 @@ class News extends Component{
 	}
 
 	onDelete = async (id) => {
-		let response = await fetch(`/api/noticias/delete/${id}`, {
+		let response = await fetch(`${apiHost}/api/noticias/delete/${id}`, {
 			method: 'DELETE',
 			headers: {
 				'x-access-token': sessionStorage.getItem("token")

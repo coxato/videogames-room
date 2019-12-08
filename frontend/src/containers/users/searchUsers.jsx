@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-
-
+import { apiHost } from '../../config/config';
 // components
 import Search from '../../components/users/searchUsers';
 import Loader from '../../components/commons/loader';
@@ -21,7 +20,7 @@ class SearchUsers extends Component{
 		this.setState({loading: true, error: null});
 
 		try{
-			let usersResponse = await fetch(`/api/users/getusers/?toSearch=${toSearch}&searchBy=${searchBy}`,{
+			let usersResponse = await fetch(`${apiHost}/api/users/getusers/?toSearch=${toSearch}&searchBy=${searchBy}`,{
 				headers: {
 					'x-access-token': sessionStorage.getItem('token')
 				}
@@ -42,7 +41,7 @@ class SearchUsers extends Component{
 
 	// add hour to user
 	handleAddHour = async (_id) => {
-		let response = await fetch(`/api/users/addhour/?id=${_id}`, {
+		let response = await fetch(`${apiHost}/api/users/addhour/?id=${_id}`, {
 			headers: {
 				'x-access-token': sessionStorage.getItem('token')
 			}

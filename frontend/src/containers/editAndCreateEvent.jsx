@@ -1,4 +1,5 @@
 import React,{ useState } from 'react';
+import { apiHost } from '../config/config';
 //import { Link } from 'react-router-dom';
 // utils
 import uploadPhoto from '../utilities/uploadPhoto';
@@ -48,9 +49,9 @@ function EditAndCreateEvent(props) {
 		// check if want to upload a image
 		if(evento.fotoSubir){
 			try{
-				let uploadResponse = await uploadPhoto(evento.fotoSubir, 'fotoSubir', '/api/admin/upload');
-				if(uploadResponse.ok) imageUrlToSave = '/static/images/'+uploadResponse.filename;
-				else imageUrlToSave = '/static/images/default-game.jpg';
+				let uploadResponse = await uploadPhoto(evento.fotoSubir, 'fotoSubir', `${apiHost}/api/admin/upload`);
+				if(uploadResponse.ok) imageUrlToSave = apiHost+'/static/images/'+uploadResponse.filename;
+				else imageUrlToSave = apiHost+'/static/images/default-game.jpg';
 				
 				// save the url in the evento object
 				evento.imagen = imageUrlToSave;
@@ -60,11 +61,11 @@ function EditAndCreateEvent(props) {
 
 		}
 		// check if the inputs to set a image are void, set default image
-		if(evento.imagen == '' && !evento.archivo ) evento.imagen = '/static/images/default-game.jpg';
+		if(evento.imagen === '' && !evento.archivo ) evento.imagen = '/static/images/default-game.jpg';
 
 
 		try{
-			const saved = await fetch(`/api/admin/${makeOrEdit[0]}/event`, {
+			const saved = await fetch(`${apiHost}/api/admin/${makeOrEdit[0]}/event`, {
 				method: makeOrEdit[1],
 				body: JSON.stringify({
                     ...evento
@@ -74,7 +75,8 @@ function EditAndCreateEvent(props) {
                     'Content-Type': 'application/json',
                     'x-access-token': sessionStorage.getItem("token")
                 }
-			})
+			});
+			console.log(saved);
 		}catch(err){
 			console.log(err);
 		}

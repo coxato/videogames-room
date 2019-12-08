@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
+import { apiHost } from '../../config/config';
 
 import './styles/nav.css';
 
@@ -11,7 +12,7 @@ function Nav() {
 	useEffect(() => {
 		async function fetchData(){
 			try{
-				let response = await fetch("/api/data/general");
+				let response = await fetch(`${apiHost}/api/data/general`);
 				let data = await response.json();
 				setHourPrice(data.precio)
 			}catch(err){
@@ -25,7 +26,7 @@ function Nav() {
 		<nav className="nav-menu">
 			<div className="logoImg">
 				<Link to="/">
-	  				<img src="/static/images/logo2.png" />
+	  				<img src={`${apiHost}/static/images/logo2.png`} />
 				</Link>
 			</div>
 

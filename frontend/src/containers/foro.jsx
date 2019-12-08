@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { apiHost } from '../config/config';
 // components
 import Loader from '../components/commons/loader';
 import ShowMessages from '../components/commons/showMessages';
@@ -16,7 +17,7 @@ class Foro extends Component{
 	fetchData = async () => {
 		this.setState({ loading: false, error: null });
 		try{
-			let response = await fetch('/api/foro/messages');
+			let response = await fetch(`${apiHost}/api/foro/messages`);
 			let messages = await response.json();
 			this.setState({messages});
 		}catch(err){
@@ -33,7 +34,7 @@ class Foro extends Component{
 		let message = document.getElementById('foroinput').value;
 		try{
 
-			let response = await fetch('/api/foro/save', {
+			let response = await fetch(`${apiHost}/api/foro/save`, {
 				method: 'POST',
 				body: JSON.stringify({
 					message,

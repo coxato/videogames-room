@@ -1,4 +1,6 @@
 import React,{ Component } from 'react';
+import { apiHost } from '../../config/config';
+
 //import { Redirect } from 'react-router-dom';
 // components
 import Profile from '../../components/users/profile';
@@ -30,14 +32,14 @@ class ProfileContainer extends Component{
 			let id = this.props.match.params.id || "null";
 			console.log('esto es id en react', id);
 			// check user token and get user data
-			let responseUser = await fetch(`/api/users/${id}`, {
+			let responseUser = await fetch(`${apiHost}/api/users/${id}`, {
 				headers: {
 					'x-access-token': sessionStorage.getItem("token")
 				}
 			});
 			let jsonUser = await responseUser.json();
 			// get neccesary hours to win a prize
-			let responseDataCodes = await fetch("/api/data/codes");
+			let responseDataCodes = await fetch(`${apiHost}/api/data/codes`);
 			let jsonDataCode = await responseDataCodes.json();
 			console.log("lo que trae ", jsonUser, jsonDataCode);
 			this.setState({

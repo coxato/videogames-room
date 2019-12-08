@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { apiHost } from '../../config/config';
 // components
 import Loader from '../../components/commons/loader';
 import ConfigValuesCodes from '../../components/admin/codes/configValuesCodes';
@@ -27,7 +28,7 @@ class AdminCodes extends Component{
 	async fetchData(){
 		this.setState({ loading: true, error: null })
 		try{
-			let response = await fetch('/api/admin/data/codes', {
+			let response = await fetch(`${apiHost}/api/admin/data/codes`, {
 				headers: {
 					'x-access-token': sessionStorage.getItem("token")
 				}
@@ -61,7 +62,7 @@ class AdminCodes extends Component{
 		this.setState({ loading: true, error: null })
 		try{
 			console.log('antes de actualizar')
-			let response = await fetch('/api/admin/update/codes', {
+			let response = await fetch(`${apiHost}/api/admin/update/codes`, {
 				method: 'PUT',
 				body: JSON.stringify({
 					...this.state

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { apiHost } from '../../config/config';
+
 // components
 // import Loader from '../components/commons/loader';
 import LoginForm from '../../components/users/loginForm';
@@ -42,8 +44,9 @@ class LoginContainer extends Component{
 	login = async () => {
 		if( this.checkForm() ){
 			let { email, password } = this.state;
+			console.log("########## tratando de hacer peticiones post a esta ruta ", `${apiHost}api/users/login`);
 			try{
-				let response = await fetch('api/users/login', {
+				let response = await fetch(`${apiHost}/api/users/login`, {
 					method: 'POST',
 					body: JSON.stringify({ email, password}),
 					headers: {

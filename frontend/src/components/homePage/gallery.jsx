@@ -9,9 +9,9 @@ class Gallery extends React.Component {
   render() { 
 
     let images = []
-    for(let i = 1; i < 5; i++) images.push({
-      original: `/static/images/${i}.jpg`,
-      thumbnail: `/static/images/${i}.jpg`
+    for(let i = 1; i < 8; i++) images.push({
+      original: `https://masplay-api.edu6jas.now.sh/static/images/${i}.jpg`,
+      thumbnail: `https://masplay-api.edu6jas.now.sh/static/images/${i}.jpg`
     });
 
     return (

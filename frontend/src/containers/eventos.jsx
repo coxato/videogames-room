@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { apiHost } from '../config/config';
 //import { Link } from 'react-router-dom';
 // components
 import ShowEvents from '../components/commons/showEvents';
@@ -17,7 +18,7 @@ class Eventos extends Component{
 
     async getEvents(){
         try {
-            let response = await fetch('/api/admin/eventos');
+            let response = await fetch(`${apiHost}/api/admin/eventos`);
             let events = await response.json();
             this.setState({loading: false, events });
         } catch (err) {
@@ -34,7 +35,7 @@ class Eventos extends Component{
 
         return (
             <section className="eventos-container">
-                <h1 className="title has-text-centered">Eventos</h1>
+                <h1 className="title has-text-centered">Eventos en MasPlay</h1>
                 { 
                     loading ? 
                     <Loader />

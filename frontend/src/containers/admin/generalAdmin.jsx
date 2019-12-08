@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { apiHost } from '../../config/config';
+
 // mooks
 // import { precio, juegos, horario } from '../../mooks/general';
 // components
@@ -63,7 +65,7 @@ class AdminGeneral extends Component{
         
         
         try {
-            let allSaved = await fetch("/api/admin/update/general", {
+            let allSaved = await fetch(`${apiHost}/api/admin/update/general`, {
                 method: 'PUT',
                 body: JSON.stringify({
                     horario: scheduleCopy,
@@ -87,7 +89,7 @@ class AdminGeneral extends Component{
     // traer datos de la API
     fetchData = async () => {
         try {
-            let negocioData = await fetch(`/api/admin/data/general`);
+            let negocioData = await fetch(`${apiHost}/api/admin/data/general`);
             let json = await negocioData.json();
             let { precio, horario, juegos } = json;
             this.setState({

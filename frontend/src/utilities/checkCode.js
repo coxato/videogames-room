@@ -1,9 +1,10 @@
-// check the code, return { success, fail, used }
+import { apiHost } from '../config/config';
 
+// check the code, return { success, fail, used }
 async function checkCode(type, code = "just make", date=null){
 	try{
 
-		let response = await fetch(`/api/codes/check/?type=${type}&code=${code}`, {
+		let response = await fetch(`${apiHost}/api/codes/check/?type=${type}&code=${code}`, {
 			method: 'POST',
 			body: JSON.stringify({
 				date: new Date()

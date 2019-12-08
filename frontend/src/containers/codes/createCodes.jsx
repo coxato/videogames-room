@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { apiHost } from '../../config/config';
+
 // components
 import Loader from '../../components/commons/loader';
 import CodesInfo from '../../components/admin/codes/codesInfo';
@@ -25,7 +27,7 @@ class CreateCodes extends Component{
 	async fetchData(){
 		this.setState({ loading: true, error: null })
 		try{
-			let response = await fetch('/api/admin/data/check-and-get-codes', {
+			let response = await fetch(`${apiHost}/api/admin/data/check-and-get-codes`, {
 				headers: {
 					'x-access-token': sessionStorage.getItem("token")
 				}
@@ -49,7 +51,7 @@ class CreateCodes extends Component{
 		this.setState({ loading: true , error: null });
 		try{
 			// create codes with API
-			let response = await fetch(`/api/admin/create/code/hora`, {
+			let response = await fetch(`${apiHost}/api/admin/create/code/hora`, {
 				headers: {
 					'x-access-token': sessionStorage.getItem('token')
 				}
@@ -66,7 +68,7 @@ class CreateCodes extends Component{
 		this.setState({ loading: true , error: null });
 		try{
 			// update the code
-			let response = await fetch(`/api/admin/delete/code/`, {
+			let response = await fetch(`${apiHost}/api/admin/delete/code/`, {
 				method: 'DELETE',
 				headers: {
 					'x-access-token': sessionStorage.getItem('token')
@@ -85,7 +87,7 @@ class CreateCodes extends Component{
 		this.setState({ loading: true , error: null });
 		try{
 			// update the code
-			let response = await fetch(`/api/admin/update/code/?type=${type}&code=${code}&boolean=${boolean}`, {
+			let response = await fetch(`${apiHost}/api/admin/update/code/?type=${type}&code=${code}&boolean=${boolean}`, {
 				method: 'PUT',
 				headers: {
 					'x-access-token': sessionStorage.getItem('token')

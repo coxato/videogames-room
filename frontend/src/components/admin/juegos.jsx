@@ -1,5 +1,6 @@
 import React,{useState} from 'react';
 import CatalogoJuegos from '../commons/catalogoJuegos';
+import { apiHost } from '../../config/config';
 // utils
 import uploadPhoto from '../../utilities/uploadPhoto';
 
@@ -56,10 +57,10 @@ async function includeGamesToarr(){
                // si tiene una foto seleccionada
                if(inputFile.files[0]){
                     // hacer petición a la api para guardar la foto
-                    let uploaded = await uploadPhoto(inputFile.files[0], 'fotoSubir', '/api/admin/upload')
+                    let uploaded = await uploadPhoto(inputFile.files[0], 'fotoSubir', `${apiHost}/api/admin/upload`)
                     // la foto se subió bien
-                    if(uploaded.ok) gameObj.imageUrl = '/static/images/'+uploaded.filename;
-                    else gameObj.imageUrl = '/static/images/default-game.jpg';
+                    if(uploaded.ok) gameObj.imageUrl = apiHost+'/static/images/'+uploaded.filename;
+                    else gameObj.imageUrl = apiHost+'/static/images/default-game.jpg';
                }
                // si los campos están vacios, poner imagen por defecto
                if(typeof inputFile.files[0] === 'undefined' && inputsText[0].value == ''){

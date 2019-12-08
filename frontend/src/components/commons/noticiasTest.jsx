@@ -9,7 +9,7 @@ const ShowNews = ({noticiasArr, isAdmin = false, deleteNews = () => {} }) => {
 
     function showMore(index){
         console.log(index)
-        if(getComputedStyle(elements[index]).height == "0px"){
+        if(getComputedStyle(elements[index]).height === "0px"){
             elements[index].style.height = originalHeights[index];
             buttons[index].textContent = "leer menos";
             buttons[index].classList.replace('is-info', 'is-primary');

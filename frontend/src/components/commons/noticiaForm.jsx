@@ -17,6 +17,10 @@ function NoticiaForm({handleChange,handleChangeInputFile, handleSave, titulo, de
 							<textarea onChange={handleChange} name="descripcion" cols="30" rows="10" defaultValue={descripcion}></textarea>
 						</div>
 						<div className="field">
+							<label className="label">enlace de imagen de internet</label>
+							<input type="text" onChange={handleChange} name="internetImage" className="input"/>
+						</div>
+						<div className="field">
 							<label className="label">subir imagen</label>
 							<input type="file" onChange={handleChangeInputFile} className="input" name="fotoSubir"/>
 						</div>

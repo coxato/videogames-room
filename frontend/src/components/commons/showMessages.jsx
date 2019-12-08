@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { apiHost } from '../../config/config';
 // style
 // import './styles/showMessages.css';
 
@@ -11,7 +11,7 @@ const ShowMessages = ({messages, admin = false}) => (
 				{/* photo and date */}
 				<div className="message-izquierda">
 					<div className="imagen">
-						<img src={foto || '/static/images/anon-user.jpg'}/>
+						<img src={foto || apiHost+'/static/images/anon-user.jpg'} alt="masplay comment"/>
 					</div>
 					<div className="fechas">
 						<p>{date}</p>

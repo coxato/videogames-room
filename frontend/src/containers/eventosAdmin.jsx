@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
+import { apiHost } from '../config/config';
 // import { domain } from '../config/config';
 // import events from '../../mooks/events';
 // components
@@ -20,7 +21,7 @@ class EventosAdmin extends Component{
     async getEvents(){
         try {
             console.log("getEvents se ejecutó")
-            let response = await fetch(`/api/admin/eventos`);
+            let response = await fetch(`${apiHost}/api/admin/eventos`);
             let events = await response.json();
             console.log("los eventos ", events);
             this.setState({loading: false, events });
@@ -36,7 +37,7 @@ class EventosAdmin extends Component{
     deleteEvents = async (id) => {
         try{
             console.log("antes del borrado rest")
-            const deleted = await fetch(`/api/admin/delete/event/${id}`, {
+            const deleted = await fetch(`${apiHost}/api/admin/delete/event/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Accept': 'application/json',

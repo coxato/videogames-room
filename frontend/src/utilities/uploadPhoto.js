@@ -15,7 +15,7 @@ async function uploadPhotoFromForm(file,inputName, restEndPoint) {
 	                'x-access-token': sessionStorage.getItem("token")
 	            }
 	        };
-
+	        console.log(`####### restEndPoint ${restEndPoint} #########`)
 	        let response = await fetch(restEndPoint, config);
 	        let json = await response.json();
 	        // all ok
@@ -26,7 +26,7 @@ async function uploadPhotoFromForm(file,inputName, restEndPoint) {
 	        return { ok: false }
 
 	}catch(err){
-		console.log(err);
+		console.log('error in this utilitie. ',err);
 		return { ok: false }
 	}
 }

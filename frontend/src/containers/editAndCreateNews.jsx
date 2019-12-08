@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { apiHost } from '../config/config';
 // components
 import NoticiaForm from '../components/commons/noticiaForm';
 import Loader from '../components/commons/loader';
@@ -12,7 +13,7 @@ class EditAndCreateNews extends Component{
 		loading: true,
 		titulo: '',
 		descripcion: '',
-		imagen: '',
+		internetImage: '',
 		archivo: null
 	}
 
@@ -32,7 +33,7 @@ class EditAndCreateNews extends Component{
 		const id = this.props.match.params.id;
 		// if edit a news
 		if(id){
-			let response = await fetch(`/api/noticias/noticia/${id}`, {
+			let response = await fetch(`${apiHost}/api/noticias/noticia/${id}`, {
 				headers: {
 					'x-access-token': sessionStorage.getItem("token")
 				}
@@ -52,21 +53,26 @@ class EditAndCreateNews extends Component{
 	handleSave = async () => {
 		const id = this.props.match.params.id;
 		const date = new Date();
+		let imagen;
 		let day = date.getDate(),
 			month = date.getMonth() + 1,
 			year = date.getFullYear();
 		// state variables
-		let {titulo, descripcion, imagen, archivo} = this.state; 
+		let {titulo, descripcion, internetImage ,archivo} = this.state; 
 		// si quiere guardar archivo
 		if(archivo){
-			let uploaded = await uploadPhoto(archivo, 'fotoSubir', '/api/admin/upload');
+			let uploaded = await uploadPhoto(archivo, 'fotoSubir', `${apiHost}/api/admin/upload`);
 			// photo saved
-			if(uploaded.ok) imagen = '/static/images/'+uploaded.filename;
+			if(uploaded.ok) imagen = apiHost+'/static/images/'+uploaded.filename;
 			// photo not saved
-			else imagen = '/static/images/default-news.jpg'; 
+			else imagen = apiHost+'/static/images/default-news.jpg'; 
 		}else{
-			// default image
-			imagen = '/static/images/default-news.jpg';
+			if(internetImage){
+				imagen = internetImage;
+			}else{
+				// default image
+				imagen = apiHost+'/static/images/default-news.jpg';
+			}
 		}
 
 		// news object to save in MongoDB
@@ -80,7 +86,7 @@ class EditAndCreateNews extends Component{
 		let response;
 		// edit
 		if(id){
-			response = await fetch(`/api/noticias/update/${id}`, {
+			response = await fetch(`${apiHost}/api/noticias/update/${id}`, {
 				'method': 'PUT',
 				'body': JSON.stringify(noticia),
 				'headers': {
@@ -92,7 +98,7 @@ class EditAndCreateNews extends Component{
 		} 
 		// create news
 		else{
-			response = await fetch("/api/noticias/crear", {
+			response = await fetch(`${apiHost}/api/noticias/crear`, {
 				'method': 'POST',
 				'body': JSON.stringify(noticia),
 				'headers': {
@@ -105,7 +111,7 @@ class EditAndCreateNews extends Component{
 		let createdOrUpdated = await response.text();
 		console.log(createdOrUpdated);
 		this.props.history.push("/admin/noticias");
-	}
+	} 
 
 	render(){
 		let { loading, titulo, descripcion, imagen } = this.state;

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { apiHost } from '../../config/config';
 // components
 import Hero from '../../components/homePage/landingHero';
 import Description from '../../components/homePage/description';
@@ -20,7 +21,7 @@ class Home extends Component{
  
 	fetchData = async () => {
 		try{
-			let response = await fetch("/api/admin/data/general");
+			let response = await fetch(`${apiHost}/api/admin/data/general`);
 			let data = await response.json();
 			this.setState({ horario: data.horario, loading: false});	
 		}catch(err){

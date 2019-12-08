@@ -20,7 +20,7 @@ function MyPrizeCodes({arrCodes}) {
 						arrCodes.map( (codeObj, idx) => {
 							let { code, created, expiration }  = codeObj;
 							return(
-								<tr key={code} className={idx % 2 != 0 ? 'has-background-light': ''}>
+								<tr key={code} className={idx % 2 !== 0 ? 'has-background-light': ''}>
 									<td>{idx+1}</td>
 									<td>{code}</td>
 									<td>{created.join('/')}</td>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { apiHost } from '../../config/config';
 // Styles
 import './styles/contacto.css';
 
@@ -16,19 +17,19 @@ function Contact() {
 				<div className="contacto-basico">
 					<p className="negro"><b>Telefono:</b></p>
 					<div className="contacto">
-						<div className="imagen-contacto"> <img src="/static/images/cellphone.svg" alt="telefono masplay"/> </div>
+						<div className="imagen-contacto"> <img src={apiHost+"/static/images/cellphone.svg"} alt="telefono masplay"/> </div>
 						<p>(0235)3417745</p>
 					</div>
 
 					<p className="negro"><b>Correo:</b></p>
 					<div className="contacto">
-						<div className="imagen-contacto"> <img src="/static/images/email.svg" alt="correo masplay"/> </div>
+						<div className="imagen-contacto"> <img src={apiHost+"/static/images/email.svg"} alt="correo masplay"/> </div>
 						<p>masplayvideojuegos@gmail.com</p>
 					</div>
 
 					<p className="negro"><b>facebook:</b></p>
 					<div className="contacto">
-						<div className="imagen-contacto"> <img src="/static/images/facebook-logo.svg" alt="correo masplay"/> </div>
+						<div className="imagen-contacto"> <img src={apiHost+"/static/images/facebook-logo.svg"} alt="correo masplay"/> </div>
 						<p>dejanos un mensaje en nuestra &nbsp;</p> <br/> <a className="footer-link" href="https://www.facebook.com/masplay.videojuegos/" target="_blank">página de facebook</a>
 					</div>
 

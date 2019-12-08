@@ -10,13 +10,13 @@ function InputHorario({turno, start, end}){
             <div className="caja-horario">
                 <div className="start-end has-background-info">inicio</div>
                 <input type="number" min={0} max={12} className="input input-horario" defaultValue={Number(start)}/>
-                <div className="am-pm">{turno == "" ? "AM" : turno == "tarde" ? "PM" : "AM" }</div>
+                <div className="am-pm">{turno === "" ? "AM" : turno === "tarde" ? "PM" : "AM" }</div>
             </div>
             {/** fin */}
             <div className="caja-horario">
                 <div className="start-end has-background-info">fin</div>
                 <input type="number" min={0} max={12} className="input input-horario" defaultValue={Number(end)}/>
-                <div className="am-pm">{turno == "tarde" ? "PM" : turno == "" ? "PM" : "AM" }</div>
+                <div className="am-pm">{turno === "tarde" ? "PM" : turno === "" ? "PM" : "AM" }</div>
             </div>
         </div>
     )

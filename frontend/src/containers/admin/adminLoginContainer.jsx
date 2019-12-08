@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { apiHost } from '../../config/config'; 
 // components
 // import Loader from '../components/commons/loader';
 import SessionPlease from '../../components/users/sessionPlease';
@@ -20,7 +21,7 @@ class AdminLoginContainer extends Component{
 		// token exist
 		if(token){
 			// check if user token is admmin
-			let responseIsAdmin = await fetch("/api/users/check/admin", {
+			let responseIsAdmin = await fetch(`${apiHost}/api/users/check/admin`, {
 				headers: {
 					'x-access-token': token
 				}

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { apiHost } from '../config/config';
 //import { Link } from 'react-router-dom';
 // components
 import ShowGames from '../components/commons/catalogoJuegos';
@@ -17,7 +18,7 @@ class Juegos extends Component{
 
     async getGames(){
         try {
-            let response = await fetch('/api/admin/data/general');
+            let response = await fetch(`${apiHost}/api/admin/data/general`);
             let data = await response.json();
             this.setState({loading: false, arrJuegos: data.juegos });
         } catch (err) {

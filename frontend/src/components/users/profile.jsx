@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { apiHost } from '../../config/config';
 // components
 import MyPrizeCodes from './myPrizeCodes';
 import HelpModal from './simpleModalHelp';
@@ -36,7 +37,7 @@ function Profile({userData, onModalOpen, horasNecesarias, eleccionPremio}) {
           {/* help button */}
           <div id="show-help">
             <div className="image" onClick={() => setDontShow(false)}>
-              <img src="/static/images/help.png" alt="ayuda masplay"/>
+              <img src={apiHost+"/static/images/help.png"} alt="ayuda masplay"/>
             </div>
             <h1 onClick={() => setDontShow(false)} className="subtitle">ayuda</h1>
           </div>

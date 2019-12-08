@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { apiHost } from '../../config/config';
+
 // components
 // import Loader from '../components/commons/loader';
 import RegisterForm from '../../components/users/registerForm';
@@ -44,7 +46,7 @@ class RegisterContainer extends Component{
 	signup = async () => {
 		if(this.checkData()){
 			try{
-				let response = await fetch('/api/users/signup', {
+				let response = await fetch(`${apiHost}/api/users/signup`, {
 					method: 'POST',
 					body: JSON.stringify(this.state),
 					headers: {
