@@ -4,8 +4,10 @@ logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-# backend folder is now called serverAPI, and is in app/ folder
+# backend folder is now called serverAPI
 backend/
+# app folder is now called frontend
+app/ 
 
 # Dependency directories
 node_modules/
