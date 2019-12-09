@@ -89,30 +89,26 @@ class Foro extends Component{
 		let { loading , error, messages, isAdmin} = this.state;
 		if(loading) return <Loader />
 		
-		// the user is not admin
-		if(!isAdmin){
-			return ( 
-				<div className="foro-container">
-					<div className="input-foro-container has-text-centered">
-						<h1 className="title">Éste es el foro de MasPlay</h1>
-						<h2 className="subtitle">Deja un comentario o pregunta lo que quieras</h2>
-						<textarea id="foroinput" cols="20" rows="7" className="textarea input" 
-							placeholder="escribe acerca de masplay, o bien, has una pregunta">
-						</textarea>
-						<button onClick={this.saveMessage} className="is-link button">comentar</button>
-					</div>
-					{
-						messages.length > 0
-						?
-						<ShowMessages messages={messages} />
-						:
-						<h1 className="title notMessages">lo siento, aún no hay mensajes aqui, sé el primero en dejar uno!</h1>
-					}
+		return ( 
+			<div className="foro-container">
+				<div className="input-foro-container has-text-centered">
+					<h1 className="title">Éste es el foro de MasPlay</h1>
+					<h2 className="subtitle">Deja un comentario o pregunta lo que quieras</h2>
+					<textarea id="foroinput" cols="20" rows="7" className="textarea input" 
+						placeholder="escribe acerca de masplay, o bien, has una pregunta">
+					</textarea>
+					<button onClick={this.saveMessage} className="is-link button">comentar</button>
 				</div>
-			)
-		} 
-		// user is admin
-		return <ShowMessages admin={isAdmin} onDelete={this.onDelete} messages={messages}/>
+				{
+					messages.length > 0
+					?
+					<ShowMessages messages={messages} onDelete={this.onDelete} admin={isAdmin} />
+					:
+					<h1 className="title notMessages">lo siento, aún no hay mensajes aqui, sé el primero en dejar uno!</h1>
+				}
+			</div>
+		)
+	
 	}
 }
 
