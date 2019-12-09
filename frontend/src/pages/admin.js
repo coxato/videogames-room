@@ -8,6 +8,7 @@ import AdminEvents from '../containers/eventosAdmin';
 import ConfigCodes from '../containers/admin/codigosConfig';
 import CreateCodes from '../containers/codes/createCodes';
 import News from '../containers/news';
+import Foro from '../containers/foro';
 import SearchUsers from '../containers/users/searchUsers';
 import CheckPrizeCode from '../containers/admin/checkPrizeCodeAdmin';
 import EditAndCreateEvent from '../containers/editAndCreateEvent';
@@ -31,6 +32,7 @@ function AdminPage(){
         				<Route exact path="/admin/eventos" component={AdminEvents} />
                         <Route exact path="/admin/evento/:id?" component={EditAndCreateEvent} />
                         <Route exact path="/admin/noticias" component={News} />
+                        <Route exact path="/admin/foro" component={Foro} />
                         <Route exact path="/admin/noticia/:id?" component={EditAndCreateNews} />
                         <Route exact path="/admin/config-codigos" component={ConfigCodes} />
                         <Route exact path="/admin/crear-codigos" component={CreateCodes} />

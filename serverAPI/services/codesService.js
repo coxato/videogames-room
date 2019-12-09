@@ -167,12 +167,11 @@ class CodesServices{
 
     }
  
-        
+         
 
     // $$$$$$$$$$$$$$$$  create one code $$$$$$$$$$$$$$
     async createSimpleCode(type, userId){
         let { mongo, collection } = this;
-        
         if(type == "prize"){
             // get 
             let codeData = await mongo.getOne(collection, {}, {divisorPremio:1, duracionEnDiasDeCodigoPremio:1, duracionEnDiasDeCodigoHora:1, _id: 0});
@@ -184,6 +183,7 @@ class CodesServices{
                 let prizeCode = codeGen('prize', 1, codeData.duracionEnDiasDeCodigoPremio, user.email );
                 // substract hours to user
                 let newHoursQty = user.contadorHoras - codeData.divisorPremio;
+                console.log("!!!!!!!!!!!!!############## \n ########### el prizeCode creado ", prizeCode)
                 // update the user points and prize 
                 await mongo.updateOne("user", { _id: new ObjectId(userId)}, {
                     // add code to prizes
@@ -279,7 +279,7 @@ class CodesServices{
 
 
     }
-
+ 
     // delete all invalid codes
     async deleteInvalidCodes(){
         let { mongo, collection } = this;

@@ -12,7 +12,7 @@ import Foro from '../containers/foro';
 import Noticias from '../containers/news';
 import About from '../components/homePage/about';
 // style
-// import './styles/homePage.css';
+import './styles/homePage.css';
 
 
 function LandingPage(){

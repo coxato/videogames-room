@@ -27,6 +27,10 @@ function AdminNav() {
 					administrar eventos
 				</NavLink>
 
+				<NavLink to="/admin/foro" className="admin-nav-link" activeClassName="is-admin-nav-active">
+					administrar foro
+				</NavLink>
+
 				<NavLink to="/admin/noticias" className="admin-nav-link" activeClassName="is-admin-nav-active">
 					administrar noticias
 				</NavLink>

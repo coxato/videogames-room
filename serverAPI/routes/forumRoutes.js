@@ -4,13 +4,17 @@ const UserService = require("../services/userService");
 const ObjectId = require("mongodb").ObjectId;
 const secret = require('../config/config').secret;
 const jwt = require("jsonwebtoken");
+const simpleTokenVerification = require("../middlewares/verifyIsAdminSimple");
 
-router.get("/messages", async (req, res) => {
+// get all messages
+router.get("/messages", simpleTokenVerification ,async (req, res) => {
 	const service = new ForumService();
+	const { isAdmin } = res.locals;
 	let messages = await service.getMessages();
-	res.status(200).send(messages);
+	res.status(200).send({messages, isAdmin});
 });
 
+// save message
 router.post("/save", async (req, res) => {
 	const service = new ForumService();
 	const userService = new UserService();
@@ -45,7 +49,7 @@ router.post("/save", async (req, res) => {
 			username = 'Anónimo';
 		}
 	}
-	// get the user 
+	// set the message to save object
 	const messageToSave = {
 		...messageObj,
 		username,
@@ -58,6 +62,7 @@ router.post("/save", async (req, res) => {
 	res.send('message created');
 })
 
+// delete all messages
 router.delete("/delete/:id", async (req, res) => {
 	const service = new ForumService();
 	const { id } = req.params;

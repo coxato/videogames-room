@@ -23,7 +23,7 @@ router.get("/data/codes", verifyIsAdmin, async (req, res) => {
     const service = new CodeService();
     let data = await service.getCodes();
     res.status(200).send(data);
-})
+}) 
 
 // checar fecha de expiración y obtener los códigos
 // esta ruta es usada en la pagina 'http://localhost:5000/admin/config-codigos'

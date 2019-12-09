@@ -4,6 +4,9 @@
 	font-family: monospace;
 	display: flex;
 	flex-direction: column;
+	flex: 1;
+	height: 100%;
+	justify-content: flex-end;
 }
 
 .footer a{

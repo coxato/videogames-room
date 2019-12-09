@@ -13,7 +13,7 @@ router.get('/getusers', verifyTokenAdmin, async (req, res) => {
 	const users = await service.getUsers(toSearch, searchBy);
 	return res.status(200).send(users);
 });
-
+ 
 // sumar hora a usuario
 router.get('/addhour', verifyTokenAdmin, async (req, res) => {
 		const service = new UserService();

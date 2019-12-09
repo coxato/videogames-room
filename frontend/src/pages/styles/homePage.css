@@ -1,9 +1,26 @@
+/*
+
 .landing-page-super-container{
 	flex: 1;
+	position: relative;
+}
+
+.landing-content-container{
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	top: 0;
+	flex: 1;
+	margin-top: 450px;
+	
+}
+*/
+.landing-page-super-container{
+	/*flex: 1;*/
 }
 
 .landing-content-container{
 	position: relative;
 	flex: 1;
-	margin-top: 450px;
 }

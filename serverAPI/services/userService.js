@@ -9,7 +9,7 @@ class UserService{
 		this.collection = "user";
 		this.mongo = new MongoLib();
 	}
-  
+   
 	// create a user if email is not taken
 	async createUser(data){
 		let { collection, mongo } = this;
@@ -105,7 +105,7 @@ class UserService{
 		let userSaved = await mongo.updateOne(collection,
 			{_id: new ObjectId(_id)},
 			{
-				$set: { contadorHoras: user.contadorHoras+1 }
+				$set: { contadorHoras: user.contadorHoras+1, puntos: user.puntos+100 }
 			}
 			);
 		return 'hour added';

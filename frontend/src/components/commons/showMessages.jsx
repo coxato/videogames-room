@@ -3,9 +3,9 @@ import { apiHost } from '../../config/config';
 // style
 // import './styles/showMessages.css';
 
-const ShowMessages = ({messages, admin = false}) => (
+const ShowMessages = ({  messages, admin = false, onDelete = ()=>{}  }) => (
 	messages.map( messageObj => {
-		let { username, foto, message, isAdmin,  hour, date } = messageObj;
+		let { _id, username, foto, message, isAdmin,  hour, date } = messageObj;
 		return(
 			<div className="messages-container" key={Math.random() * 1000}>
 				{/* photo and date */}
@@ -20,11 +20,15 @@ const ShowMessages = ({messages, admin = false}) => (
 				</div>
 				{/* name and message */}
 				<div className="message-derecha">
+					{ // delete message
+						admin 
+						&& 
+						<button className="button is-danger" onClick={ () => onDelete(_id)}>borrar mensaje</button>
+					}
 					{ isAdmin && <p className="isAdmin-title">Administrador</p>}
 					<div className="nombre title">{username || 'Anónimo'}</div>
 					<div className="message-text">{message}</div>
 				</div>
-				{ admin && <button onClick={()=>alert('borrar mensaje')} className="button is-danger">borrar mensaje</button> }
 			</div>
 		)
 	})
