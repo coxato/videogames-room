@@ -11,8 +11,10 @@ function setDurationsDays( date , qtyDays ){
 }
 
 function createCodes(tipo, cantidadCodigos = 1, diasVigente, user = ''){
-    // today new Date() with Venezuela UTC time
-    let today = new Date( new Date().toLocaleString("es-VE", {timeZone: "America/Caracas"}) );
+    
+    let today = new Date();
+    console.log("what is today??", today);
+    console.log("and what is today.getDate()", today.getDate());
     // save the created date in array with [DD,MM,YY] format [12,12,1999]
     let created = [today.getDate(), today.getMonth() + 1, today.getFullYear()],
     nCharacters = tipo === "hora" ? nCaracteresHora : nCaracteresPremio,
