@@ -4,7 +4,7 @@ import '../styles/showCodes.css';
  
 
 const ShowCodes = ({ arrCodes, type, updateCodes }) => (
-	<div className="showCodes-container">
+	<div className="showCodes-container" id={`table-container-${type}`}>
 		<table className="table">
 			<thead>
 				<tr>
@@ -43,7 +43,7 @@ const ShowCodes = ({ arrCodes, type, updateCodes }) => (
 									{/* only show creation and expiration time in prize codes */}
 									<td>{ created.join('/') }</td> 
 									<td>{ expiration.join('/') }</td>
-									{  user!='' && <td>{user}</td>  }
+									{  user!=='' && <td>{user}</td>  }
 									{/* the code is used or not */}
 									{ 
 										// show a checkbox if is prize code, or show yes/no if is hour code 

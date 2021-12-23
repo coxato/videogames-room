@@ -86,7 +86,7 @@ class Foro extends Component{
 
 
 	render(){
-		let { loading , error, messages, isAdmin} = this.state;
+		let { loading , messages, isAdmin} = this.state;
 		if(loading) return <Loader />
 		
 		return ( 

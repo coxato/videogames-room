@@ -19,8 +19,6 @@ class LoginContainer extends Component{
 		password: ''
 	}
 
-	
-
 	// save inputs values in state
 	handleOnChange = (ev) => {
 		let key = ev.target.name, value = ev.target.value;
@@ -30,7 +28,7 @@ class LoginContainer extends Component{
 	checkForm = () => {
 		let errors = [];
 		let { email, password } = this.state;
-		if(email == '' || password == '') errors.push('debes llenar todos los campos');
+		if(email === '' || password ===	 '') errors.push('debes llenar todos los campos');
 		if(errors.length){
 			this.setState({ errorMsg: errors, allOk: false });
 			return false;

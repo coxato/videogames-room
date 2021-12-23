@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 // pages
 import LandingPage from '../pages/home';
 import AdminPage from '../pages/admin';
@@ -21,7 +21,7 @@ function App(){
 		display: 'flex',
 		flexDirection: 'column',
 		background: 'rgb(237,237,237)',
-		background: 'linear-gradient(143deg, rgba(237,237,237,1) 23%, rgba(97,97,97,1) 100%)',
+		// background: 'linear-gradient(143deg, rgba(237,237,237,1) 23%, rgba(97,97,97,1) 100%)',
 	}
 
 	return(
@@ -33,14 +33,8 @@ function App(){
 					<RegisterPage />
 					<LoginPage />
 					<ProfilePage />
-					{/*<Switch>
-						<Route exact path="/admin" component={AdminPage} />
-					</Switch>*/}
 					<LoginAdmin />
 			  		<AdminPage />
-			  	{/*	<Switch>
-			  			<Route component={NotFound} />
-			  		</Switch>  */}
 			 { !window.location.pathname.match(/admin/) && <Footer /> }
 			</BrowserRouter>
 		</div>

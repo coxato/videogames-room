@@ -13,11 +13,12 @@ const { dev,
 let dbName, URI;
 // is  development or production
 if(dev){
-    URI = `mongodb://${offlineHost}:${offlinePort}/${offlineDatabase}`;
     dbName = offlineDatabase;
+    URI = `mongodb://localhost:27017/${dbName}`;
+    console.log(URI);
 }else{
-    URI = `mongodb+srv://${dbUSer}:${dbPassword}@${clusterName}-ydbgb.mongodb.net/test?retryWrites=true&w=majority`;
     dbName = dbNameOnline;
+    URI = `mongodb+srv://${dbUSer}:${dbPassword}@${clusterName}-ydbgb.mongodb.net/test?retryWrites=true&w=majority`;
 }
 
 const mongoClientOptions = { useNewUrlParser: true,  useUnifiedTopology: true };

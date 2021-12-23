@@ -56,7 +56,7 @@ class EventosAdmin extends Component{
     }
 
     render(){
-        let { loading, error, events, isAdmin, } = this.state;
+        let { loading, events, isAdmin, } = this.state;
         let { deleteEvents } = this;
         return (
             <section className="eventos-container">

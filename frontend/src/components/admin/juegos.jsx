@@ -63,7 +63,7 @@ async function includeGamesToarr(){
                     else gameObj.imageUrl = apiHost+'/static/images/default-game.jpg';
                }
                // si los campos están vacios, poner imagen por defecto
-               if(typeof inputFile.files[0] === 'undefined' && inputsText[0].value == ''){
+               if(typeof inputFile.files[0] === 'undefined' && inputsText[0].value === ''){
                     gameObj.imageUrl = '/static/images/default-game.jpg';
                }
                newGames.push(gameObj);

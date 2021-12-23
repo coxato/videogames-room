@@ -26,7 +26,7 @@ function Nav() {
 		<nav className="nav-menu">
 			<div className="logoImg">
 				<Link to="/">
-	  				<img src={`${apiHost}/static/images/logo2.png`} />
+	  				<img src={`${apiHost}/static/images/logo2.png`} alt="user" />
 				</Link>
 			</div>
 
@@ -57,14 +57,11 @@ function Nav() {
 			      	</NavLink>
 
 			      	<div className="navbar-item has-dropdown is-hoverable">
-				        <a className="navbar-link">
+				        <div className="navbar-link">
 				          Más
-				        </a>
+				        </div>
 				        <div className="navbar-dropdown">
-				          	<a className="navbar-item">
-				            	Nosotros
-				          	</a>
-				        	<a href="https://mega.nz/#!LCoi3QDT!sSDqxzlCrKiGDuiC2lQM_a8A-3N6vGaC2DTLEiYagDQ"
+				        	<a rel="noopener noreferrer" href="https://mega.nz/#!LCoi3QDT!sSDqxzlCrKiGDuiC2lQM_a8A-3N6vGaC2DTLEiYagDQ"
 				        	 	target="_blank"
 				        	 	className="navbar-item"
 				        	 >
@@ -77,7 +74,7 @@ function Nav() {
 				</div>
 		    
 		    {/* mostrar precio de la hora */}
-			<div className="precio-nav">precio {hourPrice} Bs</div>
+			<div className="precio-nav">precio ${hourPrice}</div>
 			
 		    <div className="nav-end">
 

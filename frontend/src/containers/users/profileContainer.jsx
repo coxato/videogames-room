@@ -46,7 +46,7 @@ class ProfileContainer extends Component{
 				loading:false, 
 				user: jsonUser,
 				error:null, 
-				auth: jsonUser.auth == false ? false : true, // auth is always false if is verifying the token, so if not return auth key, the token is valid
+				auth: jsonUser.auth === false ? false : true, // auth is always false if is verifying the token, so if not return auth key, the token is valid
 				horasNecesarias: jsonDataCode.divisorPremio,
 				eleccionPremio: jsonDataCode.eleccionPremio
 			});

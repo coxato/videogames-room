@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 // utils
 import checkCode from '../../utilities/checkCode';
 // styles
@@ -17,17 +17,17 @@ function CheckPrizeCodes({ horasNecesarias, horasUser, eleccionPremio }){
 	})
 
 	// check the prize code
-	const checkCodePrize = async (type) => {
-		setCodeState({ ...codeState, verifying: true });
+	const checkCodePrize = useCallback(async (type) => {
+		setCodeState(previousState => ({ ...previousState, verifying: true }));
 		try{
 			// just check for make a code
 			let checked = await checkCode(type);
 			console.log("que es checked en el frontend ", checked)
-			setCodeState({ verifying: false, ...checked })
+			setCodeState(previousState => ({ ...previousState, verifying: false, ...checked }))
 		}catch(err){
 			console.log(err);
 		}
-	}
+	}, []);
 
 	// componentDidMount hook useEffect, to check if user can create a prize code
 	useEffect(() => {
@@ -35,7 +35,7 @@ function CheckPrizeCodes({ horasNecesarias, horasUser, eleccionPremio }){
 			checkCodePrize('prize');
 		}
 		check();
-	}, []);
+	}, [checkCodePrize]);
 
 	let { code, verifying, success, fail } = codeState;
 

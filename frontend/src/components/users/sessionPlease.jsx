@@ -1,11 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 // style
 import './styles/sessionPlease.css';
 
 function SessionPlease({state}){
-
-
 	return(
 		<div className="sessionPlease-container columns is-centered">
 			<div className="column is-half">

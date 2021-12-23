@@ -27,9 +27,9 @@ class RegisterContainer extends Component{
 		this.setState({errorMsg: []});
 		let errors = [];
 		let { password, passwordConfirm, nombre, apellido, email } = this.state;
-		if(password != passwordConfirm) errors.push("las contraseñas son diferentes");
+		if(password !== passwordConfirm) errors.push("las contraseñas son diferentes");
 		if(password.length < 6) errors.push("la contraseña debe tener al menos 6 caracteres");
-		if(nombre=='' || apellido==''|| email=='') errors.push("rellena todos los campos")
+		if(nombre==='' || apellido===''|| email==='') errors.push("rellena todos los campos")
 		if(errors.length > 0){
 			this.setState({ errorMsg: errors, showErrors: true });
 		}else{

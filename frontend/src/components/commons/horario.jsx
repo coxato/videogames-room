@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './styles/horario-home.css';
 
 // input con los horarios
@@ -26,8 +26,6 @@ function Horario({horario}){
     let { turnoCorrido, diasDeSemana, sabado, domingo  } = horario,
     horarios = [diasDeSemana, sabado, domingo],
     dias = ["Lunes a viernes", "Sabado", "Domingo"];
-
-
 
     return(
         <div className="horario-container-home">

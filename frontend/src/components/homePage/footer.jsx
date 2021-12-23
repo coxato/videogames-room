@@ -41,14 +41,14 @@ function Footer() {
 					<div className="contacto">
 						<div className="imagen-contacto"> <img src={`${apiHost}/static/images/facebook-logo.svg`} alt="telefono masplay"/> </div>
 						<p>
-							<a className="footer-link" href="https://www.facebook.com/masplay.videojuegos/" target="_blank">danos un me gusta</a>
+							<a className="footer-link" rel="noopener noreferrer" href="https://www.facebook.com/masplay.videojuegos/" target="_blank">danos un me gusta</a>
 						</p>
 					</div>
 
 					<p className="negro"><b>Instagram:</b></p>
 					<div className="contacto">
 						<div className="imagen-contacto"> <img src={`${apiHost}/static/images/instagram-logo.svg`} alt="correo masplay"/> </div>
-						<a href="https://www.instagram.com/masplayvideojuegos/?hl=es-la" target="_blank">&nbsp; @masplayvideojuegos</a>
+						<a rel="noopener noreferrer" href="https://www.instagram.com/masplayvideojuegos/?hl=es-la" target="_blank">&nbsp; @masplayvideojuegos</a>
 					</div>
 					
 					<Link className="negro content acerca-de" to="/about"><u><b>acerca de</b></u></Link>
@@ -56,7 +56,7 @@ function Footer() {
 				</div>
 			</div>
 			<div className="footer-abajo">
-				<p>Hecho por <a className="footer-link" href="https://www.github.com/carlosedua" target="_blank">Carlos Martínez</a> &#9400; 2019 - {new Date().getFullYear()} </p>
+				<p>Hecho por <a rel="noopener noreferrer" className="footer-link" href="https://www.github.com/carlosedua" target="_blank">Carlos Martínez</a> &#9400; 2019 - {new Date().getFullYear()} </p>
 			</div>
 		</footer>
 	)

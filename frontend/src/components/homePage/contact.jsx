@@ -30,7 +30,7 @@ function Contact() {
 					<p className="negro"><b>facebook:</b></p>
 					<div className="contacto">
 						<div className="imagen-contacto"> <img src={apiHost+"/static/images/facebook-logo.svg"} alt="correo masplay"/> </div>
-						<p>dejanos un mensaje en nuestra &nbsp;</p> <br/> <a className="footer-link" href="https://www.facebook.com/masplay.videojuegos/" target="_blank">página de facebook</a>
+						<p>dejanos un mensaje en nuestra &nbsp;</p> <br/> <a className="footer-link" rel="noopener noreferrer" href="https://www.facebook.com/masplay.videojuegos/" target="_blank">página de facebook</a>
 					</div>
 
 				</div>

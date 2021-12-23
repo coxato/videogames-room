@@ -7,7 +7,7 @@ function ConfigValuesCodes({saveConfig,handleChange, divisorPremio, duracionEnDi
 		<div className="configValuesCodes-container">
 			<h1 className="title has-text-centered">Configuración de códigos</h1>
 			
-			<form className="inputs-configCodes-container columns is-centered">
+			<form onSubmit={saveConfig} className="inputs-configCodes-container columns is-centered">
 				<div className="column is-half">
 					<div className="form">
 						<div className="field">
@@ -15,6 +15,7 @@ function ConfigValuesCodes({saveConfig,handleChange, divisorPremio, duracionEnDi
 							<p className="label-config">cantidad de códigos a generar</p>
 							<div className="control">
 								<select onChange={handleChange} className="select" name="cantidadDeCodigosAGenerar" value={cantidadDeCodigosAGenerar}>
+									<option value="10">10</option>
 									<option value="20">20</option>
 									<option value="30">30</option>
 									<option value="50">50</option>
@@ -27,8 +28,15 @@ function ConfigValuesCodes({saveConfig,handleChange, divisorPremio, duracionEnDi
 							{/* duración de codigos hora */}
 							<p className="label-config">duración (en días) de codigos de HORA</p>
 							<div className="control">
-								<input type="number" onChange={handleChange} className="input" 
-								defaultValue={duracionEnDiasDeCodigoHora} placeholder="duración" name="duracionEnDiasDeCodigoHora"
+								<input 
+									type="number" 
+									onChange={handleChange} 
+									className="input" 
+									defaultValue={duracionEnDiasDeCodigoHora} 
+									placeholder="duración" 
+									name="duracionEnDiasDeCodigoHora"
+									min={1}
+									required
 								/>
 							</div>
 						</div>
@@ -36,8 +44,15 @@ function ConfigValuesCodes({saveConfig,handleChange, divisorPremio, duracionEnDi
 							{/* duración de códigos premio */}
 							<p className="label-config">duración (en días) de codigos de PREMIO</p>
 							<div className="control">
-								<input type="number" onChange={handleChange} className="input" 
-								defaultValue={duracionEnDiasDeCodigoPremio} placeholder="duración" name="duracionEnDiasDeCodigoPremio"
+								<input 
+									type="number" 
+									onChange={handleChange} 
+									className="input" 
+									defaultValue={duracionEnDiasDeCodigoPremio} 
+									placeholder="duración" 
+									name="duracionEnDiasDeCodigoPremio"
+									min={1}
+									required
 								/>
 							</div>
 						</div>
@@ -45,8 +60,15 @@ function ConfigValuesCodes({saveConfig,handleChange, divisorPremio, duracionEnDi
 							{/* divisor premio = codigos hora necesarios para obtener 1 codigo premio */}
 							<p className="label-config">cantidad de códigos HORA necesarios para un(1) PREMIO</p>
 							<div className="control">
-								<input type="number" onChange={handleChange} className="input" 
-								defaultValue={divisorPremio} placeholder="cantidad necesaria" name="divisorPremio"
+								<input 
+									type="number" 
+									onChange={handleChange} 
+									className="input" 
+									defaultValue={divisorPremio} 
+									placeholder="cantidad necesaria" 
+									name="divisorPremio"
+									min={1}
+									required
 								/>
 							</div>
 						</div>
@@ -63,7 +85,7 @@ function ConfigValuesCodes({saveConfig,handleChange, divisorPremio, duracionEnDi
 						</div>
 
 
-						<button onClick={saveConfig} className="button is-medium is-success">guardar configuración</button>
+						<button type="submit" className="button is-medium is-success">guardar configuración</button>
 					</div>
 				</div>
 			</form>

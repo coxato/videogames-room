@@ -3,10 +3,10 @@ import {Link} from 'react-router-dom';
 import './styles/showNews.css';
 
 
-const ShowNews = ({noticiasArr, isAdmin = false, deleteNews = () => {} }) => {
-    let originalHeights = [];
-    let elements, buttons;  
+let originalHeights = [];
+let elements, buttons;  
 
+const ShowNews = ({noticiasArr, isAdmin = false, deleteNews = () => {} }) => {
     function showMore(index){
         console.log(index)
         if(getComputedStyle(elements[index]).height === "0px"){
@@ -35,7 +35,7 @@ const ShowNews = ({noticiasArr, isAdmin = false, deleteNews = () => {} }) => {
             elements = ocultos;
             buttons = buttonsShow;
         }
-    }, ) 
+    }, [noticiasArr]) 
 
     return (
         <div className="showEvents-container columns is-multiline">

@@ -13,7 +13,6 @@ function EditAndCreateEvent(props) {
 
 	let [ evento, setEvento ] = useState( initialState );
 	let { 
-		_id,
 		titulo, 
 		descripcion, 
 		fechaComienzo, 
@@ -135,7 +134,7 @@ function EditAndCreateEvent(props) {
 					</div>
 					{/* image of event */}
 					<div className="image">
-						<img src={imagen} />
+						<img src={imagen} alt="event" />
 					</div>
 					<button type="button" onClick={save} className="button is-medium is-fullwidth is-success">guardar</button>
 				</form>

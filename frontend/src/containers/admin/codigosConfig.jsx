@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Swal from 'sweetalert2';
 import { apiHost } from '../../config/config';
 // components
 import Loader from '../../components/commons/loader';
@@ -42,7 +43,7 @@ class AdminCodes extends Component{
 				cantidadDeCodigosAGenerar,
 				eleccionPremio,
 				loading: false,
-				auth: json.auth == false ? false : true
+				auth: json.auth === false ? false : true
 			})
 		}catch(err){
 			this.setState({ loading: false, error: err })
@@ -58,7 +59,9 @@ class AdminCodes extends Component{
 		})
 	}
 
-	saveConfig = async () => {
+	saveConfig = async (ev) => {
+		ev.preventDefault();
+
 		this.setState({ loading: true, error: null })
 		try{
 			console.log('antes de actualizar')
@@ -73,11 +76,16 @@ class AdminCodes extends Component{
                     'x-access-token': sessionStorage.getItem("token")
                 }
 			})
-			console.log('aqui pasó')
+
 			let text = await response.text()
 			console.log(text);
 			// reload the page
 			// this.props.history.push('/admin/config-codigos');
+			Swal.fire({
+				title: 'Cambios guardados',
+				icon: 'success'
+			})
+			
 			this.setState({ loading: false, error: null })
 		}catch(err){
 			this.setState({ loading: false, error: err })

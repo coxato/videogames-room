@@ -31,7 +31,7 @@ class Eventos extends Component{
     }
 
     render(){
-        let { loading, error, events, isAdmin, } = this.state;
+        let { loading, events, isAdmin, } = this.state;
 
         return (
             <section className="eventos-container">

@@ -31,7 +31,7 @@ class Juegos extends Component{
     }
 
     render(){
-        let { loading, error, arrJuegos, isAdmin, } = this.state;
+        let { loading, arrJuegos, isAdmin, } = this.state;
 
         return (
             <section className="juegos-container">

@@ -38,7 +38,7 @@ class CreateCodes extends Component{
 				hourCodes,
 				prizeCodes,
 				loading: false,
-				auth: json.auth == false ? false : true
+				auth: json.auth === false ? false : true
 			})
 		}catch(err){
 			this.setState({ loading: false, error: err })
@@ -57,6 +57,7 @@ class CreateCodes extends Component{
 				}
 			});
 			let created = await response.text();
+			console.log(created);
 			this.fetchData();
 		}catch(err){
 			this.setState({ loading: false, error: err });
@@ -102,6 +103,18 @@ class CreateCodes extends Component{
 
 	}
 
+	handlePrint = () => {
+		let divContents = document.getElementById('table-container-hour').innerHTML;
+		let printWindow = window.open('', '', 'height=400,width=800');
+		printWindow.document.write('<html><head><title>Codigos hora</title>');
+		printWindow.document.write('</head><body >');
+		printWindow.document.write(divContents);
+		printWindow.document.write('</body></html>');
+		printWindow.document.close();
+		printWindow.print();
+		printWindow.close();
+	}
+
  
 	render(){
 		let { loading, error, auth } = this.state;
@@ -117,6 +130,7 @@ class CreateCodes extends Component{
 				<div className="buttons">
 					<button className="button is-large is-success" onClick={this.handleCreateCodes}>Crear nuevos códigos</button>
 					<button className="button is-large is-danger" onClick={this.handleDeleteCodes}>Borrar códigos NO válidos</button>
+					<button className="button is-large is-primary" onClick={this.handlePrint}>Imprimir códigos</button>
 				</div>
 				<CodesInfo {...this.state} updateCodeCheckboxHandler={this.updateCodeCheckboxHandler}/>
 

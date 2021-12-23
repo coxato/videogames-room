@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './styles/showEvents.css';
 
-const ShowEvents = ({events, isAdmin, deleteEvents = () => {} }) => {
-    let originalHeights = [];
-    let elements, buttons;  
+let originalHeights = [];
+let elements, buttons;  
 
+const ShowEvents = ({events, isAdmin, deleteEvents = () => {} }) => {
     function showMore(index){
         console.log(index)
         if(getComputedStyle(elements[index]).height === "0px"){
@@ -34,7 +34,7 @@ const ShowEvents = ({events, isAdmin, deleteEvents = () => {} }) => {
             elements = ocultos;
             buttons = buttonsShow;
         }
-    }, ) 
+    }, [events]) 
 
     return (
         <div className="showEvents-container columns is-multiline">

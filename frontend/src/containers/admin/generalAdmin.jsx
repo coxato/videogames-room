@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { apiHost } from '../../config/config';
+import Swal from 'sweetalert2';
 
 // mooks
 // import { precio, juegos, horario } from '../../mooks/general';
@@ -30,7 +31,7 @@ class AdminGeneral extends Component{
     getDataHorarioAndPrice = () => {
         let scheduleCopy = JSON.parse(JSON.stringify(this.state.horario)),
         inputs = [...document.querySelectorAll(".input-horario")],
-        corrido = document.querySelector(".horario-select").value == "corrido" ? true:false,
+        corrido = document.querySelector(".horario-select").value === "corrido" ? true:false,
         cont = 0,
         precio = document.getElementById("precio").value;
         // iterar a travez del objeto horario, recordar que no importa el turno
@@ -61,8 +62,16 @@ class AdminGeneral extends Component{
     // guardar todos los datos
     handleSend = async () => {
         let { scheduleCopy, precio } = this.getDataHorarioAndPrice();
-        this.setState({ error: null, loading: false, saving: true});
         
+        if(!precio){
+            Swal.fire({
+                title: 'No puede dejar el precio vacio',
+                icon: 'info'
+            })
+            return;
+        }
+
+        this.setState({ error: null, loading: false, saving: true});
         
         try {
             let allSaved = await fetch(`${apiHost}/api/admin/update/general`, {
@@ -79,7 +88,13 @@ class AdminGeneral extends Component{
                 }
             });
             let responseJson = await allSaved.json();
+            console.log(responseJson);
             this.setState({ saving: false, precio, horario: scheduleCopy });
+
+            Swal.fire({
+                title: 'Datos guardados',
+                icon: 'success'
+            })
 
         } catch (err) {
             this.setState({ error: err, saving: false})

@@ -10,8 +10,7 @@ function About() {
 					Éste sitio web forma parte del proyecto socio tecnológico
 					de los estudiantes del Programa Nacional de Formación en Informática
 					(PNFI), sección 2, del Instituto Universitario de Tecnología de los Llanos
-					(IUTLL) sede Valle de la Pascua - Guárico, dicho proyecto se está realizando
-					en el segundo año de dicha carrera, también conocido como "trayecto 2".
+					(IUTLL) sede Valle de la Pascua - Guárico.
 				</p>
 
 					<p className="subtitle has-text-centered">Integrantes del proyecto:</p>
@@ -28,8 +27,8 @@ function About() {
 								<td>26.717.488</td>
 							</tr>
 							<tr>
-								<td>Verily Hernandez</td>
-								<td>29.865.533</td>
+								<td>Eduardo Mattey</td>
+								<td>28.169.054</td>
 							</tr>
 						</tbody>
 					</table>

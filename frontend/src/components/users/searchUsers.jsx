@@ -19,8 +19,8 @@ function SearchUsers({handleOnChange, search, users, handleAddHour}) {
 	  confirmButtonText: 'Si, otorgar hora'
 	}).then(async (result) => {
 	  if (result.value) {
-			let added = await handleAddHour(_id);
-		
+		let added = await handleAddHour(_id);
+		console.log(added);
 
 	    Swal.fire(
 	      'hora sumada',
@@ -69,7 +69,7 @@ function SearchUsers({handleOnChange, search, users, handleAddHour}) {
 							return(
 								<tr key={idx}>
 									<td>{idUsuario}</td>
-									<td> <div className="image"> <img src={foto}/> </div> </td>
+									<td> <div className="image"> <img src={foto} alt="user foto"/> </div> </td>
 									<td>{nombre}</td>
 									<td>{email}</td>
 									<td> <div onClick={async ()=> await showAlert(_id, idUsuario, nombre)} className="button is-link">otorgar hora(s)</div> </td>
